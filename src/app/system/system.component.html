@@ -1,0 +1,5 @@
+<system-sidebar [onOpen]="btnSidebar"></system-sidebar>
+<!-- (sidebarButton)="sidebarButtonOpen($event)" -->
+<system-navbar (emitirSelection)="receberSelection($event)"></system-navbar>
+
+<h1>{{ selection }}</h1>
