@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'system-root',
@@ -7,15 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SystemComponent implements OnInit {
 
-  selection: string;  
+  selection: string;     
+  options:string [] = ["LIVROS", "ALUGUEL", "CLIENTES", "USUARIOS"];
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {    
   } 
 
-  receberSelection(event){    
-    this.selection = event.sele + " → " + event.subSele;
+  openCloseSidebar(event){       
+    if(event){      
+      document.getElementById("sidebar").style.width = "20%";      
+      document.getElementById("sidebar").classList.add ("componentShadow");
+      document.getElementById("main").style.marginLeft = "20%";      
+    }else{      
+      document.getElementById("sidebar").style.width = "0";
+      document.getElementById("sidebar").classList.remove("componentShadow");
+      document.getElementById("main").style.marginLeft= "0";        
+    }
   }
 
 }

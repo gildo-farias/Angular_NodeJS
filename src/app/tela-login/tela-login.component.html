@@ -2,11 +2,11 @@
     <form class="px-4 py-3">
       <div class="form-group">
         <label for="loginUsuario">USUARIO</label>
-        <input type="text" class="form-control" id="loginUsuario" placeholder="fulano@81" required>
+        <input type="text" class="form-control" id="loginUsuario" #user placeholder="fulano@81" required>
       </div>
       <div class="form-group">
         <label for="loginSenha">SENHA</label>
-        <input type="password" class="form-control" id="loginSenha" placeholder="******" required>
+        <input type="password" class="form-control" id="loginSenha" #pass placeholder="******" required>
       </div>
       <div class="form-group">
         <div class="form-check">
@@ -16,8 +16,8 @@
           </label>          
         </div>
       </div>
-      <button type="button" class="btn btn-outline-info" style="margin-right: 2%;">CADASTRAR-SE</button>
-      <button type="submit" class="btn btn-success">LOGAR</button>
+      <button type="button" disabled class="btn btn-outline-info" style="margin-right: 2%;">CADASTRAR-SE</button>
+      <button type="button" class="btn btn-success" (click)="onLogin(user, pass)">LOGAR</button>
     </form>
     <div class="card-footer" style="text-align:center; cursor: pointer;" data-toggle="collapse" href="#collapseSenha" 
         role="button" aria-expanded="false" aria-controls="collapseSenha">

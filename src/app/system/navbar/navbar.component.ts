@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter} from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'system-navbar',
@@ -8,34 +8,24 @@ import { Component, OnInit, Output,EventEmitter} from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   @Output() emitirSelection = new EventEmitter();
-  @Output('sidebarButton') emitirSidebarButton = new EventEmitter();
-  btnSidebar:boolean = false;
+  @Output() emitirSidebar = new EventEmitter();
+  sidebar:boolean = false;
 
   selection: string;
-  option:string;
+  @Input() options:string [];
   
-  OPTIONS:string [][] = [
-    ["LIVROS", "PESQUISAR", "CADASTRO"],
-    ["LOCAÇÃO", "LOCAR", "DEVOLUÇÃO"],
-    ["CLIENTES", "CONSULTAR", "CADASTRO"],
-    ["USUARIOS", "CONSULTAR", "CADASTRAR"]
-  ];
-
   constructor() { }
 
   ngOnInit() {
   }
 
-  onClickActive(sele:string){
-    this.selection = sele;    
+  onClickSelection(sele: HTMLLabelElement){    
+    this.selection = sele.textContent;
+    this.emitirSelection.emit(this.selection);
   }
-  onClickSelection(sele: string){    
-    this.option = sele;
-    this.emitirSelection.emit({sele:this.selection,subSele:this.option});    
+  onOpenSidebar(){
+    this.sidebar = !this.sidebar;
+    this.emitirSidebar.emit(this.sidebar);
   }
-  // onOpenSidebar(){
-  //   this.btnSidebar = !this.btnSidebar;
-  //   this.emitirSidebarButton.emit(this.btnSidebar);    
-  // }
 
 }

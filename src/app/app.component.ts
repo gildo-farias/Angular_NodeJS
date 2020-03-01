@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'biblioteca';
+  log: boolean= false;
+
+  logando(event){
+    this.log = event;
+  }
 }

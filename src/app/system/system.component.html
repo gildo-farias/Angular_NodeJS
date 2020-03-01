@@ -1,5 +1,19 @@
-<system-sidebar [onOpen]="btnSidebar"></system-sidebar>
-<!-- (sidebarButton)="sidebarButtonOpen($event)" -->
-<system-navbar (emitirSelection)="receberSelection($event)"></system-navbar>
+<system-sidebar class="bg-dark" id="sidebar" 
+    [options]="options"
+    (emitirSelection)="selection = $event">
+</system-sidebar>
 
-<h1>{{ selection }}</h1>
+<div id="main">
+    <system-navbar 
+        [options]="options"
+        (emitirSelection)="selection = $event"
+        (emitirSidebar)="openCloseSidebar($event)">
+    </system-navbar>    
+
+    <div id="tela" class="componentShadow" [ngSwitch]="selection">
+        <h2 *ngSwitchCase="options[0]">MODULO {{ options[0] }}</h2>
+        <h2 *ngSwitchCase="options[1]">MODULO {{ options[1] }}</h2>
+        <h2 *ngSwitchCase="options[2]">MODULO {{ options[2] }}</h2>
+        <h2 *ngSwitchCase="options[3]">MODULO {{ options[3] }}</h2>        
+    </div>
+</div>

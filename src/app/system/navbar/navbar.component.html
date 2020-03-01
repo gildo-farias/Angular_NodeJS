@@ -1,38 +1,22 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg componentShadow">    
-    <div id="btnMenu" 
-        data-toggle="collapse" href="#menuColapse" role="button" 
-        aria-expanded="false" aria-controls="menuColapse">
+    <div id="btnMenu" (click)="onOpenSidebar()">        
         <span class="navbar-toggler-icon"></span>
     </div>        
     
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">        
-
-        <li *ngFor="let row of OPTIONS;">
-            <div class="dropdown">
-                <a (click)="onClickActive(row[0])" class="nav-link dropdown-toggle" 
-                    [ngClass]="{ active : selection == row[0] }" 
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-                    <span>{{ row[0] }}</span>
-                </a>  
-
-                <div class="dropdown-menu">            
-                    <button *ngFor="let col of row; first as isFirst"
-                        class="dropdown-item" type="button" (click)="onClickSelection(col)">
-                        <span *ngIf="!isFirst">{{ col }}</span>
-                    </button>                                                   
-                </div>         
-            </div>
+        <li *ngFor="let opt of options">
+            <a class="nav-link" (click)="onClickSelection($event.target)"
+                [class.active]="selection == opt">
+                <label>{{ opt }}</label>
+            </a>  
         </li>        
-        
     </ul>
     </div>
 
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search" required>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            <span class="glyphicon glyphicon-search"></span>PESQUISAR
-        </button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">PESQUISAR</button>
     </form>
 
 </nav>
