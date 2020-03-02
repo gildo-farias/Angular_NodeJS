@@ -17,6 +17,8 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.selection = this.options[0];
+    this.emitirSelection.emit(this.selection);
   }
 
   onClickSelection(sele: HTMLLabelElement){    

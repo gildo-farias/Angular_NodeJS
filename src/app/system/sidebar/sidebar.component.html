@@ -1,29 +1,32 @@
-<div class="card-header">
-    <h2>{{ usuario.username }}</h2>                                       
-</div>
+<div>
+    <div class="card-header">
+        <h2>{{ usuario.username }}</h2>                                       
+    </div>
 
-<div class="card-body" style="padding-bottom: 0px">
-    <label>{{ usuario.nome }}</label><label>{{ usuario.snome }}</label>      
-    <img *ngIf="usuario.gen == 'm'" src="assets/m.png">
-    <img *ngIf="usuario.gen == 'f'" src="assets/w.png">
+    <div class="card-body" style="padding-bottom: 0px">
+        <label>{{ usuario.nome }}</label><label>{{ usuario.snome }}</label>      
+        <img *ngIf="usuario.gen == 'm'" src="assets/m.png">
+        <img *ngIf="usuario.gen == 'f'" src="assets/w.png">
 
-    <div class="dropdown-divider"></div>  
-    <label>TEMPO LOGADO</label>
-    <p style="background-color: red;">
-        <label>{{ hor < 10 ? '0'+hor : hor }}:</label>
-        <label>{{ min < 10 ? '0'+min : min }}:</label>
-        <label>{{ seg < 10 ? '0'+seg : seg }}</label>            
-    </p>      
-</div>    
+        <div class="dropdown-divider"></div>  
+        <label>TEMPO LOGADO</label>
+        <p style="background-color: red;">
+            <label>{{ hor < 10 ? '0'+hor : hor }}:</label>
+            <label>{{ min < 10 ? '0'+min : min }}:</label>
+            <label>{{ seg < 10 ? '0'+seg : seg }}</label>            
+        </p>      
+    </div>    
 
-<div class="card-body">            
-    <div class="dropdown-divider"></div>    
-    <h5 *ngFor="let opt of options" (click)="onClickSelection($event.target)"
-        [class.active]="selection == opt">
-        <label>{{ opt }}</label>
-    </h5>      
-</div>
+    <div class="card-body">            
+        <div class="dropdown-divider"></div>    
+        <h5 *ngFor="let opt of options" (click)="onClickSelection($event.target)"
+            [class.active]="selection == opt">
+            <label>{{ opt }}</label>
+        </h5>      
+    </div>
 
-<div class="card-footer" style="cursor: pointer;">
-    <small>SAIR</small>
+    <div class="card-footer" style="cursor: pointer;">
+        <small>SAIR</small>
+    </div>
+
 </div>

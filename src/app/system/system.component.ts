@@ -12,7 +12,7 @@ export class SystemComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {    
+  ngOnInit() {        
   } 
 
   openCloseSidebar(event){       

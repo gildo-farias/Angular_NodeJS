@@ -1,0 +1,117 @@
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" 
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" 
+        style="background-color:gray; padding:0.5%; border-radius: 10px;">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel" style="color:gray;">CADASTRAR LIVRO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="color:white;">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <label for="inputEmail4">ISBN</label>
+                        <input type="number" class="form-control" id="inputEmail4">
+                        </div>
+                        <div class="form-group col-md-6">
+                        <label for="inputPassword4">GENERO</label>
+                        <select id="gen" class="form-control">
+                            <option selected>Escolha...</option>
+                            <option *ngFor="let gen of generos">{{ gen | uppercase }}</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">TITULO</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="EX: A volta dos que nao foram">
+                    </div>                    
+                    <div class="form-group">
+                        <label for="inputAddress2">SUB TITULO</label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder="etc... etc... etc..." required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <label for="inputCity">AUTOR(A)</label>
+                            <input type="text" class="form-control" id="" placeholder="Fulano de tal" required>
+                        </div>                        
+                        <div class="form-group col-md-3">
+                            <label for="inputZip">ANO</label>
+                            <input type="number" min="500" max="2020" class="form-control" id="" placeholder=" ex: 1995"  required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">LINK DA IMAGEM DE CAPA</label>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="http://img.jpg" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                            +18
+                        </label>
+                        </div>
+                    </div>                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+                <button type="submit" class="btn btn-success">SALVAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<div class="topTela">        
+    <div class="row">        
+        <div class="col-2">
+            <button class="btn btn-info" title="CADASTRAR" type="button" data-toggle="modal" data-target="#staticBackdrop">+</button>              
+        </div>
+        <div class="col-10">
+            <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search" required>                
+        </div>   
+        <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">PESQUISAR</button> -->
+    </div>    
+</div>
+
+<div style="width: 60%; margin: 0 auto; float: bottom; padding: 0.5%;">
+    <div class="card text-center cards" *ngFor="let livro of livros">             
+        
+        <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
+
+        <div class="bg-dark overlay">
+            <div class="text">
+                <p>
+                    <label>{{ livro.autor }}</label>
+                    <label>, {{ livro.ano }}</label>              
+                </p>
+            </div>
+        </div>        
+            
+        <div class="">
+            <h5 class="card-title">{{ livro.tit | uppercase }}</h5>          
+            <h6 class="card-text" style="font-style: italic;">{{livro.subTit}}</h6>
+
+            <div [id]="'cardN'+livro.cod" class="collapse">                        
+            <p style="cursor: default;" class="card-text" [ngClass]="{
+                'btn-secondary': livro.locado,
+                'btn-info': !livro.locado }">
+                {{ !livro.locado? 'DISPONIVEL' : 'LOCADO' }}
+            </p>         
+            <p style="margin-bottom: 2%;">
+                <a class="btn btn-warning">ALTERAR</a>
+                <a class="btn btn-danger">DELETAR</a>            
+            </p>            
+            </div>                            
+
+        </div>
+        <div class="card-footer cardsCollapse" style="cursor:pointer" [title]="livro.cod"
+            data-toggle="collapse" data-target="" aria-expanded="false" aria-controls="">                             
+        </div>
+        
+    </div>
+</div>
