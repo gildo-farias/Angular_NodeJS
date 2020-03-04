@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TelaLoginComponent } from './tela-login/tela-login.component';
 import { SystemModule } from './system/system.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { SystemModule } from './system/system.module';
     TelaLoginComponent   
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     SystemModule    

@@ -67,19 +67,28 @@
 <!-- Modal -->
 
 <div class="topTela">        
-    <div class="row">        
+    <div class="row">                
         <div class="col-2">
             <button class="btn btn-info" title="CADASTRAR" type="button" data-toggle="modal" data-target="#staticBackdrop">+</button>              
         </div>
         <div class="col-10">
-            <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search" required>                
-        </div>   
-        <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">PESQUISAR</button> -->
+                <input class="form-control" type="text" placeholder="Pesquisar Livro"
+                    [(ngModel)]="filtro">                
+            <!-- (keyup)="onPesquisar($event)" -->
+        </div>        
     </div>    
 </div>
+<div class="alert alert-danger" *ngIf="notFoundFiltro"  style="width: 50%; margin: 0 auto;">
+    <h4 class="alert-heading">OPS!</h4>
+    <p>NADA ENCONTRADO</p>
+    <hr>
+    <p class="mb-0"> Não encontramos nenhum livro com esse titulo digitado
+        tente informa o titulo da franquia ou um subtitulo do livro que deseja.
+    </p>
+</div>
 
-<div style="width: 60%; margin: 0 auto; float: bottom; padding: 0.5%;">
-    <div class="card text-center cards" *ngFor="let livro of livros">             
+<div style="width: 100%; margin: 0 auto; float: bottom; padding: 0.5%;">    
+    <div class="card text-center cards" *ngFor="let livro of onFiltrarLivro()">             
         
         <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
 

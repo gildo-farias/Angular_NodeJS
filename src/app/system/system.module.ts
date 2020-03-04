@@ -6,6 +6,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { LivrosComponent } from './livros/livros.component';
 import { LivrosService } from './livros/livros.service';
 import { LocacaoComponent } from './locacao/locacao.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +19,7 @@ import { LocacaoComponent } from './locacao/locacao.component';
     LocacaoComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,        
   ],
   providers: [
