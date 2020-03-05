@@ -1,7 +1,7 @@
 <div class="card" id="divLogin">
   <form class="px-4 py-3">
     <div class="form-group">
-      <label for="loginUsuario">USUARIO</label>
+      <label for="loginUsuario">USUARIO</label>      
       <input type="text" class="form-control" id="loginUsuario" #user placeholder="fulano@81" required>
     </div>
     <div class="form-group">
@@ -13,7 +13,7 @@
         <input type="checkbox" class="form-check-input" id="loginCheck">
         <label class="form-check-label" for="loginCheck">
           Manter-me conectado.
-        </label>          
+        </label>                  
       </div>
     </div>
     <button type="button" disabled class="btn btn-outline-info" style="margin-right: 2%;">CADASTRAR-SE</button>
@@ -23,11 +23,16 @@
   <div class="card-footer" style="text-align:center; cursor: pointer;" data-toggle="collapse" href="#collapseSenha" 
     role="button" aria-expanded="false" aria-controls="collapseSenha">
     <small class="text-muted">ESQUECEU A SENHA?</small>
-  </div>
+  </div> 
 
   <div class="collapse" id="collapseSenha">
     <div class="card card-body">
-      <form>                
+      <form>        
+        <p class="alert alert-success">
+          USER:<input style="width: 60%;" type="text" value="root@123" readonly>
+          <br>  
+          PASS:<input style="width: 60%;" type="text" value="123456" readonly>
+        </p>
         <p for="loginEmail">
             Informe seu email usado no cadastro e enviaremos um link para redefinição de sua senha.
         </p>
@@ -37,5 +42,7 @@
       </form>
     </div>
   </div>
+
+  
     
-</div>  
+</div>

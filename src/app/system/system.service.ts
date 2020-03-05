@@ -11,7 +11,7 @@ export class SystemService {
   }
   public set logger(value: Usuario) {
     this._logger = value;
-    console.log(this._logger);
+    // console.log(this._logger);
   }
 
   private options:string [] = ["LIVROS", "LOCAÇÃO", "CLIENTES", "USUARIOS"];

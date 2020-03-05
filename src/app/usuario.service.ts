@@ -10,7 +10,7 @@ export class UsuarioService {
   
   usuario:Usuario = {
     cod : 1,
-    username : "gil@84",
+    username : "root@123",
     senha : "123456",
     admin : true,
     nome : "Gildo",
