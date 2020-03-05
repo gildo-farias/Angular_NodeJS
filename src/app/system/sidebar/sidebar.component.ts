@@ -1,4 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { SystemService } from './../system.service';
+import { UsuarioService } from './../../usuario.service';
+import { Usuario } from './../../models/usuario';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'system-sidebar',
@@ -8,15 +11,12 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 export class SidebarComponent implements OnInit {  
   tempo;
   hor:number = 0;  min:number = 0;  seg:number = 0;
-  @Output() emitirSelection = new EventEmitter();
-  @Input() options:string [];
+  
+  options:string[];
+  optionsLinks:string[];
 
-  usuario:any = {
-    username : "mary@78",
-    nome : "Maria",
-    snome : "Silva",
-    gen : 'f',
-  }  
+  usuario:Usuario;
+  
   cronometro() {    
     this.tempo = setInterval(() => {      
       if (this.seg == 60) { this.min++; this.seg = 0; }      
@@ -25,17 +25,21 @@ export class SidebarComponent implements OnInit {
     }, 1000);  
   }
   
-  constructor() { }
+  constructor(private _systemService: SystemService, private _usuarioService: UsuarioService) { }
 
   ngOnInit() {            
     this.cronometro();
+    this.usuario = this._usuarioService.getUsuario();
+    this.options = this._systemService.getOptions();
+    this.optionsLinks = this._systemService.getOptionsLinks();
   }
 
-  onClickSelection(sele: HTMLLabelElement){        
-    this.emitirSelection.emit(sele.textContent);
-    document.getElementById("sidebar").style.width = "0";
-    document.getElementById("sidebar").classList.remove("componentShadow");
-    document.getElementById("main").style.marginLeft= "0"; 
+  onCloseSidebar(){          
+    this._systemService.sidebar = false;      
+  }
+
+  onLogoff(){
+    this._systemService.logger = null;    
   }
 
 }

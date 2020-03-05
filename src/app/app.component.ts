@@ -1,3 +1,4 @@
+import { SystemService } from './system/system.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,10 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  log: boolean= false;
-
-  logando(event){
-    this.log = event;
-  }
+export class AppComponent {  
+  constructor(private _systemService: SystemService){ }
 }

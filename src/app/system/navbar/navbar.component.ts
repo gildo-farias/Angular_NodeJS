@@ -1,33 +1,27 @@
-import { Component, OnInit, Output,EventEmitter, Input} from '@angular/core';
+import { SystemService } from './../system.service';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'system-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
-
-  @Output() emitirSelection = new EventEmitter();
-  @Output() emitirSidebar = new EventEmitter();
-  sidebar:boolean = false;
-
-  selection: string;
-  @Input() options:string [];
+export class NavbarComponent implements OnInit {   
   
-  constructor() { }
+  acess:Boolean;
+  options:string[];
+  optionsLinks:string[];
+  
+  constructor(private _systemService: SystemService) { }
 
-  ngOnInit() {
-    this.selection = this.options[0];
-    this.emitirSelection.emit(this.selection);
+  ngOnInit() {    
+    this.options = this._systemService.getOptions();
+    this.optionsLinks = this._systemService.getOptionsLinks();
+    this.acess = this._systemService.logger.admin;
   }
 
-  onClickSelection(sele: HTMLLabelElement){    
-    this.selection = sele.textContent;
-    this.emitirSelection.emit(this.selection);
-  }
-  onOpenSidebar(){
-    this.sidebar = !this.sidebar;
-    this.emitirSidebar.emit(this.sidebar);
+  onOpenCloseSidebar(){
+    this._systemService.sidebar = !this._systemService.sidebar;        
   }
 
 }

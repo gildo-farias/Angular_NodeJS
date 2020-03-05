@@ -1,16 +1,17 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg componentShadow">    
-    <div id="btnMenu" (click)="onOpenSidebar()">        
+    <div id="btnMenu" (click)="onOpenCloseSidebar()">        
         <span class="navbar-toggler-icon"></span>
     </div>        
     
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">        
-        <li *ngFor="let opt of options">
-            <a class="nav-link" (click)="onClickSelection($event.target)"
-                [class.active]="selection == opt">
+        <li *ngFor="let opt of options; index as i">
+            <a class="nav-link" [routerLink]="optionsLinks[i]" routerLinkActive="active"
+                [class.disabled]="i==3 && !acess"
+                title="{{ (i==3 && !acess) ? 'VC NAO TEM PERMIÇÃO PARA ESSE MODULO': '' }}">
                 <label>{{ opt }}</label>
             </a>  
-        </li>        
+        </li>                
     </ul>
     </div>
 </nav>

@@ -1,20 +1,9 @@
-<system-sidebar class="bg-dark" id="sidebar" 
-    [options]="options"
-    (emitirSelection)="selection = $event">
-</system-sidebar>
+<system-sidebar class="bg-dark" id="sidebar"></system-sidebar>
 
 <div id="main">
-    <system-navbar 
-        [options]="options"
-        (emitirSelection)="selection = $event"
-        (emitirSidebar)="openCloseSidebar($event)">
-    </system-navbar>    
+    <system-navbar></system-navbar>    
 
-    <div id="tela" class="componentShadow" [ngSwitch]="selection">
-        <system-livros *ngSwitchCase="options[0]"></system-livros>
-        <system-locacao *ngSwitchCase="options[1]"></system-locacao>        
-        <h2 *ngSwitchCase="options[2]">MODULO {{ options[2] }} EM CONSTRUÇÃO...</h2>
-        <h2 *ngSwitchCase="options[3]">MODULO {{ options[3] }} EM CONSTRUÇÃO...</h2>          
-        <!-- <system-livros *ngSwitchDefault></system-livros> -->
+    <div id="tela" class="componentShadow">
+        <router-outlet></router-outlet>                        
     </div>
 </div>

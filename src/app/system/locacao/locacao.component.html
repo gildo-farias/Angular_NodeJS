@@ -1,11 +1,11 @@
-<div class="accordion" id="listaLocacoes">
+<div class="accordion componentShadow" id="listaLocacoes">
 
     <div class="card" *ngFor="let loc of locacoes; index as i" >
         <div class="card-header" [id]="'tit'+i">
             <h2 class="mb-0">
                 <button class="btn btn-outline-info btnTit" type="button" data-toggle="collapse" 
                     [title]="'desc'+i" data-target="#?" aria-expanded="false" aria-controls="?">
-                    {{ loc.cliente | uppercase }} | {{ loc.dataEntrega | date:'dd/MMM/yyyy' }}                    
+                    {{ loc.cliente | uppercase }} | {{ loc.dataEntrega | date:'dd MMM, yyyy' }}                    
                 </button>
             </h2>
         </div>

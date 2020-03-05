@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { SystemService } from './../system/system.service';
+import { UsuarioService } from './../usuario.service';
+import { Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -6,22 +8,18 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
   templateUrl: './tela-login.component.html',
   styleUrls: ['./tela-login.component.scss']
 })
-export class TelaLoginComponent implements OnInit {  
+export class TelaLoginComponent implements OnInit {   
 
-  @Output() logado = new EventEmitter();
-
-  constructor() { }
+  constructor(private _systemService: SystemService, private _usuarioService: UsuarioService) { }
 
   ngOnInit() {
   }
 
-  onLogin(user:HTMLInputElement, pass:HTMLInputElement){  
-    
-    if(user.value==="root" && pass.value==="123"){      
-      this.logado.emit(true);
-    } else{
-      alert("USUARIO INVALIDO!");
-    }
+  onLogin(user:HTMLInputElement, pass:HTMLInputElement){
+    if(user.value != undefined && pass.value != undefined){
+      if(!this._usuarioService.login(user.value, pass.value))
+        alert("USUARIO/SENHA INVALIDOS!");
+    }   
   }
 
 }

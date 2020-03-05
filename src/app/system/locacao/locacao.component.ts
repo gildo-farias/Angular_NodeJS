@@ -12,20 +12,20 @@ export class LocacaoComponent implements OnInit, AfterViewInit {
   locacoes=[
   {
     cliente:"gildo", 
-    dataLocacao:new Date(15,3,2020),
-    dataEntrega:new Date(26,4,2020),
+    dataLocacao:new Date("5,3,2020"),
+    dataEntrega:new Date("9/4/2020"),
     //livros:[''+this.livros[0].tit, ''+this.livros[1].tit]      
   },
   {
     cliente:"maria", 
-    dataLocacao:new Date(10,1,2020),
-    dataEntrega:new Date(20,2,2020),
+    dataLocacao:new Date("12,3,2019"),
+    dataEntrega:new Date("1/22/2020"),
     //livros:[this.livros[1].tit, this.livros[2].tit]      
   },
   {
     cliente:"joão", 
-    dataLocacao:new Date(8,2,2020),
-    dataEntrega:new Date(10,3,2020),
+    dataLocacao:new Date("8,12,2020"),
+    dataEntrega:new Date("10/8/2020"),
     //livros:[this.livros[1].tit, this.livros[2].tit, this.livros[0].tit]      
   }];
 

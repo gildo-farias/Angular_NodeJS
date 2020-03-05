@@ -1,13 +1,19 @@
+import { SystemService } from './system.service';
+import { SystemRouting } from './system-routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { FormsModule } from '@angular/forms';
+
 import { SystemComponent } from './system.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { LivrosComponent } from './livros/livros.component';
-import { LivrosService } from './livros/livros.service';
-import { LocacaoComponent } from './locacao/locacao.component';
-import { FormsModule } from '@angular/forms';
 
+import { LivrosComponent } from './livros/livros.component';
+import { LocacaoComponent } from './locacao/locacao.component';
+import { CadastroLivroComponent } from './livros/cadastro-livro/cadastro-livro.component';
+
+import { LivrosService } from './livros/livros.service';
 
 
 @NgModule({
@@ -16,14 +22,17 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     SidebarComponent,
     LivrosComponent,
-    LocacaoComponent
+    LocacaoComponent,
+    CadastroLivroComponent
   ],
   imports: [
     FormsModule,
-    CommonModule,        
+    CommonModule,      
+    SystemRouting  
   ],
   providers: [
-    LivrosService
+    LivrosService,
+    SystemService
   ],
   exports: [
     SystemComponent
