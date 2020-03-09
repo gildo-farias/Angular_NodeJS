@@ -1,4 +1,4 @@
-import { SystemService } from './../system.service';
+import { SystemService } from '../../../services/system.service';
 import { Component, OnInit} from '@angular/core';
 
 @Component({

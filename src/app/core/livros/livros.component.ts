@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
-import { LivrosService } from './livros.service';
+import { LivrosService } from '../../../services/livros.service';
 
 @Component({
   selector: 'system-livros',

@@ -1,10 +1,12 @@
-import { Usuario } from './../models/usuario';
+import { UsuarioService } from './usuario.service';
+import { Usuario } from '../model/usuario';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SystemService {
+
   private _logger: Usuario;      
   public get logger(): Usuario {
     return this._logger;
@@ -35,8 +37,15 @@ export class SystemService {
     }
   }
 
-  constructor() { }
+  constructor(private _usuarioService: UsuarioService) { }
 
   getOptions(){ return this.options; }  
   getOptionsLinks(){ return this.optionsLinks; }  
+
+  login(username: String, senha: String){
+    if(username === this._usuarioService.getUsuario().username && senha === this._usuarioService.getUsuario().senha){      
+      this.logger = this._usuarioService.getUsuario();
+      return true;
+    }else return false;
+  }
 }

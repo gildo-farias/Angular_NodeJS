@@ -1,27 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LocacaoComponent } from './core/locacao/locacao.component';
+import { CadastroLivroComponent } from './core/livros/cadastro-livro/cadastro-livro.component';
+import { LivrosComponent } from './core/livros/livros.component';
 import { TelaLoginComponent } from './tela-login/tela-login.component';
-import { SystemComponent } from './system/system.component';
-import { LocacaoComponent } from './system/locacao/locacao.component';
-import { LivrosComponent } from './system/livros/livros.component';
-import { CadastroLivroComponent } from './system/livros/cadastro-livro/cadastro-livro.component';
+import { SystemComponent } from './core/system.component';
 
-
-
-
-const routes: Routes = [
-  // {path: '', component: SystemComponent},
-  // {path: 'login', component: TelaLoginComponent}
+const routes: Routes = [    
+    // { path: '', component: SystemComponent },
+    { path: '', component: SystemComponent },
+    { path: 'login', component: TelaLoginComponent },    
+    { path: 'livros', component: LivrosComponent },
+    { path: 'livros/add', component: CadastroLivroComponent },
+    { path: 'loca', component: LocacaoComponent },        
 ];
-
-// const SYSTEM_ROUTES: Routes = [    
-//   // { path: '', component: SystemComponent },
-//   { path: '', component: LivrosComponent },
-//   { path: 'system/livros', component: LivrosComponent },
-//   { path: 'system/livros/add', component: CadastroLivroComponent },
-//   { path: 'system/loca', component: LocacaoComponent },    
-// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

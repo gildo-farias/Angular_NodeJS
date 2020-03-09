@@ -6,6 +6,7 @@ export class Usuario {
     nome : String;
     snome : String;
     gen : String;  
+}
 
     // private _cod: Number;
     // public get cod(): Number {
@@ -62,6 +63,4 @@ export class Usuario {
     // }
     // public set admin(value: Boolean) {
     //     this._admin = value;
-    // }
-    
-}
+    // } 

@@ -5,7 +5,12 @@
       <input type="text" class="form-control" id="loginUsuario" #user placeholder="fulano@81" required>
     </div>
     <div class="form-group">
-      <label for="loginSenha">SENHA</label>
+      <label for="loginSenha">SENHA</label> 
+
+      <img src="assets/info.png" style="margin-left: 2%; width:8%; height:8%;"
+        ngbPopover="USUARIO: root@123 | SENHA: 123456" 
+        triggers="mouseenter:mouseleave" popoverTitle="ACESSO">
+        
       <input type="password" class="form-control" id="loginSenha" #pass placeholder="******" required>
     </div>
     <div class="form-group">
@@ -27,12 +32,7 @@
 
   <div class="collapse" id="collapseSenha">
     <div class="card card-body">
-      <form>        
-        <p class="alert alert-success">
-          USER:<input style="width: 60%;" type="text" value="root@123" readonly>
-          <br>  
-          PASS:<input style="width: 60%;" type="text" value="123456" readonly>
-        </p>
+      <form>                
         <p for="loginEmail">
             Informe seu email usado no cadastro e enviaremos um link para redefinição de sua senha.
         </p>

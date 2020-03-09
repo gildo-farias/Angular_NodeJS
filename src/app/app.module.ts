@@ -1,5 +1,3 @@
-import { SystemRouting } from './system/system-routing';
-import { UsuarioService } from './usuario.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -7,7 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { TelaLoginComponent } from './tela-login/tela-login.component';
-import { SystemModule } from './system/system.module';
+import { SystemModule } from './core/system.module';
+import { SystemService } from './../services/system.service';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -16,12 +18,12 @@ import { SystemModule } from './system/system.module';
   ],
   imports: [    
     BrowserModule,
-    // AppRoutingModule,
-    SystemModule,
-    SystemRouting            
+    AppRoutingModule,
+    SystemModule,    
+    NgbModule, 
   ],
   providers: [
-    UsuarioService
+    SystemService     
   ],
   bootstrap: [AppComponent]
 })
