@@ -1,8 +1,8 @@
-<system-cadastro-livro></system-cadastro-livro>
+<livros-cadastro-livro></livros-cadastro-livro>
 <div class="topTela">        
     <div class="row">                
         <div class="col-2">
-            <button class="btn btn-info" title="CADASTRAR" type="button" routerLink="/livros/add"
+            <button class="btn btn-info" title="CADASTRAR" type="button"
                 data-toggle="modal" data-target="#staticBackdrop">+</button>              
         </div>
         <div class="col-10">
@@ -10,6 +10,33 @@
                 [(ngModel)]="filtro">                            
         </div>        
     </div>    
+</div>
+
+<div style="width: 100%;padding: 0.5%;">    
+    <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">             
+        
+        <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
+
+        <div class="overlay">
+            <div class="text">                
+                <img src="assets/info.png" title="DETALHES" [routerLink]="['/livro', livro.cod]">
+            </div>
+        </div>        
+            
+        <div class="">
+            <h5 class="card-title">{{ livro.tit | uppercase }}</h5>          
+            <h6 class="card-text" style="font-style: italic;">{{ livro.subTit }}</h6>          
+        </div>
+        
+        <div style="padding: 0%; margin-top: 1%;" 
+            [ngClass]="{
+                'alert-secondary': livro.locado,
+                'alert-success': !livro.locado 
+            }">
+            <small>{{ !livro.locado? 'DISPONIVEL' : 'LOCADO' }}</small>
+        </div>
+        
+    </div>
 </div>
 <!-- <div class="alert alert-danger" *ngIf="notFoundFiltro"  style="width: 50%; margin: 0 auto;">
     <h4 class="alert-heading">OPS!</h4>
@@ -19,42 +46,3 @@
         tente informa o titulo da franquia ou um subtitulo do livro que deseja.
     </p>
 </div> -->
-
-<div style="width: 100%; margin: 0 auto; float: bottom; padding: 0.5%;">    
-    <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">             
-        
-        <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
-
-        <div class="bg-dark overlay">
-            <div class="text">
-                <p>
-                    <label>{{ livro.autor }}</label><br>
-                    <label>{{ livro.ano }}</label>              
-                </p>
-            </div>
-        </div>        
-            
-        <div class="">
-            <h5 class="card-title">{{ livro.tit | uppercase }}</h5>          
-            <h6 class="card-text" style="font-style: italic;">{{livro.subTit}}</h6>
-
-            <div [id]="'cardN'+livro.cod" class="collapse">                        
-            <p style="cursor: default;" class="card-text" [ngClass]="{
-                'btn-secondary': livro.locado,
-                'btn-info': !livro.locado }">
-                {{ !livro.locado? 'DISPONIVEL' : 'LOCADO' }}
-            </p>         
-            <p style="margin-bottom: 2%;">
-                <a class="btn btn-warning">ALTERAR</a>
-                <a class="btn btn-danger">DELETAR</a>            
-            </p>            
-            </div>                            
-
-        </div>
-        <div class="card-footer cardsCollapse" style="cursor:pointer; padding: 0%;" 
-            [title]="livro.cod" data-toggle="collapse" data-target="" aria-expanded="false" aria-controls="">
-            <img src="assets/info2.png">
-        </div>
-        
-    </div>
-</div>

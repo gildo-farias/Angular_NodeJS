@@ -45,8 +45,13 @@ export class LivrosService {
   getLivros(){    
     return [this.l1, this.l2, this.l3, this.l4];    
   }
-  getLivro(index: number){
-    return this.getLivros[index];
+  getLivro(cod: number){        
+    for (const iterator of this.getLivros()) {
+      if(iterator.cod == cod){
+        return iterator;        
+      }            
+    }
+    return null;
   }
   getGeneros(){
     return["AVENTURA", "SUSPENSE", "DRAMA", "TERROR", "SCY-FI", "ROMANCE"];

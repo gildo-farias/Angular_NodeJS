@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { LivrosService } from '../../../services/livros.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class LivrosComponent implements OnInit, AfterViewInit {
   filtro:String = "";
   notFoundFiltro:boolean = false;
 
-  constructor(private _livrosService: LivrosService, private _elementRef: ElementRef) { }
+  constructor(private _livrosService: LivrosService) { }
 
   ngOnInit() {
     this.livros = this._livrosService.getLivros();     
@@ -21,17 +21,7 @@ export class LivrosComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    const divs = this._elementRef.nativeElement.querySelectorAll('.cardsCollapse');
-    divs.forEach(div => {      
-      div.dataset.target = "#cardN"+div.title;     
-      div.setAttribute("aria-controls", "cardN"+div.title);      
-    });
-
   }  
-
-  // onPesquisar(event){
-  //   this.filtro = event.target.value;
-  // }
 
   onFiltrarLivro(){    
     if(this.livros.length === 0 || this.filtro === undefined || this.filtro.trim() === ''){
@@ -44,10 +34,9 @@ export class LivrosComponent implements OnInit, AfterViewInit {
           return false;                    
         }
       });                   
-    } 
+    }     
     
-    
-  }//filtarlivros()
+  }//filtarlivros()  
 
 
 }

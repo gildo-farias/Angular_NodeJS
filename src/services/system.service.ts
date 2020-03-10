@@ -17,7 +17,7 @@ export class SystemService {
   }
 
   private options:string [] = ["LIVROS", "LOCAÇÃO", "CLIENTES", "USUARIOS"];
-  private optionsLinks:string []= ['/livros','/loca', '/clientes','/usuarios'];
+  private optionsLinks:string []= ['/livros','/locacao', '/clientes','/usuarios'];
 
   private _sidebar: boolean = false;
 

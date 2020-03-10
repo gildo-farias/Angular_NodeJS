@@ -5,11 +5,10 @@
     
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">        
-        <li *ngFor="let opt of options; index as i">
-            <a class="nav-link" [routerLink]="optionsLinks[i]" routerLinkActive="active"
-                [class.disabled]="i==3 && !acess"
-                title="{{ (i==3 && !acess) ? 'VC NAO TEM PERMIÇÃO PARA ESSE MODULO': '' }}">
-                <label>{{ opt }}</label>
+        <li *ngFor="let opt of options; index as i" style="cursor: pointer;">
+            <a class="nav-link" [routerLink]="optionsLinks[i]" routerLinkActive="active">                
+                <!-- [class.disabled]="i==3 && !acess" -->
+                {{ opt }}                
             </a>  
         </li>                
     </ul>

@@ -30,6 +30,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {            
     this.cronometro();
+    // this.usuario = this._systemService.logger;
     this.usuario = this._usuarioService.getUsuario();
     this.options = this._systemService.getOptions();
     this.optionsLinks = this._systemService.getOptionsLinks();

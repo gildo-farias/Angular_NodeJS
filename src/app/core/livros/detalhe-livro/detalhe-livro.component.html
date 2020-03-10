@@ -1,0 +1,41 @@
+<button style="margin:0.5%;" class="btn btn-info" routerLink="/livros">VOLTAR</button>
+
+<div style="padding: 5%;">   
+    
+    <div class="card mb-3 componentShadow" style="max-width: 540px;" *ngIf="livro!=null">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+            <img [src]="livro.img" class="card-img" alt="IMAGEM INDISPONIVEL NO MOMENTO">
+            </div>
+            <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ livro.tit | uppercase }}</h5>
+                <p class="card-text">{{ livro.subTit }}</p>
+                <p class="card-text">{{ livro.autor }}</p>
+                <p class="card-text">{{ livro.ano }}</p>
+                <p class="card-text">                    
+                    <small class="alert-secondary" style="padding:1%;" *ngIf="livro.locado">LOCADO</small>
+                    <small class="alert-success" style="padding:1%;" *ngIf="!livro.locado">DISPONIVEL</small>
+                </p>
+                <div class="dropdown-divider"></div>
+                <p class="card-text">
+                    <a class="btn btn-warning">ALTERAR</a> |
+                    <a class="btn btn-danger" style="color: white;">DELETAR</a>            
+                </p>            
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="livro==null"  style="width: 50%; margin: 0 auto; text-align: center;">
+        <h4 class="alert-heading">OPS!</h4>
+        <p style="font-style: italic;">NADA ENCONTRADO</p>
+        <hr>
+        <p class="mb-0"> 
+            Não encontramos nenhum livro com esse titulo digitado
+            tente informa o titulo da franquia ou um subtitulo do livro que deseja.
+        </p>
+    </div>
+
+</div>
+

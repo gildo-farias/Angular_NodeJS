@@ -1,3 +1,4 @@
+import { UsuarioService } from './../../services/usuario.service';
 import { Component, OnInit} from '@angular/core';
 
 import { SystemService } from '../../services/system.service';
@@ -13,9 +14,11 @@ export class TelaLoginComponent implements OnInit {
   constructor(
     private _systemService: SystemService,
     private _router: Router,    
+    private _usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
+    this._systemService.logger = this._usuarioService.getUsuario();
   }
 
   onLogin(user:HTMLInputElement, pass:HTMLInputElement){

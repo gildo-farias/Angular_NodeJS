@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'system-cadastro-livro',
+  selector: 'livros-cadastro-livro',
   templateUrl: './cadastro-livro.component.html',
   styleUrls: ['./cadastro-livro.component.scss']
 })
