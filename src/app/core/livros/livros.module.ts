@@ -8,12 +8,16 @@ import { LivrosService } from './../../../services/livros.service';
 import { LivrosComponent } from './livros.component';
 import { CadastroLivroComponent } from './cadastro-livro/cadastro-livro.component';
 import { DetalheLivroComponent } from './detalhe-livro/detalhe-livro.component';
+import { FormLivroComponent } from './form-livro/form-livro.component';
+import { AlterarLivroComponent } from './alterar-livro/alterar-livro.component';
 
 @NgModule({
   declarations: [
     LivrosComponent,
     CadastroLivroComponent,
-    DetalheLivroComponent
+    DetalheLivroComponent,
+    FormLivroComponent,
+    AlterarLivroComponent
   ],
   imports: [
     CommonModule,

@@ -1,15 +1,16 @@
-import { SystemService } from './../../../../services/system.service';
-import { LivrosService } from './../../../../services/livros.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+
+import { LivrosService } from 'src/services/livros.service';
+import { Livro } from 'src/model/livro';
 
 @Component({
   selector: 'livros-detalhe-livro',
   templateUrl: './detalhe-livro.component.html',
   styleUrls: ['./detalhe-livro.component.scss']
 })
-export class DetalheLivroComponent implements OnInit {  
+export class DetalheLivroComponent implements OnInit{  
 
   constructor(
     private _route: ActivatedRoute,    
@@ -17,7 +18,7 @@ export class DetalheLivroComponent implements OnInit {
   ) { }
 
   codigo:number;
-  livro:any;
+  livro:Livro;
   inscricao:Subscription;
 
   ngOnInit(): void {
@@ -28,7 +29,8 @@ export class DetalheLivroComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.inscricao.unsubscribe();    
+    this.inscricao.unsubscribe();   
+    this.livro = null; 
   }
 
 }

@@ -25,13 +25,11 @@
     #sidebar label, h6, h2 {font-size: 18px;}
   }
 
+  .clear { clear: both; }
+
   #tela{      
     transition: 0.5s;    
     margin-top: 0.5%;
-    min-height: 85vh;
-    height: 100%;
-    width: 100%;    
-    // text-align: center;     
-    // border: 2px outset #292b2c;    
-    // border-radius: 5px;    
+    min-height: 85vh;    
+    width: 100%;        
   }

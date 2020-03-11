@@ -5,7 +5,7 @@ import { TelaLoginComponent } from './tela-login/tela-login.component';
 import { SystemComponent } from './core/system.component';
 
 const routes: Routes = [        
-    { path: '', component: SystemComponent },    
+    // { path: '', component: SystemComponent },    
     { path: 'login', component: TelaLoginComponent },            
 ];
 

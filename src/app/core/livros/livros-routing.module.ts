@@ -1,3 +1,4 @@
+import { AlterarLivroComponent } from './alterar-livro/alterar-livro.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -6,7 +7,9 @@ import { DetalheLivroComponent } from './detalhe-livro/detalhe-livro.component';
 
 const livrosRoutes: Routes = [         
     { path: 'livros', component: LivrosComponent},    
-    { path: 'livro/:cod', component: DetalheLivroComponent },
+    { path: 'livro/:cod', component: DetalheLivroComponent, children: [
+      { path: 'alterarLivro/:cod', component: AlterarLivroComponent},    
+    ]},
 ];
 
 @NgModule({

@@ -1,8 +1,8 @@
 .cards{
   float: left;
-  margin: 0.5%;    
+  margin: 0.7%;        
   width: 15%;      
-  // min-width: 12rem;
+  min-width: 11rem;
 }
 
 img:hover + .overlay{    
@@ -14,7 +14,7 @@ img:hover + .overlay{
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   position: absolute;
   bottom: 0;
   top: 0;  

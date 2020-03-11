@@ -1,5 +1,7 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { LivrosService } from '../../../services/livros.service';
+import { Livro } from 'src/model/livro';
 
 @Component({
   selector: 'system-livros',
@@ -8,19 +10,30 @@ import { LivrosService } from '../../../services/livros.service';
 })
 export class LivrosComponent implements OnInit, AfterViewInit {
 
-  livros:any = [];  
+  livros:Livro[];  
   generos:String[]= [];
-  filtro:String = "";
-  notFoundFiltro:boolean = false;
+  private _filtro: String = "";
+  public get filtro(): String {
+    return this._filtro;
+  }
+  public set filtro(value: String) {
+    this._filtro = value;
+    if(this.onFiltrarLivro().length==0){
+      this.notFoundFiltro = true;      
+    }else{
+      this.notFoundFiltro = false;      
+    }    
+  }
+  notFoundFiltro:boolean;
 
   constructor(private _livrosService: LivrosService) { }
 
   ngOnInit() {
     this.livros = this._livrosService.getLivros();     
-    this.generos = this._livrosService.getGeneros();
+    this.generos = this._livrosService.getGeneros();    
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit(){    
   }  
 
   onFiltrarLivro(){    
@@ -28,13 +41,16 @@ export class LivrosComponent implements OnInit, AfterViewInit {
       return this.livros;
     }else{      
       return this.livros.filter((liv) => {
-        if((<String>liv.tit).toLowerCase().indexOf(this.filtro.toLowerCase()) >=0 ){                              
+        if(
+          (<String>liv.tit).toLowerCase().indexOf(this.filtro.toLowerCase()) >=0 ||
+          (<String>liv.subTit).toLowerCase().indexOf(this.filtro.toLowerCase()) >=0
+        ){                              
           return true;
         }else{                                
           return false;                    
         }
       });                   
-    }     
+    }    
     
   }//filtarlivros()  
 

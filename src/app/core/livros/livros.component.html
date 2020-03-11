@@ -1,48 +1,50 @@
 <livros-cadastro-livro></livros-cadastro-livro>
-<div class="topTela">        
-    <div class="row">                
-        <div class="col-2">
-            <button class="btn btn-info" title="CADASTRAR" type="button"
-                data-toggle="modal" data-target="#staticBackdrop">+</button>              
-        </div>
-        <div class="col-10">
-            <input class="form-control" type="text" placeholder="Pesquisar Livro"
-                [(ngModel)]="filtro">                            
-        </div>        
+<div class="row-11">
+    <div class="topTela">        
+        <div class="row">                
+            <div class="col-2">
+                <button class="btn btn-info" title="CADASTRAR" type="button"
+                    data-toggle="modal" data-target="#staticBackdrop">+</button>              
+            </div>
+            <div class="col-10">                                
+                <input class="form-control" type="search" 
+                    placeholder="PESQUISAR: Titulo ou Subtitulo do Livro"
+                    [(ngModel)]="filtro">                            
+            </div>        
+        </div>    
     </div>    
 </div>
 
-<div style="width: 100%;padding: 0.5%;">    
-    <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">             
-        
-        <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
+<div style="width: 100%;padding: 1%; margin: 0 auto;">    
 
+    <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">                     
+        <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
         <div class="overlay">
             <div class="text">                
                 <img src="assets/info.png" title="DETALHES" [routerLink]="['/livro', livro.cod]">
             </div>
-        </div>        
-            
+        </div>                    
         <div class="">
             <h5 class="card-title">{{ livro.tit | uppercase }}</h5>          
             <h6 class="card-text" style="font-style: italic;">{{ livro.subTit }}</h6>          
-        </div>
-        
+        </div>        
         <div style="padding: 0%; margin-top: 1%;" 
             [ngClass]="{
                 'alert-secondary': livro.locado,
                 'alert-success': !livro.locado 
             }">
             <small>{{ !livro.locado? 'DISPONIVEL' : 'LOCADO' }}</small>
-        </div>
-        
+        </div>        
     </div>
-</div>
-<!-- <div class="alert alert-danger" *ngIf="notFoundFiltro"  style="width: 50%; margin: 0 auto;">
+
+</div> 
+<div class="alert alert-danger" [hidden]="!notFoundFiltro" 
+    style="width: 50%; margin: 0 auto; text-align: center;">
     <h4 class="alert-heading">OPS!</h4>
-    <p>NADA ENCONTRADO</p>
+    <p style="font-style: italic;">NADA ENCONTRADO</p>
     <hr>
-    <p class="mb-0"> Não encontramos nenhum livro com esse titulo digitado
+    <p class="mb-0"> 
+        Não encontramos nenhum livro com esse titulo digitado
         tente informa o titulo da franquia ou um subtitulo do livro que deseja.
     </p>
-</div> -->
+</div>    
