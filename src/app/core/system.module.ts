@@ -11,12 +11,11 @@ import { SystemComponent } from './system.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-
 @NgModule({
   declarations: [
     SystemComponent,
     NavbarComponent,
-    SidebarComponent,    
+    SidebarComponent,        
   ],
   imports: [    
     CommonModule,
@@ -24,11 +23,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     LivrosModule,
     LocacaoModule,
     ClientesModule,
-    UsuariosModule          
+    UsuariosModule,              
   ],
   providers: [],
   exports: [
-    SystemComponent
+    SystemComponent,    
   ]
 })
 export class SystemModule { }

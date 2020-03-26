@@ -38,13 +38,12 @@
     </div>
 
 </div> 
-<div class="alert alert-danger" [hidden]="!notFoundFiltro" 
-    style="width: 50%; margin: 0 auto; text-align: center;">
-    <h4 class="alert-heading">OPS!</h4>
-    <p style="font-style: italic;">NADA ENCONTRADO</p>
-    <hr>
-    <p class="mb-0"> 
-        Não encontramos nenhum livro com esse titulo digitado
-        tente informa o titulo da franquia ou um subtitulo do livro que deseja.
-    </p>
+<div style="width: 50%; margin: 0 auto; text-align: center;">
+    <system-nao-encontrado [hidden]="!notFoundFiltro">
+        <span class="titulo">LIVRO</span>
+        <p class="corpo">
+            Não encontramos nenhum livro com esse titulo digitado
+            tente informa o titulo da franquia ou um subtitulo do livro que deseja.            
+        </p>
+    </system-nao-encontrado>
 </div>    

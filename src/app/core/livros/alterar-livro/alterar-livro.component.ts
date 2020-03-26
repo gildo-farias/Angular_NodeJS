@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
 
 import { Livro } from 'src/model/livro';
 import { LivrosService } from 'src/services/livros.service';
@@ -13,8 +13,7 @@ import { LivrosService } from 'src/services/livros.service';
 export class AlterarLivroComponent implements OnInit {
 
   constructor(
-    private _route: ActivatedRoute,    
-    private _routes: Router,
+    private _route: ActivatedRoute,        
     private _livrosService: LivrosService    
   ) { }
 
@@ -22,18 +21,16 @@ export class AlterarLivroComponent implements OnInit {
   livro:Livro;
   inscricao:Subscription;
 
-  ngOnInit(): void {
-    this.inscricao = this._route.params.subscribe((parametros:any)=>{
-      this.codigo = parametros['cod'];      
-    });
-    this.livro = this._livrosService.getLivro(this.codigo);   
-    if(this.livro==null){
-      this._routes.navigate(['livros']);
-    }
+  ngOnInit(): void {         
+    this.inscricao = this._route.parent.params.subscribe((parametros:any)=>{
+      this.codigo = parametros['cod'];                         
+    });        
+    this.livro = this._livrosService.getLivro(this.codigo);      
   }
 
   ngOnDestroy() {
-    this.inscricao.unsubscribe();    
+    this.inscricao.unsubscribe();   
+    this.livro = null; 
   }
 
 }

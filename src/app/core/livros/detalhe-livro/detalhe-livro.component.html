@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-7">
+    <div class="col col-lg-6">
         <div class="row-11">
             <button style="margin:1%; padding-top: 0%;" class="btn btn-info" routerLink="/livros">
                 <span style="font-size: x-large;">&laquo;</span>
@@ -28,8 +28,8 @@
                             <small class="alert-success" style="padding:1%;" *ngIf="!livro.locado">DISPONIVEL</small>
                         </p>
                         <div class="dropdown-divider"></div>
-                        <p class="card-text" style="text-align: center;">
-                            <a class="btn btn-warning" [routerLink]="['alterarLivro', livro.cod]">ALTERAR</a> |
+                        <p class="card-text" style="text-align: center;">                            
+                            <a class="btn btn-warning" (click)="onAlterar()">ALTERAR</a> |
                             <a class="btn btn-danger" style="color: white;">DELETAR</a>            
                         </p>            
                     </div>
@@ -41,19 +41,15 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col col-lg-4">
         <router-outlet></router-outlet>
     </div>
-
-    <div class="alert alert-danger" [hidden]="livro!=null"  style="width: 50%; margin: 0 auto; text-align: center;">
-        <h4 class="alert-heading">OPS!</h4>
-        <p style="font-style: italic;">NADA ENCONTRADO</p>
-        <hr>
-        <p class="mb-0"> 
-            Não encontramos nenhum livro com esse titulo digitado
-            tente informa o titulo da franquia ou um subtitulo do livro que deseja.
-        </p>
-    </div>    
+     
+    <system-nao-encontrado [hidden]="livro!=null" style="width: 50%; margin: 0 auto;">
+        <span class="titulo">LIVRO</span>
+        <p class="corpo">Verifique os valores informados</p>        
+    </system-nao-encontrado>
+    
 </div>
 
     

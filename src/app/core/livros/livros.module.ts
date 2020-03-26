@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { LivrosRoutingModule } from './livros-routing.module';
+import { ErrosModule } from '../erros/erros.module';
 
 import { LivrosService } from './../../../services/livros.service';
 import { LivrosComponent } from './livros.component';
@@ -22,7 +23,8 @@ import { AlterarLivroComponent } from './alterar-livro/alterar-livro.component';
   imports: [
     CommonModule,
     FormsModule,
-    LivrosRoutingModule
+    LivrosRoutingModule,    
+    ErrosModule
   ],
   exports:[
     LivrosComponent        

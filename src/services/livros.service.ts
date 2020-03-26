@@ -109,11 +109,11 @@ export class LivrosService {
 
   getLivro(cod: number){        
     for (const iterator of this.getLivros()) {
-      if(iterator.cod == cod){
+      if(iterator.cod == cod){              
         return iterator;        
       }            
     }
     return null;
-  }  
+  }    
 
 }

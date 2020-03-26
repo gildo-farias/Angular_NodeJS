@@ -1,14 +1,14 @@
-<form>
+<div>
     <div class="form-row">
         <div class="form-group col-md-6">
         <label for="">ISBN</label>
         <input type="text" class="form-control" required
-            value="{{ livroAlterar != null ? livroAlterar.ISBN:'' }}" placeholder="Informe o codigo ISBN">
+            value="{{ livro != null ? livro.ISBN:'' }}" placeholder="Informe o codigo ISBN">
         </div>
         <div class="form-group col-md-6">
         <label for="">GENERO</label>
         <select class="form-control">
-            <option selected>{{ livroAlterar != null ? livroAlterar.gen:'----------' }}</option>
+            <option selected>{{ livro != null ? livro.gen:'----------' }}</option>
             <option *ngFor="let gen of generos">{{ gen | uppercase }}</option>
         </select>
         </div>
@@ -16,30 +16,28 @@
     <div class="form-group">
         <label for="">TITULO</label>
         <input type="text" class="form-control" id="" required
-            value="{{ livroAlterar != null ? livroAlterar.tit:'' }}" placeholder="Insira um titulo"> 
+            value="{{ livro != null ? livro.tit:'' }}" placeholder="Insira um titulo">             
     </div>                    
     <div class="form-group">
         <label for="">SUB TITULO</label>
-        <input type="text" class="form-control" id="" required
-            value="{{ livroAlterar != null ? livroAlterar.subTit:'' }}" placeholder="Insira um SubTitulo">
+        <input type="text" class="form-control" id=""
+            value="{{ livro != null ? livro.subTit:'' }}" placeholder="Insira um SubTitulo">
     </div>
     <div class="form-row">
         <div class="form-group col-md-9">
             <label for="">AUTOR(A)</label>
             <input type="text" class="form-control" id="" required
-                value="{{ livroAlterar != null ? livroAlterar.autor:'' }}" placeholder="Insira o nome do Autor">
+                value="{{ livro != null ? livro.autor:'' }}" placeholder="Insira o nome do Autor">
         </div>                        
         <div class="form-group col-md-3">
             <label for="">ANO</label>
             <input type="number" min="500" max="2020" class="form-control" id="" required
-                value="{{ livroAlterar != null ? livroAlterar.ano:'' }}" placeholder="Ex: 1985">
+                value="{{ livro != null ? livro.ano:'' }}" placeholder="Ex: 1985">
         </div>
     </div>
     <div class="form-group">
         <label for="">LINK DA IMAGEM DE CAPA</label>
         <input type="text" class="form-control" id="" required
-            value="{{ livroAlterar != null ? livroAlterar.img:'' }}" placeholder="http://img.jpg">
+            value="{{ livro != null ? livro.img:'' }}" placeholder="http://img.jpg">
     </div>    
-</form>
-    
-
+</div>

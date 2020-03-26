@@ -11,7 +11,8 @@ import { Livro } from 'src/model/livro';
 export class FormLivroComponent implements OnInit {
 
   generos: string[];
-  @Input() livroAlterar: Livro;
+  teste="oi";
+  @Input('livroAlterar') livro: Livro;
   constructor(private _livroService: LivrosService) { }
 
   ngOnInit(): void {

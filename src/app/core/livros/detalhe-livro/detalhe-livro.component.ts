@@ -1,9 +1,9 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { LivrosService } from 'src/services/livros.service';
 import { Livro } from 'src/model/livro';
+import { LivrosService } from 'src/services/livros.service';
 
 @Component({
   selector: 'livros-detalhe-livro',
@@ -14,6 +14,7 @@ export class DetalheLivroComponent implements OnInit{
 
   constructor(
     private _route: ActivatedRoute,    
+    private _router: Router,    
     private _livrosService: LivrosService
   ) { }
 
@@ -33,4 +34,8 @@ export class DetalheLivroComponent implements OnInit{
     this.livro = null; 
   }
 
+  onAlterar(){
+    this._router.navigate(['livro',this.codigo,'alterar']);
+  }
+  
 }
