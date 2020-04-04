@@ -1,1 +1,22 @@
-<p>usuarios works!</p>
+
+<div class="topTela">        
+    <div class="row">                
+        <div class="col-2">
+            <button class="btn btn-info" title="CADASTRAR" type="button"
+                data-toggle="modal" data-target="#staticBackdrop">+</button>              
+        </div>
+        <div class="col-10">                                
+            <input class="form-control" type="search" 
+                placeholder="PESQUISAR: Nome ou Sobre do Cliente"
+                [(ngModel)]="filtro">                            
+        </div>        
+    </div>    
+</div>    
+
+<div class="card" style="width: 10rem; float: left;">    
+    <img *ngIf="user.gen == 'MASCULINO'" class="card-img-top" src="assets/m.png">
+    <img *ngIf="user.gen == 'FEMININO'" class="card-img-top" src="assets/w.png">
+    <div class="card-body">
+        <h4>{{ user.username }}</h4>          
+    </div>
+</div>

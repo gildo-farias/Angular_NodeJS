@@ -1,8 +1,6 @@
-import { UsuarioService } from './../../services/usuario.service';
 import { Component, OnInit} from '@angular/core';
-
 import { SystemService } from '../../services/system.service';
-import { Router } from '@angular/router';
+import { UsuarioService } from './../../services/usuario.service';
 
 @Component({
   selector: 'app-tela-login',
@@ -11,24 +9,17 @@ import { Router } from '@angular/router';
 })
 export class TelaLoginComponent implements OnInit {   
 
-  constructor(
-    private _systemService: SystemService,
-    private _router: Router,    
+  constructor(private _systemService: SystemService,
     private _usuarioService: UsuarioService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this._systemService.logger = this._usuarioService.getUsuario();
   }
 
-  onLogin(user:HTMLInputElement, pass:HTMLInputElement){
-    if(user.value != undefined && pass.value != undefined){
-      if(this._systemService.login(user.value, pass.value)){
-        this._router.navigate(['/livros']);
-      }else{
-        alert("USUARIO/SENHA INVALIDOS!");        
-      }        
-    }   
+  onLogin(user:HTMLInputElement, pass:HTMLInputElement){    
+    if(!this._systemService.login(user.value, pass.value))        
+    alert("USUARIO/SENHA INVALIDOS!");                      
   }
 
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { LocacaoRoutingModule } from './locacao-routing.module';
@@ -20,7 +20,8 @@ import { LocacaoComponent } from './locacao.component';
     LocacaoComponent        
   ],
   providers: [
-    LocacaoService
+    LocacaoService,
+    DatePipe
   ]
 })
 export class LocacaoModule { }

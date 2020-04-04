@@ -1,1 +1,43 @@
-<p>clientes works!</p>
+<div class="topTela">        
+    <div class="row">                
+        <div class="col-2">
+            <button class="btn btn-info" title="CADASTRAR" type="button"
+                data-toggle="modal" data-target="#staticBackdrop">+</button>              
+        </div>
+        <div class="col-10">                                
+            <input class="form-control" type="search" 
+                placeholder="PESQUISAR: Nome ou Sobre do Cliente"
+                [(ngModel)]="filtro">                            
+        </div>        
+    </div>    
+</div>    
+
+<div style="margin:0 auto; width: 98%;">
+    <table class="table table-hover table-secondary" style="border-radius:2px;">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">Status</th>
+            <th scope="col">Opções</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Otto</td>        
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>Otto</td>        
+        </tr>      
+        </tbody>
+    </table>
+</div>
