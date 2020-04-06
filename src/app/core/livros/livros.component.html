@@ -4,7 +4,7 @@
         <div class="row">                
             <div class="col-2">
                 <button class="btn btn-info" title="CADASTRAR" type="button"
-                    data-toggle="modal" data-target="#staticBackdrop">+</button>              
+                    data-toggle="modal" data-target="#staticBackdrop" [routerLink]="['/livros/novo']">+</button>              
             </div>
             <div class="col-10">                                
                 <input class="form-control" type="search" 
@@ -21,7 +21,7 @@
         <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
         <div class="overlay">
             <div class="text">                
-                <img src="assets/info.png" title="DETALHES" [routerLink]="['/livro', livro.cod]">
+                <img src="assets/info.png" title="DETALHES" [routerLink]="['/livros', livro.cod]">
             </div>
         </div>                    
         <div class="">

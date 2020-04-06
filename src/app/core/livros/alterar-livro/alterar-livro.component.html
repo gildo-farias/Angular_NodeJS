@@ -1,8 +1,10 @@
-<div id="formAlterarLivro" class="componentShadow" *ngIf="livro!=null" >       
+<div id="formAlterarLivro" class="componentShadow" *ngIf="livro!=null" >   
+
     <small>
         SOBRESCREVA SOMENTE OS CAMPOS QUE DESEJA ALTERAR        
     </small> 
     <livros-form-livro [livroAlterar]="livro"></livros-form-livro>    
-    <button class="btn btn-secondary" [routerLink]="['/livro', codigo]">CANCELAR</button> | 
-    <button class="btn btn-warning">SALVAR</button>   
+    <button class="btn btn-danger" [routerLink]="['/livros', codigo]">CANCELAR</button> | 
+    <button class="btn btn-secondary" type="reset">RESETAR</button> | 
+    <button class="btn btn-success">SALVAR</button>          
 </div>

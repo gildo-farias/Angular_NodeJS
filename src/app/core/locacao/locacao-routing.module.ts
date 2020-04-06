@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocacaoComponent } from './locacao.component';
 
 const locacaoRoutes: Routes = [         
-    { path: 'locacao', component: LocacaoComponent },             
+    { path: '', component: LocacaoComponent },             
 ];
 
 @NgModule({

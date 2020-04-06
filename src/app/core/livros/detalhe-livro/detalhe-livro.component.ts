@@ -13,8 +13,7 @@ import { LivrosService } from 'src/services/livros.service';
 export class DetalheLivroComponent implements OnInit{  
 
   constructor(
-    private _route: ActivatedRoute,    
-    private _router: Router,    
+    private _route: ActivatedRoute,         
     private _livrosService: LivrosService
   ) { }
 
@@ -32,10 +31,5 @@ export class DetalheLivroComponent implements OnInit{
   ngOnDestroy() {
     this.inscricao.unsubscribe();   
     this.livro = null; 
-  }
-
-  onAlterar(){
-    this._router.navigate(['livro',this.codigo,'alterar']);
-  }
-  
+  }  
 }
