@@ -11,6 +11,8 @@ import { CadastroLivroComponent } from './cadastro-livro/cadastro-livro.componen
 import { FormLivroComponent } from './form-livro/form-livro.component';
 import { DetalheLivroComponent } from './detalhe-livro/detalhe-livro.component';
 import { AlterarLivroComponent } from './alterar-livro/alterar-livro.component';
+import { DeletarLivroComponent } from './deletar-livro/deletar-livro.component';
+import { ConfirmarSaidaGuard } from 'src/app/guards/confirmar-saida.guard';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { AlterarLivroComponent } from './alterar-livro/alterar-livro.component';
     CadastroLivroComponent,
     FormLivroComponent,
     DetalheLivroComponent,    
-    AlterarLivroComponent
+    AlterarLivroComponent, DeletarLivroComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { AlterarLivroComponent } from './alterar-livro/alterar-livro.component';
     LivrosComponent        
   ],
   providers:[
-    LivrosService
+    LivrosService,
+    ConfirmarSaidaGuard
   ]
 })
 export class LivrosModule { }

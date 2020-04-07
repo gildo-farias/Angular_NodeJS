@@ -1,13 +1,14 @@
+import { Injectable } from '@angular/core';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../model/usuario';
-import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SystemService {
+  
+  constructor(private _usuarioService: UsuarioService) { }  
 
   private _logger: Usuario;      
+
   public get logger(): Usuario {
     return this._logger;
   }
@@ -16,9 +17,22 @@ export class SystemService {
     // console.log(this._logger);
   }
 
+  login(username: String, senha: String){
+    if(username === this._usuarioService.getUsuario().username && senha === this._usuarioService.getUsuario().senha){      
+      this.logger = this._usuarioService.getUsuario();
+      return true;
+    }
+    return false;
+  }
+
+  // *********************** LINKS *********************** // 
   private options:string [] = ["LIVROS", "LOCAÇÃO", "CLIENTES", "USUARIOS"];
   private optionsLinks:string []= ['/livros','/locacao', '/clientes','/usuarios'];
+  getOptions(){ return this.options; }  
+  getOptionsLinks(){ return this.optionsLinks; }  
+  // **************************************************** // 
 
+  // *********************** SIDEBAR *********************** // 
   private _sidebar: boolean = false;
 
   public get sidebar(): boolean {
@@ -36,16 +50,6 @@ export class SystemService {
       document.getElementById("main").style.marginLeft= "0";        
     }
   }
+  // ****************************************************** // 
 
-  constructor(private _usuarioService: UsuarioService) { }
-
-  getOptions(){ return this.options; }  
-  getOptionsLinks(){ return this.optionsLinks; }  
-
-  login(username: String, senha: String){
-    if(username === this._usuarioService.getUsuario().username && senha === this._usuarioService.getUsuario().senha){      
-      this.logger = this._usuarioService.getUsuario();
-      return true;
-    }else return false;
-  }
-}
+}//end Service

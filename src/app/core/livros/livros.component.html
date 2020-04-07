@@ -4,10 +4,10 @@
         <div class="row">                
             <div class="col-2">
                 <button class="btn btn-info" title="CADASTRAR" type="button"
-                    data-toggle="modal" data-target="#staticBackdrop" [routerLink]="['/livros/novo']">+</button>              
+                    data-toggle="modal" data-target="#staticBackdrop" routerLink="novo">+</button>              
             </div>
             <div class="col-10">                                
-                <input class="form-control" type="search" 
+                <input class="form-control" type="search"                     
                     placeholder="PESQUISAR: Titulo ou Subtitulo do Livro"
                     [(ngModel)]="filtro">                            
             </div>        

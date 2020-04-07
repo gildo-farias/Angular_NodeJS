@@ -14,6 +14,9 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt, 'pt');
 
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,8 @@ registerLocaleData(localePt, 'pt');
   ],
   providers: [
     SystemService,
+    AuthGuard,
+    AdminGuard,
     {
       provide: LOCALE_ID,
       useValue: 'pt-BR'

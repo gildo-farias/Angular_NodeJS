@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Livro } from 'src/model/livro';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
 @Injectable()
 export class LivrosService {
 

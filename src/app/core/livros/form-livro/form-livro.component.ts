@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 import { LivrosService } from 'src/services/livros.service';
 import { Livro } from 'src/model/livro';
+
 
 @Component({
   selector: 'livros-form-livro',
@@ -10,13 +11,21 @@ import { Livro } from 'src/model/livro';
 })
 export class FormLivroComponent implements OnInit {
 
-  generos: string[];
-  teste="oi";
+  @Output() avisarAlteracao = new EventEmitter();
+  formAlterado: boolean = false;
+
+  generos: string[];  
   @Input('livroAlterar') livro: Livro;
+  
   constructor(private _livroService: LivrosService) { }
 
   ngOnInit(): void {
     this.generos = this._livroService.getGeneros();    
+  }
+
+  onInput(){
+    this.formAlterado = true;
+    this.avisarAlteracao.emit(this.formAlterado);
   }
 
 }
