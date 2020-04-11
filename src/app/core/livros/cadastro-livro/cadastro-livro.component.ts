@@ -10,6 +10,6 @@ export class CadastroLivroComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
+  }  
 
 }

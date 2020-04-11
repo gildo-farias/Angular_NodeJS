@@ -40,7 +40,7 @@ export class LivrosComponent implements OnInit, ConfirmarSaida {
     }else{      
       return this.livros.filter((liv) => {
         if(
-          (<String>liv.tit).toLowerCase().indexOf(this.filtro.toLowerCase()) >=0 ||
+          (<String>liv.titulo).toLowerCase().indexOf(this.filtro.toLowerCase()) >=0 ||
           (<String>liv.subTit).toLowerCase().indexOf(this.filtro.toLowerCase()) >=0 ||
           (<String>liv.autor).toLowerCase().indexOf(this.filtro.toLowerCase()) >=0
         ){                              
@@ -53,8 +53,7 @@ export class LivrosComponent implements OnInit, ConfirmarSaida {
     
   }//filtarlivros()  
 
-  confirmarSaidaPagina(){
-    console.log(this.notFoundFiltro);
+  confirmarSaidaPagina(){    
     if(!this.notFoundFiltro && this.notFoundFiltro != undefined){
       return confirm('CONFIRMA A SAIDA DA PAGINA?');
     }

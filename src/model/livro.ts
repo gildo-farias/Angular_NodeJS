@@ -1,8 +1,8 @@
 export class Livro {
     cod: Number;
     ISBN: String;
-    gen:String;
-    tit: String;
+    genero:String;
+    titulo: String;
     subTit: String;
     autor: String;
     ano: Number;

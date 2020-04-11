@@ -16,13 +16,13 @@
                     <div class="col-md-6">
                     <div class="card-body">
                         <p class="card-text"><small>#{{ livro.cod }}</small></p>
-                        <h5 class="card-title">{{ livro.tit | uppercase }}</h5>
+                        <h5 class="card-title">{{ livro.titulo | uppercase }}</h5>
                         
                         <p class="card-text"  style="font-style: italic;">{{ livro?.subTit | titlecase }}</p>
                         <p class="card-text"><small>AUTOR(A): </small>{{ livro.autor | titlecase }}</p>
                         <p class="card-text"><small>ANO: </small>{{ livro.ano }}</p>
                         <p class="card-text"><small>ISBN: </small>{{ livro.ISBN }}</p>
-                        <p class="card-text"><small>GÊNERO: </small>{{ livro.gen | titlecase }}</p>                    
+                        <p class="card-text"><small>GÊNERO: </small>{{ livro.genero | titlecase }}</p>                    
                         <p class="card-text">                    
                             <small class="alert-secondary" style="padding:1%;" *ngIf="livro.locado">LOCADO</small>
                             <small class="alert-success" style="padding:1%;" *ngIf="!livro.locado">DISPONIVEL</small>
