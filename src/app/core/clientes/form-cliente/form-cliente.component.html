@@ -1,0 +1,146 @@
+<form #formCliente="ngForm" (ngSubmit)="onSubmit(formCliente)" novalidate>
+    <!-- ********************************************************************************** -->
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label class="control-label" for="cpf">CPF</label>
+            <input type="text" class="form-control" id="cpf" name="cpf" required
+                [ngClass]="{'is-invalid': !cpf.valid && cpf.touched, 'is-valid': cpf.valid && cpf.touched}"
+                placeholder="000.000.000-00" [ngModel]="cliente.cpf" #cpf="ngModel">
+            <div [hidden]="cpf.valid" class="invalid-tooltip">
+                CPF invalido!
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="foto">Foto</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="foto" name="foto" required
+                [ngClass]="{'is-invalid': !foto.valid && foto.touched, 'is-valid': foto.valid && foto.touched}"
+                [ngModel]="cliente.img" #foto="ngModel">
+                <label class="custom-file-label" for="foto" data-browse="Escolha">...</label>
+            </div>            
+            <div [hidden]="foto.valid" class="invalid-tooltip">
+                Foto Obrigatoria!
+            </div>     
+        </div>  
+    </div>
+    <!-- ********************************************************************************** -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" required
+                [ngClass]="{'is-invalid': !nome.valid && nome.touched, 'is-valid': nome.valid && nome.touched}"
+                [ngModel]="cliente.nome" #nome="ngModel">                
+            <div [hidden]="nome.valid" class="invalid-tooltip">
+                Nome do cliente não pode ser em branco.
+            </div>                     
+        </div>     
+        <div class="form-group col-md-6">
+            <label for="snome">Sobrenome</label>
+            <input type="text" class="form-control" id="snome" name="snome" required                 
+                [ngClass]="{'is-invalid': !snome.valid && snome.touched, 'is-valid': snome.valid && snome.touched}"
+                [ngModel]="cliente.snome" #snome="ngModel">                
+            <div [hidden]="snome.valid" class="invalid-tooltip">
+                Sobrenome do cliente não pode ser em branco.
+            </div>                     
+        </div>     
+    </div>    
+    <!-- ********************************************************************************** -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" required email                
+                [ngClass]="{'is-invalid': !email.valid && email.touched, 'is-valid': email.valid && email.touched}"
+                [ngModel]="cliente.email" #email="ngModel">                
+            <div [hidden]="email.valid" class="invalid-tooltip">
+                Email Invalido!
+            </div>                     
+        </div>   
+        <div class="form-group col-md-6">
+            <label for="telefone">Telefone</label>            
+            <input type="text" class="form-control" id="telefone" name="telefone" required
+                [ngClass]="{'is-invalid': !telefone.valid && telefone.touched, 'is-valid': telefone.valid && telefone.touched}"
+                [ngModel]="cliente.telefone" #telefone="ngModel">                          
+            <div [hidden]="telefone.valid" class="invalid-tooltip">
+                Telefone Obrigatorio!
+            </div>     
+        </div>    
+    </div>   
+    <!-- ********************************************************************************** -->
+    <div class="form-row">        
+        <div class="form-group col-md-4">
+            <label for="debito">Debito</label>
+            <input type="text" class="form-control" id="debito" name="debito" readonly
+                [ngClass]="{'is-invalid': !debito.valid && debito.touched, 'is-valid': debito.valid && debito.touched}"
+                [ngModel]="cliente.debito" #debito="ngModel">            
+        </div>
+        <div class="form-group col-md-4">
+            <label for="status">Situação</label>
+            <input type="text" class="form-control" id="status" name="status" readonly
+                [value]="cliente.status ? 'ATIVO' : 'BLOQUEADO'"                                
+                [ngClass]="{'is-invalid': !cliente.status, 'is-valid': cliente.status}">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="cep">CEP</label>            
+            <input type="text" class="form-control" id="cep" name="cep" required
+                [ngClass]="{'is-invalid': !cep.valid && cep.touched, 'is-valid': cep.valid && cep.touched}"
+                [ngModel]="cliente.cep" #cep="ngModel">
+            <div [hidden]="cep.valid" class="invalid-tooltip">
+                CEP Obrigatorio!
+            </div>     
+        </div>  
+    </div>    
+    <!-- ********************************************************************************** -->
+    <div class="form-row">        
+        <div class="form-group col-md-10">
+            <label for="rua">Endereço</label>
+            <input type="text" class="form-control" id="rua" name="rua" readonly
+                [ngClass]="{'is-invalid': !rua.valid && rua.touched, 'is-valid': rua.valid && rua.touched}"
+                [ngModel]="cliente.rua" #rua="ngModel">            
+        </div>
+        <div class="form-group col-md-2">
+            <label for="numero">Numero</label>
+            <input type="number" min="0" class="form-control" id="numero" name="numero" required
+                [ngClass]="{'is-invalid': !numero.valid && numero.touched, 'is-valid': numero.valid && numero.touched}"
+                [ngModel]="cliente.numero" #numero="ngModel">   
+            <div [hidden]="numero.valid" class="invalid-tooltip">
+                Numero Obrigatorio!
+            </div>     
+        </div>
+    </div>
+    <!-- ********************************************************************************** -->
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="complemento">Complemento</label>
+            <input type="text" class="form-control" id="complemento" name="complemento"
+                [ngClass]="{'is-invalid': !complemento.valid && complemento.touched, 'is-valid': complemento.valid && complemento.touched}"
+                [ngModel]="cliente.complemento" #complemento="ngModel">            
+        </div>
+    </div>
+    <!-- ********************************************************************************** -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro" readonly
+                [ngClass]="{'is-invalid': !bairro.valid && bairro.touched, 'is-valid': bairro.valid && bairro.touched}"
+                [ngModel]="cliente.bairro" #bairro="ngModel">            
+        </div>
+        <div class="form-group col-md-6">
+            <label for="cidade">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade" required
+                [ngClass]="{'is-invalid': !cidade.valid && cidade.touched, 'is-valid': cidade.valid && cidade.touched}"
+                [ngModel]="cliente.cidade" #cidade="ngModel">            
+        </div>
+    </div>
+    <!-- ********************************************************************************** -->
+    <div class="row">              
+            <div class="form-group col-md-10">
+                <ng-content></ng-content> 
+            </div>    
+            <div class="form-group col-md-1">
+                <button class="btn btn-outline-secondary" type="reset">RESETAR</button>
+            </div>    
+            <div class="form-group col-md-1">
+                <button class="btn btn-success" type="submit" [disabled]="!formCliente.valid">SALVAR</button>
+            </div>                  
+    </div>    
+</form>
