@@ -1,14 +1,14 @@
 <div class="row">
-    <div class="col col-lg-6">
-        <div class="row-11">
+    <!--COL  1-2 -->
+    <div class="col-6">
+        <div class="row">
             <button style="margin:1%; padding-top: 0%;" class="btn btn-info" routerLink="/livros">
-                <!-- <span style="font-size: x-large;">&laquo;</span> -->
-                <span class="material-icons">arrow_back_ios</span>                
+                <span style="font-size: x-large;">&laquo;</span>                
                 VOLTAR
             </button>
         </div>
-
-        <div class="row-11">
+        <div class="row">
+            <!-- CARD DETALHE -->
             <div class="card mb-3 componentShadow" style="max-width: 600px; margin: 1%;" *ngIf="livro!=null">
                 <div class="row no-gutters">
                     <div class="col-md-6">
@@ -38,19 +38,19 @@
                     </div>
                     </div>
                 </div>
-            </div>       
-
-        </div>                
+            </div> <!-- CARD DETALHE -->                    
+        </div>
 
     </div>
-
-    <div class="col col-lg-4">
-        <router-outlet></router-outlet>
-    </div>
+    <!-- ******** -->
+    <!--COL  2-2 -->
+    <div class="col-6">
+        <router-outlet></router-outlet>        
+    </div> 
      
-    <system-nao-encontrado [hidden]="livro!=null" style="width: 50%; margin: 0 auto;">
+    <!-- <system-nao-encontrado [hidden]="livro!=null" style="width: 50%; margin: 0 auto;">
         <span class="titulo">LIVRO</span>
         <p class="corpo">Verifique os valores informados</p>        
-    </system-nao-encontrado>
+    </system-nao-encontrado> -->
     
-</div>
+</div><!-- ROW -->

@@ -1,25 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-
 body{
     //background-color: rgb(242, 130, 44);
     background-color: rgb(242, 148, 41);    
 }
-
 .componentShadow{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
-
-.topTela{               
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    width: 30%;       
-    margin: 0 auto;     
-}
-.topTela button{    
-    padding-top: 0%;
-    margin-bottom: 10%;
-    font-size: x-large;
-}
-.topTela input{
-    margin-top: 1%;
+a{ cursor: pointer; }
+a[type=button]{
+    padding-bottom: 0%;
 }

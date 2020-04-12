@@ -1,22 +1,19 @@
-<div class="topTela">        
-    <div class="row">                        
-        <div class="col-12">                                
-            <input class="form-control" type="search" 
-                placeholder="PESQUISAR: Nome ou Sobre do Cliente">                            
-        </div>        
-    </div>    
+<br>
+<div class="row justify-content-md-center">                        
+    <div class="col-4">                                
+        <input class="form-control" type="search" 
+            placeholder="PESQUISAR: Nome ou Sobre do Cliente">                            
+    </div>        
 </div>    
-
-<div style="margin:0 auto; width: 98%;">
-    <table class="table table-hover" style="border-radius:2px;">
+<br>
+<div class="row justify-content-md-center">
+    <table class="table table-hover">        
         <thead>
         <tr>
             <th scope="col">
-                <a class="btn btn-primary">
-                    <span title="CADASTRAR"  routerLink="/clientes/novo" 
-                    class="material-icons">person_add</span>
+                <a class="btn btn-outline-info" type="button" routerLink="/clientes/novo" title="CADASTRAR">
+                    <span class="material-icons">person_add</span>
                 </a>                
-                
             </th>
             <th scope="col">NOME</th>
             <th scope="col">CONTATO</th>
@@ -33,9 +30,9 @@
             <td>{{ cli.status ? 'ATIVO':'BLOQUEADO' | uppercase }}</td>
             <td>{{ cli.status ? cli.debito:'------' | currency }}</td>
             <td scope="row">                
-                <a class="btn btn-outline-primary"><span class="material-icons">visibility</span></a>
-                <a class="btn btn-outline-warning"><span class="material-icons">build</span></a>
-                <a class="btn btn-outline-danger"><span class="material-icons">delete</span></a>                
+                <a class="col-sm-1"><span class="material-icons" title="DETALHES">visibility</span></a>
+                <a class="col-sm-1"><span class="material-icons" title="EDITAR">build</span></a>
+                <a class="col-sm-1"><span class="material-icons" title="APAGAR">delete</span></a>                
             </td>
         </tr>        
         </tbody>

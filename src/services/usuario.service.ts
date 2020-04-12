@@ -15,11 +15,25 @@ export class UsuarioService{
     snome : "Farias",
     gen : "MASCULINO"    
   }
+
+  private usuarioTest:Usuario = {
+    cod : 2,
+    username : "user@86",
+    senha : "123456",
+    admin : false,
+    nome : "maria",
+    snome : "torres",
+    gen : "FEMININO"    
+  }
      
   constructor() { }
 
   getUsuario(){
     return this.usuario;
+  }
+
+  getUsuarios(){
+    return [this.usuario, this.usuarioTest];
   }
   
 

@@ -1,49 +1,52 @@
 <livros-cadastro-livro></livros-cadastro-livro>
-<div class="row-11">
-    <div class="topTela">        
-        <div class="row">                
-            <div class="col-2">
-                <button class="btn btn-info" title="CADASTRAR" type="button"
-                    data-toggle="modal" data-target="#staticBackdrop" routerLink="novo">+</button>              
-            </div>
-            <div class="col-10">                                
-                <input class="form-control" type="search"                     
-                    placeholder="PESQUISAR: Titulo ou Subtitulo do Livro"
-                    [(ngModel)]="filtro">                            
-            </div>        
-        </div>    
-    </div>    
-</div>
-
-<div style="width: 100%;padding: 1%; margin: 0 auto;">    
-
-    <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">                     
-        <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
-        <div class="overlay">
-            <div class="text">                
-                <img src="assets/info.png" title="DETALHES" [routerLink]="['/livros', livro.cod]">
-            </div>
-        </div>                    
-        <div class="">
-            <h5 class="card-title">{{ livro.titulo | uppercase }}</h5>          
-            <h6 class="card-text" style="font-style: italic;">{{ livro.subTit }}</h6>          
-        </div>        
-        <div style="padding: 0%; margin-top: 1%;" 
-            [ngClass]="{
-                'alert-secondary': livro.locado,
-                'alert-success': !livro.locado 
-            }">
-            <small>{{ !livro.locado? 'DISPONIVEL' : 'LOCADO' }}</small>
-        </div>        
+<br>
+<div class="row justify-content-md-center">                   
+    <div class="col-1">
+        <a class="btn btn-outline-info" title="CADASTRAR" type="button"
+            data-toggle="modal" data-target="#staticBackdrop" routerLink="novo">
+            <!-- <span class="material-icons">menu_book</span> -->
+            <span class="material-icons">add_circle_outline</span>
+        </a>   
     </div>
+    <div class="col-4">        
+        <input class="form-control" type="search"                     
+            placeholder="PESQUISAR: Titulo ou Subtitulo do Livro"
+            [(ngModel)]="filtro">                            
+    </div>            
+</div>
+<br>
+<div class="row justify-content-md-center">
+    
+        <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">
+            <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
+            <div class="overlay">
+                <div class="text">                
+                    <img src="assets/info.png" title="DETALHES" [routerLink]="['/livros', livro.cod]">
+                </div>
+            </div>                    
+            <div class="">
+                <h5 class="card-title">{{ livro.titulo | uppercase }}</h5>          
+                <h6 class="card-text" style="font-style: italic;">{{ livro.subTit }}</h6>          
+            </div>        
+            <div style="padding: 0%; margin-top: 1%;" 
+                [ngClass]="{
+                    'alert-secondary': livro.locado,
+                    'alert-success': !livro.locado 
+                }">
+                <small>{{ !livro.locado? 'DISPONIVEL' : 'LOCADO' }}</small>
+            </div>        
+        </div><!--card-->    
 
 </div> 
-<div style="width: 50%; margin: 0 auto; text-align: center;">
-    <system-nao-encontrado [hidden]="!notFoundFiltro">
-        <span class="titulo">LIVRO</span>
-        <p class="corpo">
-            Não encontramos nenhum livro com esse titulo digitado
-            tente informa o titulo da franquia ou um subtitulo do livro que deseja.            
-        </p>
-    </system-nao-encontrado>
+<!-- livro nao encontrado -->
+<div class="row justify-content-md-center">
+    <div class="col-6">
+        <system-nao-encontrado [hidden]="!notFoundFiltro">
+            <span class="titulo">LIVRO</span>
+            <p class="corpo">
+                Não encontramos nenhum livro com esse titulo digitado
+                tente informa o titulo da franquia ou um subtitulo do livro que deseja.            
+            </p>
+        </system-nao-encontrado>
+    </div>    
 </div>    

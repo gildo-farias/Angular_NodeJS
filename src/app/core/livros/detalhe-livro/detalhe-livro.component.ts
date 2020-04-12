@@ -14,6 +14,7 @@ export class DetalheLivroComponent implements OnInit{
 
   constructor(
     private _route: ActivatedRoute,         
+    private _router: Router,
     private _livrosService: LivrosService
   ) { }
 
@@ -25,7 +26,10 @@ export class DetalheLivroComponent implements OnInit{
     this.inscricao = this._route.params.subscribe((parametros:any)=>{
       this.codigo = parametros['cod'];      
     });
-    this.livro = this._livrosService.getLivro(this.codigo);      
+    this.livro = this._livrosService.getLivro(this.codigo);  
+    if(this.livro==null) {      
+      this._router.navigate(['**']);
+    }
   }
 
   ngOnDestroy() {

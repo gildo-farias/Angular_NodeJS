@@ -18,6 +18,6 @@ export class ClientesComponent implements OnInit {
       this.listaClientes.push(this._clientesService.getClientes());
     }
     
-  }
+  }  
 
 }

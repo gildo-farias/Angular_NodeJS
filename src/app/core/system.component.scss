@@ -13,23 +13,17 @@
   #sidebar div{
     display: block;
   }            
-  
-  #main {
-    transition: margin-left .5s;
-    padding: 0.5%;
-  }
-  
+
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
     #sidebar {padding-top: 15px;}
     #sidebar label, h6, h2 {font-size: 18px;}
   }
-
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 0.5%;
+  }  
+  
+  #tela{ transition: 0.5s; }
   .clear { clear: both; }
-
-  #tela{      
-    transition: 0.5s;    
-    margin-top: 0.5%;
-    min-height: 85vh;    
-    width: 100%;        
-  }

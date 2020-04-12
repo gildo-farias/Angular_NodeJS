@@ -33,6 +33,13 @@ export class FormClienteComponent implements OnInit {
     return {'is-invalid': this.invalido(campo), 'is-valid': this.valido(campo)}
   } 
 
+  onSubmit(formCliente){    
+    console.log(formCliente);    
+    this.http.post('', JSON.stringify(formCliente.value)).subscribe(data => {
+      console.log(data);
+    });
+  }
+
   consultarCEP(cep, formCliente){        
     //Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
@@ -66,8 +73,9 @@ export class FormClienteComponent implements OnInit {
     });
   }
 
-  onSubmit(formCliente){    
+  salvarCliente(formCliente){
     let data = formCliente.value;    
+    this.cliente = new Cliente;
     let endereco: Endereco = new Endereco;
     endereco.cep = data.cep;
     endereco.logradouro = data.logradouro;
@@ -75,10 +83,8 @@ export class FormClienteComponent implements OnInit {
     endereco.complemento = data.complemento;
     endereco.bairro = data.bairro;
     endereco.cidade = data.cidade;
-    endereco.uf = data.uf;
-    this.cliente = new Cliente;
+    endereco.uf = data.uf;    
     this.cliente = this._clientesService.setCliente(1, data.cpf, data.nome, data.snome, data.email, data.telefone, data.foto, endereco);
-    console.log(this.cliente);
-  }
+  }  
 
 }

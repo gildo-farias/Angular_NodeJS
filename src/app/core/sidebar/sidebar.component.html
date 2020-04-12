@@ -1,12 +1,12 @@
-<div>
+<div class="row-12">
     <div class="card-header">
         <h2>{{ usuario.username }}</h2>                                       
     </div>
 
     <div class="card-body" style="padding-bottom: 0px">
         <label>{{ usuario.nome }}</label><label>{{ usuario.snome }}</label>      
-        <img *ngIf="usuario.gen == 'MASCULINO'" src="assets/m.png">
-        <img *ngIf="usuario.gen == 'FEMININO'" src="assets/w.png">
+        <img *ngIf="usuario.gen.valueOf() == 'MASCULINO'" src="assets/m.png">
+        <img *ngIf="usuario.gen.valueOf() == 'FEMININO'" src="assets/w.png">
 
         <div class="dropdown-divider"></div>  
         <label>TEMPO LOGADO</label>

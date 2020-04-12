@@ -26,12 +26,11 @@ export class SidebarComponent implements OnInit {
     }, 1000);  
   }
   
-  constructor(private _systemService: SystemService, private _usuarioService: UsuarioService) { }
+  constructor(private _systemService: SystemService) { }
 
   ngOnInit() {            
-    this.cronometro();
-    // this.usuario = this._systemService.logger;
-    this.usuario = this._usuarioService.getUsuario();
+    this.cronometro();    
+    this.usuario = this._systemService.logger;
     this.options = this._systemService.getOptions();
     this.optionsLinks = this._systemService.getOptionsLinks();
   }

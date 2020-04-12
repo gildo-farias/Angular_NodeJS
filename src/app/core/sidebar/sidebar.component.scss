@@ -17,7 +17,6 @@ h5{
 }
 h5 label{ cursor: pointer; }
 h5:hover { background-color: grey; }
-// div{
-//     transform: translate(50%, 50%);
-//     -ms-transform: translate(50%, 50%);
-// }
+.card-body{    
+    transition: 0.3s; 
+}

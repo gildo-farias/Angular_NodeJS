@@ -1,22 +1,31 @@
-
-<div class="topTela">        
-    <div class="row">                
-        <div class="col-2">
-            <button class="btn btn-info" title="CADASTRAR" type="button"
-                data-toggle="modal" data-target="#staticBackdrop">+</button>              
-        </div>
-        <div class="col-10">                                
-            <input class="form-control" type="search" 
-                placeholder="PESQUISAR: Nome ou Sobre do Cliente"
-                [(ngModel)]="filtro">                            
-        </div>        
-    </div>    
-</div>    
-
-<div class="card" style="width: 10rem; float: left;">    
-    <img *ngIf="user.gen == 'MASCULINO'" class="card-img-top" src="assets/m.png">
-    <img *ngIf="user.gen == 'FEMININO'" class="card-img-top" src="assets/w.png">
-    <div class="card-body">
-        <h4>{{ user.username }}</h4>          
+ <br>
+ <div class="row justify-content-md-center">
+    <div class="col-1">
+        <a class="btn btn-outline-info" title="CADASTRAR" type="button"
+            data-toggle="modal" data-target="" routerLink="">            
+            <span class="material-icons">add_circle_outline</span>
+        </a>
     </div>
+    <div class="col-4">                                
+        <input class="form-control" type="search" 
+            placeholder="PESQUISAR: Nome ou Sobre do Cliente">            
+    </div>        
+</div>    
+<br>
+<div class="row justify-content-md-center">
+    <div class="card" style="width: 10rem; text-align: center;" *ngFor="let user of usuarios">            
+        <div class="card-header">
+            <small>{{ user.nome | titlecase }} {{ user.snome | titlecase }}</small>
+        </div>
+        <div class="card-body">
+            <img *ngIf="user.gen.valueOf() == 'MASCULINO'" class="card-img-top" src="assets/m.png">
+            <img *ngIf="user.gen.valueOf() == 'FEMININO'" class="card-img-top" src="assets/w.png">                 
+        </div>
+        <p [ngClass]="{'alert-success': user.admin, 'alert-warning': !user.admin}">
+            ACESSO: {{ user.admin ? 'ADMIN':'RESTRITO'}}
+        </p>        
+        <div class="card-footer">
+            <strong>{{ user.username | uppercase }}</strong>
+        </div>
+    </div>    
 </div>
