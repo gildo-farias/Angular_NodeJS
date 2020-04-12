@@ -9,6 +9,8 @@ import { ClientesComponent } from './clientes.component';
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import { FormClienteComponent } from './form-cliente/form-cliente.component';
 
+import { HttpClientModule } from '@angular/common/http'
+
 @NgModule({
   declarations: [
     ClientesComponent,
@@ -17,14 +19,15 @@ import { FormClienteComponent } from './form-cliente/form-cliente.component';
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    ClientesRoutingModule   
+    FormsModule,    
+    ClientesRoutingModule,
+    HttpClientModule,       
   ],
   exports: [
     ClientesComponent
   ],
   providers: [
-    ClientesService
+    ClientesService,          
   ]
 })
 export class ClientesModule { }

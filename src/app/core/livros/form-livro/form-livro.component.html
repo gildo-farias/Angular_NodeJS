@@ -69,7 +69,7 @@
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="imgCapa" name="imgCapa" required
                 [ngClass]="{'is-invalid': !imgCapa.valid && imgCapa.touched, 'is-valid': imgCapa.valid && imgCapa.touched}"
-                [ngModel]="livro.img" #imgCapa="ngModel">
+                ngModel #imgCapa="ngModel">
                 <label class="custom-file-label" for="imgCapa" data-browse="Escolha">...</label>
             </div>            
             <div [hidden]="imgCapa.valid" class="invalid-tooltip">
