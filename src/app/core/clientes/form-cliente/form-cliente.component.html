@@ -15,7 +15,9 @@
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="foto" name="foto" required
                 [ngClass]="validarCampo(foto)" ngModel #foto="ngModel">
-                <label class="custom-file-label" for="foto" data-browse="Escolha">...</label>
+                <label class="custom-file-label" for="foto" data-browse="Escolha">
+                    <span class="material-icons">add_a_photo</span>
+                </label>
             </div>            
             <div [hidden]="foto.valid" class="invalid-tooltip">
                 Foto Obrigatoria!

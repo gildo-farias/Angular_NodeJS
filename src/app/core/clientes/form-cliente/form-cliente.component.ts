@@ -12,13 +12,15 @@ import { Endereco } from 'src/model/endereco';
 })
 export class FormClienteComponent implements OnInit {
 
-  @Input() cliente: Cliente = new Cliente;
+  @Input('clienteAlterar') cliente: Cliente = new Cliente;
 
   constructor(private _clientesService: ClientesService, private http: HttpClient) { }
 
-  ngOnInit(): void {
-    this.cliente = this._clientesService.getClientes();
-    this.cliente.endereco = new Endereco;        
+  ngOnInit(): void {         
+    // this.cliente = this._clientesService.getClientes();
+    if(this.cliente.cod==null){
+      this.cliente.endereco = new Endereco;            
+    }    
   }
 
   invalido(campo){
@@ -64,7 +66,18 @@ export class FormClienteComponent implements OnInit {
     });
   }
 
-  onSubmit(formCliente){
+  onSubmit(formCliente){    
+    let data = formCliente.value;    
+    let endereco: Endereco = new Endereco;
+    endereco.cep = data.cep;
+    endereco.logradouro = data.logradouro;
+    endereco.numero = data.numero;
+    endereco.complemento = data.complemento;
+    endereco.bairro = data.bairro;
+    endereco.cidade = data.cidade;
+    endereco.uf = data.uf;
+    this.cliente = new Cliente;
+    this.cliente = this._clientesService.setCliente(1, data.cpf, data.nome, data.snome, data.email, data.telefone, data.foto, endereco);
     console.log(this.cliente);
   }
 

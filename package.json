@@ -24,6 +24,7 @@
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
+    "material-design-icons": "^3.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "typescript": "^3.7.5",
