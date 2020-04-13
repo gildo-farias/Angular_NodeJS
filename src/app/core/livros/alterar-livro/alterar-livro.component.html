@@ -1,8 +1,9 @@
 <div id="formAlterarLivro" class="componentShadow" *ngIf="livro!=null" >   
+    <h3>ALTERAÇÃO DE DADOS DO LIVRO</h3>
+    <p><strong>NOTA: </strong><small>SOBRESCREVA SOMENTE OS CAMPOS QUE DESEJA ALTERAR</small></p>
 
-    <small>
-        SOBRESCREVA SOMENTE OS CAMPOS QUE DESEJA ALTERAR        
-    </small> 
+    <div class="dropdown-divider"></div>
+
     <livros-form-livro [livroAlterar]="livro" (avisarAlteracao)="escutandoMudanca($event)">
         <button class="btn btn-secondary" type="button" [routerLink]="['/livros', livro.cod]">CANCELAR</button>
     </livros-form-livro>    

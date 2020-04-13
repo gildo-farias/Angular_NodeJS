@@ -1,87 +1,60 @@
-<form #formLivro="ngForm" (ngSubmit)="onSubmit(formLivro)" novalidate>
+<form [formGroup]="formLivro" (ngSubmit)="onSubmit()">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label class="control-label" for="ISBN">ISBN</label>
-            <input type="text" class="form-control" id="ISBN" name="ISBN" required
-                [ngClass]="{'is-invalid': !ISBN.valid && ISBN.touched, 'is-valid': ISBN.valid && ISBN.touched}"
-                placeholder="Codigo ISBN" [ngModel]="livro.ISBN" #ISBN="ngModel">
-            <div [hidden]="ISBN.valid" class="invalid-tooltip">
-                Informe o codigo ISBN!
-            </div>
+            <input type="text" class="form-control" id="ISBN" formControlName="ISBN">            
         </div>
         <div class="form-group col-md-6">
             <label for="genero">GENERO</label>
-            <select class="custom-select" id="genero" name="genero" required
-            [ngClass]="{'is-invalid': !genero.valid && genero.touched, 'is-valid': genero.valid && genero.touched}"
-            [ngModel]="livro.genero" #genero="ngModel">                
-                <option selected disabled value="">- Selecione -</option>
+            <select class="custom-select" id="genero" formControlName="genero">
+                <option selected disabled value="null">- Selecione -</option>
                 <option *ngFor="let gen of generos">{{ gen | uppercase }}</option>
-            </select>
-            <div [hidden]="genero.valid" class="invalid-tooltip">                    
-                Escolha um genero!
-            </div>
+            </select>            
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="titulo">TITULO</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" required 
-                (input)="onInput()" placeholder="Insira o titulo da obra" 
-                [ngClass]="{'is-invalid': !titulo.valid && titulo.touched, 'is-valid': titulo.valid && titulo.touched}"
-                [ngModel]="livro.titulo" #titulo="ngModel">                
-            <div [hidden]="titulo.valid" class="invalid-tooltip">
-                Titulo do livro não pode ser em branco.
-            </div>                     
+            <input type="text" class="form-control" id="titulo" formControlName="titulo"
+                (input)="onInput()">            
         </div>     
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="subTit">SUB TITULO</label>
-            <input type="text" class="form-control" id="subTit" name="subTit"
-                placeholder="SubTitulo da obra (OPCIONAL)" [ngModel]="livro.subTit">        
+            <input type="text" class="form-control" id="subTit" formControlName="subTit"
+                placeholder=" * OPCIONAL *">
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-6">
             <label for="autor">AUTOR(A)</label>
-            <input type="text" class="form-control" id="autor" name="autor" required
-                placeholder="Insira o nome do Autor" 
-                [ngClass]="{'is-invalid': !autor.valid && autor.touched, 'is-valid': autor.valid && autor.touched}"
-                [ngModel]="livro.autor" #autor="ngModel">
-            <div [hidden]="autor.valid" class="invalid-tooltip">
-                Informe o nome do Autor!
-            </div>
+            <input type="text" class="form-control" id="autor" formControlName="autor">                          
         </div>                        
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="ano">ANO</label>
-            <input type="number" min="500" max="2020" class="form-control" 
-                id="ano" name="ano" required
-                [ngClass]="{'is-invalid': !ano.valid && ano.touched, 'is-valid': ano.valid && ano.touched}"
-                [ngModel]="livro.ano" #ano="ngModel">
-            <div [hidden]="ano.valid" class="invalid-tooltip">
-                Informe o ano de lançamento!
-            </div>
+            <input type="text" class="form-control" id="ano" formControlName="ano">
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <label for="imgCapa">LINK DA IMAGEM DE CAPA</label>
+        <div class="form-group col-md-3">
+            <label for="imgCapa">CAPA</label>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="imgCapa" name="imgCapa" required
-                [ngClass]="{'is-invalid': !imgCapa.valid && imgCapa.touched, 'is-valid': imgCapa.valid && imgCapa.touched}"
-                ngModel #imgCapa="ngModel">
-                <label class="custom-file-label" for="imgCapa" data-browse="Escolha">...</label>
-            </div>            
-            <div [hidden]="imgCapa.valid" class="invalid-tooltip">
-                Escolha uma imagem!
-            </div>     
+                <input type="file" class="custom-file-input" id="imgCapa" formControlName="imgCapa">                
+                <label class="custom-file-label" for="imgCapa" data-browse="">
+                    <span class="material-icons">add_photo_alternate</span>
+                </label>
+            </div>                        
         </div>  
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-12">            
-            <ng-content></ng-content> |   
-            <button class="btn btn-outline-info" type="reset" style="color: white;">RESETAR</button> |          
+    </div>    
+    <div class="dropdown-divider"></div>
+    <div class="form-row justify-content-md-center">
+        <div class="form-group col-md-4">
+            <ng-content></ng-content>
+        </div>
+        <div class="form-group col-md-3">             
+            <button class="btn btn-outline-secondary" type="reset" style="color: white;">RESETAR</button>
+        </div>
+        <div class="form-group col-md-3">             
             <button class="btn btn-success" type="submit" [disabled]="!formLivro.valid">SALVAR</button>
-        </div>    
+        </div>            
     </div>    
 </form>

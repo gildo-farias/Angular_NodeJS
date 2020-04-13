@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LivrosRoutingModule } from './livros-routing.module';
 import { ErrosModule } from '../erros/erros.module';
 
-import { LivrosService } from './../../../services/livros.service';
+import { LivrosService } from 'src/services/livros.service';
 import { LivrosComponent } from './livros.component';
 import { CadastroLivroComponent } from './cadastro-livro/cadastro-livro.component';
 import { FormLivroComponent } from './form-livro/form-livro.component';
@@ -26,7 +27,9 @@ import { ConfirmarSaidaGuard } from 'src/app/guards/confirmar-saida.guard';
     CommonModule,
     FormsModule,
     LivrosRoutingModule,    
-    ErrosModule
+    ErrosModule,
+    ReactiveFormsModule,
+    HttpClientModule        
   ],
   exports:[
     LivrosComponent        
