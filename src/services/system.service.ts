@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../model/usuario';
+import { FormControl } from '@angular/forms';
 
 @Injectable()
 export class SystemService {
@@ -24,7 +25,7 @@ export class SystemService {
     }
     return false;
   }
-
+  
   // *********************** LINKS *********************** // 
   private options:string [] = ["LIVROS", "LOCAÇÃO", "CLIENTES", "USUARIOS"];
   private optionsLinks:string []= ['/livros','/locacao', '/clientes','/usuarios'];

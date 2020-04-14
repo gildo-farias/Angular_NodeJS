@@ -1,7 +1,5 @@
-import { ConfirmarSaida } from './../../guards/confirmar-saida';
-import { Subscription } from 'rxjs';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { LivrosService } from '../../../services/livros.service';
+import { Component, OnInit } from '@angular/core';
+import { LivrosService } from 'src/services/livros.service';
 import { Livro } from 'src/model/livro';
 
 @Component({
@@ -9,7 +7,7 @@ import { Livro } from 'src/model/livro';
   templateUrl: './livros.component.html',
   styleUrls: ['./livros.component.scss']
 })
-export class LivrosComponent implements OnInit, ConfirmarSaida {
+export class LivrosComponent implements OnInit {
 
   livros:Livro[];  
   generos:String[]= [];
@@ -53,12 +51,12 @@ export class LivrosComponent implements OnInit, ConfirmarSaida {
     
   }//filtarlivros()  
 
-  confirmarSaidaPagina(){    
-    if(!this.notFoundFiltro && this.notFoundFiltro != undefined){
-      return confirm('CONFIRMA A SAIDA DA PAGINA?');
-    }
-    return true;
-  }
+  // confirmarSaidaPagina(){    
+  //   if(!this.notFoundFiltro && this.notFoundFiltro != undefined){
+  //     return confirm('CONFIRMA A SAIDA DA PAGINA?');
+  //   }
+  //   return true;
+  // }
 
 
 }

@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Cliente } from 'src/model/cliente';
 import { ClientesService } from 'src/services/clientes.service';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ValidateForm } from '../../erros/validate-form';
 import { Endereco } from 'src/model/endereco';
 
 
@@ -13,57 +16,94 @@ import { Endereco } from 'src/model/endereco';
 export class FormClienteComponent implements OnInit {
 
   @Input('clienteAlterar') cliente: Cliente = new Cliente;
+  validateForm: ValidateForm;
+  formCliente: FormGroup;
+  cepErro: boolean;
 
-  constructor(private _clientesService: ClientesService, private http: HttpClient) { }
+  constructor(
+    private _clientesService: ClientesService,
+    private _formBuilder: FormBuilder,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {         
-    // this.cliente = this._clientesService.getClientes();
-    if(this.cliente.cod==null){
-      this.cliente.endereco = new Endereco;            
-    }    
-  }
-
-  invalido(campo){
-    return !campo.valid && campo.touched;
-  }
-  valido(campo){
-    return campo.valid && campo.touched
-  }
-  validarCampo(campo){
-    return {'is-invalid': this.invalido(campo), 'is-valid': this.valido(campo)}
+    this.validateForm = new ValidateForm();
+    this.iniciarForm();     
   } 
 
-  onSubmit(formCliente){    
-    console.log(formCliente);    
-    this.http.post('https://httpbin.org/post', JSON.stringify(formCliente.value)).subscribe(data => {
-      console.log(data);
-    });
+  
+  
+
+  onSubmit(){    
+    if(this.formCliente.valid){
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.formCliente.value)).subscribe(data => {
+        console.log(data);
+      });
+    }else{
+      this.validateForm.validarCampos(this.formCliente);
+    }
+    
   }
 
-  consultarCEP(cep, formCliente){        
-    //Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
+  consultarCEP(){             
+    let cep: string = this.formCliente.get('endereco.cep').value;
     //Verifica se campo cep possui valor informado.
-    if (cep != "") {
+    if (cep!=null) {
+      //Nova variável "cep" somente com dígitos.
+      cep = cep.replace(/\D/g, '');
       //Expressão regular para validar o CEP.
-      var validacep = /^[0-9]{8}$/;
+      let validacep = /^[0-9]{8}$/;
       //Valida o formato do CEP.
       if(validacep.test(cep)) {        
         this.http.get(`https://viacep.com.br/ws/${cep}/json`).subscribe(data => {
           if (!("erro" in data)) {
-            this.preencherEndereco(data, formCliente);
-          }else{
-            alert('CPF não encontrado');
+            this.preencherEndereco(data);            
+          }else{            
+            this.cepErro = true;
+            this.formCliente.get('endereco').reset();                      
+            document.getElementById('cep').focus();
+            document.getElementById('cep').blur();
+            document.getElementById('cep').focus();
           }
         });
-      }///cep validado
+      }else{        
+        this.cepErro = false;        
+        this.formCliente.get('endereco').reset();
+        document.getElementById('cep').focus();
+        document.getElementById('cep').blur();
+        document.getElementById('cep').focus();
+      }
     }////cep vazio    
   }///consultarCEP()
 
-  preencherEndereco(data, formCliente){      
-    formCliente.form.patchValue({
+  iniciarForm(){
+    if(this.cliente.cod==null){
+      this.formCliente = this._formBuilder.group({
+        cpf:        [null, Validators.required],
+        foto:       [null, Validators.required],
+        nome:       [null, Validators.required],
+        snome:      [null, Validators.required],
+        email:      [null, [Validators.required, Validators.email]],
+        telefone:   [null, Validators.required],
+        endereco:   this._formBuilder.group({
+          cep:        [null, Validators.required],
+          logradouro: [null, Validators.required],
+          numero:     [null, [Validators.required, Validators.nullValidator]],
+          complemento:[null],
+          bairro:     [null, Validators.required],
+          cidade:     [null, Validators.required],
+          uf:         [null, Validators.required],
+        })      
+      });
+    }else{
+
+    }
+  }
+
+  preencherEndereco(data){      
+    this.formCliente.patchValue({
       endereco:{
-        cep: data.cep,
+        // cep: data.cep,
         logradouro: data.logradouro,        
         complemento: data.complemento,      
         bairro: data.bairro,
@@ -73,8 +113,8 @@ export class FormClienteComponent implements OnInit {
     });
   }
 
-  salvarCliente(formCliente){
-    let data = formCliente.value;    
+  salvarCliente(){
+    let data; 
     this.cliente = new Cliente;
     let endereco: Endereco = new Endereco;
     endereco.cep = data.cep;

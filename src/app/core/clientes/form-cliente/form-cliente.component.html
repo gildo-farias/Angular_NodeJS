@@ -1,44 +1,44 @@
-<form #formCliente="ngForm" (ngSubmit)="onSubmit(formCliente)" novalidate>
+<form [formGroup]="formCliente" (ngSubmit)="onSubmit()" id="formCliente">
     <!-- ********************************************************************************** -->
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label class="control-label" for="cpf">CPF</label>
-            <input type="text" class="form-control" id="cpf" name="cpf" required
-                [ngClass]="validarCampo(cpf)" [ngModel]="cliente.cpf" #cpf="ngModel">
-            <div [hidden]="cpf.valid" class="invalid-tooltip">
-                CPF invalido!
-            </div>
+            <label class="control-label" for="cpf">CPF</label><i class="material-icons">flare</i>
+            <input type="text" class="form-control" id="cpf" formControlName="cpf"
+                [ngClass]="validateForm.validarCampo(formCliente.get('cpf'))">
+                <div class="invalid-tooltip">
+                    CPF invalido!
+                </div>            
         </div>
         <div class="form-group col-md-6"></div>
         <div class="form-group col-md-3">
-            <label for="foto">Foto</label>
+            <label for="foto">Foto</label><i class="material-icons">flare</i>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="foto" name="foto" required
-                [ngClass]="validarCampo(foto)" ngModel #foto="ngModel">
+                <input type="file" class="custom-file-input" id="foto" formControlName="foto"
+                    [ngClass]="validateForm.validarCampo(formCliente.get('foto'))">
                 <label class="custom-file-label" for="foto" data-browse="Escolha">
                     <span class="material-icons">add_a_photo</span>
                 </label>
-            </div>            
-            <div [hidden]="foto.valid" class="invalid-tooltip">
-                Foto Obrigatoria!
-            </div>     
+                <div class="invalid-tooltip">
+                    Foto Obrigatoria!
+                </div>
+            </div>                        
         </div>  
     </div>
     <!-- ********************************************************************************** -->
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" name="nome" required
-                [ngClass]="validarCampo(nome)" [ngModel]="cliente.nome" #nome="ngModel">
-            <div [hidden]="nome.valid" class="invalid-tooltip">
+            <label for="nome">Nome</label><i class="material-icons">flare</i>
+            <input type="text" class="form-control" id="nome" formControlName="nome"
+                [ngClass]="validateForm.validarCampo(formCliente.get('nome'))">
+            <div class="invalid-tooltip">
                 Nome do cliente não pode ser em branco.
             </div>                     
         </div>     
         <div class="form-group col-md-6">
-            <label for="snome">Sobrenome</label>
-            <input type="text" class="form-control" id="snome" name="snome" required                 
-                [ngClass]="validarCampo(snome)" [ngModel]="cliente.snome" #snome="ngModel">                
-            <div [hidden]="snome.valid" class="invalid-tooltip">
+            <label for="snome">Sobrenome</label><i class="material-icons">flare</i>
+            <input type="text" class="form-control" id="snome" formControlName="snome"
+                [ngClass]="validateForm.validarCampo(formCliente.get('snome'))">
+            <div class="invalid-tooltip">
                 Sobrenome do cliente não pode ser em branco.
             </div>                     
         </div>     
@@ -46,18 +46,18 @@
     <!-- ********************************************************************************** -->
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" name="email" required email                
-                [ngClass]="validarCampo(email)" [ngModel]="cliente.email" #email="ngModel">                
-            <div [hidden]="email.valid" class="invalid-tooltip">
+            <label for="email">Email</label><i class="material-icons">flare</i>
+            <input type="text" class="form-control" id="email" formControlName="email"
+                [ngClass]="validateForm.validarCampo(formCliente.get('email'))">
+            <div class="invalid-tooltip">
                 Email Invalido!
             </div>                     
         </div>   
         <div class="form-group col-md-6">
-            <label for="telefone">Telefone</label>            
-            <input type="text" class="form-control" id="telefone" name="telefone" required
-                [ngClass]="validarCampo(telefone)" [ngModel]="cliente.telefone" #telefone="ngModel">                          
-            <div [hidden]="telefone.valid" class="invalid-tooltip">
+            <label for="telefone">Telefone</label><i class="material-icons">flare</i>            
+            <input type="text" class="form-control" id="telefone" formControlName="telefone"
+                [ngClass]="validateForm.validarCampo(formCliente.get('telefone'))">
+            <div class="invalid-tooltip">
                 Telefone Obrigatorio!
             </div>     
         </div>    
@@ -66,38 +66,35 @@
     <div class="form-row" hidden>        
         <div class="form-group col-md-4">
             <label for="debito">Debito</label>
-            <input type="text" class="form-control" id="debito" name="debito" readonly
-                [ngModel]="cliente.debito" #debito="ngModel">
+            <input type="text" class="form-control" id="debito" readonly>
         </div>
         <div class="form-group col-md-4">
             <label for="status">Situação</label>
-            <input type="text" class="form-control" id="status" name="status" readonly                            
-                [ngClass]="validarCampo(status)" [ngModel]="cliente.status" #status="ngModel">
+            <input type="text" class="form-control" id="status" readonly>
         </div>        
     </div>        
     <!--  -->
-    <div ngModelGroup="endereco">
+    <div formGroupName="endereco">
     <!--  -->
     <div class="form-row">        
         <div class="form-group col-md-2">
-            <label for="cep">CEP</label>            
-            <input type="text" class="form-control" id="cep" name="cep" required
-                [ngClass]="validarCampo(cep)" [ngModel]="cliente.endereco.cep" #cep="ngModel"
-                (blur)="consultarCEP(cep.value, formCliente)">
-            <div [hidden]="cep.valid" class="invalid-tooltip">
-                CEP Obrigatorio! 
+            <label for="cep">CEP</label><i class="material-icons">flare</i>            
+            <input type="text" class="form-control" id="cep" formControlName="cep" 
+                (blur)="consultarCEP(formCliente.get('endereco.cep'))"
+                [ngClass]="validateForm.validarCampo(formCliente.get('endereco.cep'))">
+            <div class="invalid-tooltip">
+                CEP {{ cepErro ? 'Não Encontrado':'Invalido' }}!
             </div>               
         </div>  
-        <div class="form-group col-md-9">
+        <div class="form-group col-md-8">
             <label for="logradouro">Logradouro</label>
-            <input type="text" class="form-control" id="logradouro" name="logradouro" readonly
-                [ngModel]="cliente.endereco.logradouro" #logradouro="ngModel">            
+            <input tabindex="-1" type="text" class="form-control" id="logradouro" formControlName="logradouro" readonly>
         </div>
-        <div class="form-group col-md-1">
-            <label for="numero">Numero</label>
-            <input type="text" class="form-control" id="numero" name="numero" required
-                [ngClass]="validarCampo(numero)" [ngModel]="cliente.endereco.numero" #numero="ngModel">   
-            <div [hidden]="numero.valid" class="invalid-tooltip">
+        <div class="form-group col-md-2">
+            <label for="numero">Numero</label><i class="material-icons">flare</i>
+            <input type="text" class="form-control" id="numero" formControlName="numero"
+                [ngClass]="validateForm.validarCampo(formCliente.get('endereco.numero'))">
+            <div class="invalid-tooltip">
                 Numero Obrigatorio!
             </div>     
         </div>
@@ -105,48 +102,43 @@
     <!-- ********************************************************************************** -->
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="complemento">Complemento</label>
-            <input type="text" class="form-control" id="complemento" name="complemento"
-                [ngModel]="cliente.endereco.complemento" #complemento="ngModel">            
+            <label for="complemento">Complemento</label><small> (OPCIONAL)</small>
+            <input type="text" class="form-control" id="complemento" formControlName="complemento">
         </div>
     </div>
     <!-- ********************************************************************************** -->
     <div class="form-row">
         <div class="form-group col-md-5">
             <label for="bairro">Bairro</label>
-            <input type="text" class="form-control" id="bairro" name="bairro" readonly
-                [ngModel]="cliente.endereco.bairro" #bairro="ngModel">
+            <input tabindex="-1" type="text" class="form-control" id="bairro" formControlName="bairro" readonly>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-5">
             <label for="cidade">Cidade</label>
-            <input type="text" class="form-control" id="cidade" name="cidade" readonly
-                [ngModel]="cliente.endereco.cidade" #cidade="ngModel">            
+            <input tabindex="-1" type="text" class="form-control" id="cidade" formControlName="cidade" readonly>
         </div>
-        <div class="form-group col-md-1">
+        <div class="form-group col-md-2">
             <label for="uf">UF</label>
-            <input type="text" class="form-control" id="uf" name="uf" readonly
-                [ngModel]="cliente.endereco.uf" #uf="ngModel">            
+            <input tabindex="-1" type="text" class="form-control" id="uf" formControlName="uf" readonly>          
         </div>
     </div>
     <!--  -->
     </div>
     <!--  -->    
     <div class="form-row">              
-            <div class="form-group col-md-10">
-                <!-- <ng-content></ng-content>  -->
+            <div class="form-group col-md-8">
+                <ng-content></ng-content>
             </div>    
-            <div class="form-group col-md-1">
-                <button class="btn btn-outline-secondary" type="reset">RESETAR</button>
+            <div class="form-group col-md-2">
+                <button tabindex="-1" class="btn btn-outline-secondary" type="reset">RESETAR</button>
             </div>    
-            <div class="form-group col-md-1">
-                <button class="btn btn-success" type="submit" [disabled]="!formCliente.valid">SALVAR</button>
+            <div class="form-group col-md-2">
+                <button class="btn btn-success" type="submit">SALVAR</button>
             </div>                  
     </div>    
 </form>
 
 <div class="alert alert-info">
     <h3>DETALHES DO FORM</h3>
-    <pre class="alert alert-warning">VÁLIDO: {{ formCliente.valid }}</pre>
-    <pre class="alert alert-warning">SUBMETIDO: {{ formCliente.submitted }}</pre>
+    <pre class="alert alert-warning">VÁLIDO: {{ formCliente.valid }}</pre>    
     <pre class="alert alert-warning">{{ formCliente.value | json }}</pre>
 </div>

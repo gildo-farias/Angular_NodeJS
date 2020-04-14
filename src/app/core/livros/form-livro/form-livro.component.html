@@ -2,21 +2,32 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label class="control-label" for="ISBN">ISBN</label>
-            <input type="text" class="form-control" id="ISBN" formControlName="ISBN">            
+            <input type="text" class="form-control" id="ISBN" formControlName="ISBN"
+                [ngClass]="validateForm.validarCampo(formLivro.get('ISBN'))">            
+            <div class="invalid-tooltip">
+                ISBN é obrigatorio!
+            </div>
         </div>
         <div class="form-group col-md-6">
             <label for="genero">GENERO</label>
-            <select class="custom-select" id="genero" formControlName="genero">
+            <select class="custom-select" id="genero" formControlName="genero"
+                [ngClass]="validateForm.validarCampo(formLivro.get('genero'))"> 
                 <option selected disabled value="null">- Selecione -</option>
                 <option *ngFor="let gen of generos">{{ gen | uppercase }}</option>
-            </select>            
+            </select>
+            <div class="invalid-tooltip">
+                Selecione um Genero.
+            </div>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="titulo">TITULO</label>
-            <input type="text" class="form-control" id="titulo" formControlName="titulo"
-                (input)="onInput()">            
+            <input type="text" class="form-control" id="titulo" formControlName="titulo" (input)="onInput()"
+                [ngClass]="validateForm.validarCampo(formLivro.get('titulo'))">            
+            <div class="invalid-tooltip">
+                O titulo do Livro não pode ser em branco!
+            </div>
         </div>     
     </div>
     <div class="form-row">
@@ -29,20 +40,32 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="autor">AUTOR(A)</label>
-            <input type="text" class="form-control" id="autor" formControlName="autor">                          
+            <input type="text" class="form-control" id="autor" formControlName="autor"
+                [ngClass]="validateForm.validarCampo(formLivro.get('autor'))">            
+            <div class="invalid-tooltip">
+                Informe o(a) Autor(a){{ formLivro.get('titulo').value!=null ? ' da obra: ':''}}{{ formLivro.get('titulo').value }}.
+            </div>                          
         </div>                        
         <div class="form-group col-md-3">
             <label for="ano">ANO</label>
-            <input type="text" class="form-control" id="ano" formControlName="ano">
+            <input type="text" class="form-control" id="ano" formControlName="ano"
+                [ngClass]="validateForm.validarCampo(formLivro.get('ano'))">
+            <div class="invalid-tooltip">
+                Informe o ano de lançamento!
+            </div>
         </div>
         <div class="form-group col-md-3">
             <label for="imgCapa">CAPA</label>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="imgCapa" formControlName="imgCapa">                
+                <input type="file" class="custom-file-input" id="imgCapa" formControlName="imgCapa"
+                    [ngClass]="validateForm.validarCampo(formLivro.get('imgCapa'))">
                 <label class="custom-file-label" for="imgCapa" data-browse="">
                     <span class="material-icons">add_photo_alternate</span>
-                </label>
-            </div>                        
+                </label>                    
+                <div class="invalid-tooltip">
+                    Insira a foto da capa do livro!
+                </div>        
+            </div>                            
         </div>  
     </div>    
     <div class="dropdown-divider"></div>

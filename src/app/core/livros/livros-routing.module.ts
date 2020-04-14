@@ -11,7 +11,7 @@ import { AdminGuard } from 'src/app/guards/admin.guard';
 import { ConfirmarSaidaGuard } from 'src/app/guards/confirmar-saida.guard';
 
 const livrosRoutes: Routes = [           
-  { path: '', component: LivrosComponent, canDeactivate: [ConfirmarSaidaGuard],
+  { path: '', component: LivrosComponent,
     children: [
       { path: 'novo', component: CadastroLivroComponent}
     ]
