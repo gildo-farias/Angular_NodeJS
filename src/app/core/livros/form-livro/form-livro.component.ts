@@ -22,7 +22,7 @@ export class FormLivroComponent implements OnInit {
   @Input('livroAlterar') livro: Livro = new Livro;
   formLivro: FormGroup;
   
-  generos: string[];  
+  generos:String[];  
   constructor(    
     private _livroService: LivrosService,
     private _route: Router,
@@ -31,8 +31,8 @@ export class FormLivroComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {      
-    this.validateForm = new ValidateForm();
-    this.generos = this._livroService.getGeneros();  
+    this.validateForm = new ValidateForm();  
+    this.generos = this._livroService.getGeneros();            
     this.iniciarForm(); 
   } 
 
@@ -49,7 +49,7 @@ export class FormLivroComponent implements OnInit {
 
   iniciarForm(){
     if(this.livro.cod == null){
-      this.livro.locado = false;
+      this.livro.locado = false;      
       this.formLivro = this._formBuilder.group({
         ISBN:   [null, [Validators.required]],
         genero: [null, [Validators.required]],

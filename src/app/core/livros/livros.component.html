@@ -1,3 +1,5 @@
+<link href='https://fonts.googleapis.com/css?family=Aladin' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 <br>
 <div class="row justify-content-md-center">                   
     <div class="col-1">
@@ -19,19 +21,15 @@
         <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">
             <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">         
             <div class="overlay">
-                <div class="text">                
-                    <img src="assets/info.png" title="DETALHES" [routerLink]="['/livros', livro.cod]">
+                <div class="text" title="DETALHES" [routerLink]="['/livros', livro.cod]">        
+                    <span class="material-icons">visibility</span>                            
                 </div>
             </div>                    
-            <div class="">
-                <h5 class="card-title">{{ livro.titulo | uppercase }}</h5>          
-                <h6 class="card-text" style="font-style: italic;">{{ livro.subTit }}</h6>          
+            <div class="card-body">                                
+                <label class="card-title">{{ livro.titulo | uppercase }}</label>          
+                <label class="card-subtitle">{{ livro.subTit | titlecase}}</label>                          
             </div>        
-            <div style="padding: 0%; margin-top: 1%;" 
-                [ngClass]="{
-                    'alert-secondary': livro.locado,
-                    'alert-success': !livro.locado 
-                }">
+            <div class="card-footer" [ngClass]="{'alert-secondary': livro.locado,'alert-success': !livro.locado}">
                 <small>{{ !livro.locado? 'DISPONIVEL' : 'LOCADO' }}</small>
             </div>        
         </div><!--card-->    

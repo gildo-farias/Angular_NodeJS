@@ -4,9 +4,9 @@
     </div>
 
     <div class="card-body" style="padding-bottom: 0px">
-        <label>{{ usuario.nome }}</label><label>{{ usuario.snome }}</label>      
-        <img *ngIf="usuario.gen.valueOf() == 'MASCULINO'" src="assets/m.png">
-        <img *ngIf="usuario.gen.valueOf() == 'FEMININO'" src="assets/w.png">
+        <label>{{ usuario.nome }} {{ usuario.snome }}</label>
+        <img *ngIf="usuario.gen.valueOf() == 'MASCULINO'" src="assets/img/m.png">
+        <img *ngIf="usuario.gen.valueOf() == 'FEMININO'" src="assets/img/w.png">
 
         <div class="dropdown-divider"></div>  
         <label>TEMPO LOGADO</label>

@@ -1,9 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Livro } from 'src/model/livro';
 @Injectable()
 export class LivrosService {
 
-  l1:Livro = {
+  private l1:Livro = {
     cod:101,
     ISBN: "454LH5487Q875",
     genero: "FANTASIA",
@@ -14,7 +15,7 @@ export class LivrosService {
     img: "https://images-na.ssl-images-amazon.com/images/I/71SuFTR7OIL.jpg",
     locado:false,    
   }
-  l2:Livro = {
+  private l2:Livro = {
     cod:102,
     ISBN: "123ASD5487Q987",
     genero: "FANTASIA",
@@ -25,7 +26,7 @@ export class LivrosService {
     img:"https://images-na.ssl-images-amazon.com/images/I/513CEK-RP5L._SX329_BO1,204,203,200_.jpg",
     locado:false,    
   }
-  l3:Livro = {
+  private l3:Livro = {
     cod:103,
     ISBN: "797R8YR1T32",
     genero: "ROMANCE",
@@ -36,7 +37,7 @@ export class LivrosService {
     img: "https://lojasaraiva.vteximg.com.br/arquivos/ids/12103001/1006790814.jpg?v=637142225123270000",
     locado:true,    
   }  
-  l4:Livro = {
+  private l4:Livro = {
     cod:104,
     ISBN: "647TR87U4Y8T5",
     genero: "FANTASIA",
@@ -47,7 +48,7 @@ export class LivrosService {
     img: "https://gameofthronesmobile.files.wordpress.com/2012/03/430065_306631979400120_233632190033433_831347_1067265071_n.jpg",
     locado:true,         
   }
-  l5:Livro = {
+  private l5:Livro = {
     cod:105,
     ISBN: "454LH5487Q875",
     genero: "MOTIVACIONAL",
@@ -58,7 +59,7 @@ export class LivrosService {
     img: "https://images-na.ssl-images-amazon.com/images/I/517GPriXSPL.jpg",
     locado:false,    
   }  
-  l6:Livro = {
+  private l6:Livro = {
     cod:106,
     ISBN: "9788580575392",
     genero: "AVENTURA",
@@ -69,7 +70,7 @@ export class LivrosService {
     img:"https://lojasaraiva.vteximg.com.br/arquivos/ids/12104831/1006786396.jpg?v=637142231647830000",
     locado:true,    
   }  
-  l7:Livro = {
+  private l7:Livro = {
     cod:107,
     ISBN: "9788598078175",
     genero: "DRAMA",
@@ -80,7 +81,7 @@ export class LivrosService {
     img: "https://lojasaraiva.vteximg.com.br/arquivos/ids/12100879/1006788139.jpg?v=637142218101470000",
     locado:false,    
   }
-  l8:Livro = {
+  private l8:Livro = {
     cod:108,
     ISBN: "9788599296363",
     genero:"DRAMA",
@@ -92,10 +93,17 @@ export class LivrosService {
     locado:true,        
   }
 
-  constructor() { }
+  constructor(private _http: HttpClient) { }
 
   getGeneros(){
-    return["AVENTURA", "SUSPENSE", "DRAMA", "TERROR", "SCY-FI", "ROMANCE", "FANTASIA", "MOTIVACIONAL"];
+    let generos:String[] = new Array;
+    this._http.get('assets/data/generos.json').subscribe(data =>{
+      let valores:any = data.valueOf();      
+      valores.forEach(element => {        
+        generos.push((element.genero).toString());
+      });
+    });
+    return generos;
   }
 
   getLivros(){    

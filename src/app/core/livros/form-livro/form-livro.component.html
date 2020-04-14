@@ -3,7 +3,7 @@
         <div class="form-group col-md-6">
             <label class="control-label" for="ISBN">ISBN</label>
             <input type="text" class="form-control" id="ISBN" formControlName="ISBN"
-                [ngClass]="validateForm.validarCampo(formLivro.get('ISBN'))">            
+                [ngClass]="validateForm.validarCampo(formLivro.get('ISBN'))">
             <div class="invalid-tooltip">
                 ISBN é obrigatorio!
             </div>
@@ -11,9 +11,11 @@
         <div class="form-group col-md-6">
             <label for="genero">GENERO</label>
             <select class="custom-select" id="genero" formControlName="genero"
-                [ngClass]="validateForm.validarCampo(formLivro.get('genero'))"> 
-                <option selected disabled value="null">- Selecione -</option>
-                <option *ngFor="let gen of generos">{{ gen | uppercase }}</option>
+                [ngClass]="validateForm.validarCampo(formLivro.get('genero'))" [ngModel]="livro.genero">
+                <option selected disabled>- Selecione -</option>
+                <option *ngFor="let gen of generos" [] >
+                    {{ gen }}
+                </option>
             </select>
             <div class="invalid-tooltip">
                 Selecione um Genero.
@@ -24,28 +26,28 @@
         <div class="form-group col-md-12">
             <label for="titulo">TITULO</label>
             <input type="text" class="form-control" id="titulo" formControlName="titulo" (input)="onInput()"
-                [ngClass]="validateForm.validarCampo(formLivro.get('titulo'))">            
+                [ngClass]="validateForm.validarCampo(formLivro.get('titulo'))">
             <div class="invalid-tooltip">
                 O titulo do Livro não pode ser em branco!
             </div>
-        </div>     
+        </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="subTit">SUB TITULO</label>
-            <input type="text" class="form-control" id="subTit" formControlName="subTit"
-                placeholder=" * OPCIONAL *">
+            <input type="text" class="form-control" id="subTit" formControlName="subTit">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="autor">AUTOR(A)</label>
             <input type="text" class="form-control" id="autor" formControlName="autor"
-                [ngClass]="validateForm.validarCampo(formLivro.get('autor'))">            
+                [ngClass]="validateForm.validarCampo(formLivro.get('autor'))">
             <div class="invalid-tooltip">
-                Informe o(a) Autor(a){{ formLivro.get('titulo').value!=null ? ' da obra: ':''}}{{ formLivro.get('titulo').value }}.
-            </div>                          
-        </div>                        
+                Informe o(a)
+                Autor(a){{ formLivro.get('titulo').value!=null ? ' da obra: ':''}}{{ formLivro.get('titulo').value }}.
+            </div>
+        </div>
         <div class="form-group col-md-3">
             <label for="ano">ANO</label>
             <input type="text" class="form-control" id="ano" formControlName="ano"
@@ -61,23 +63,23 @@
                     [ngClass]="validateForm.validarCampo(formLivro.get('imgCapa'))">
                 <label class="custom-file-label" for="imgCapa" data-browse="">
                     <span class="material-icons">add_photo_alternate</span>
-                </label>                    
+                </label>
                 <div class="invalid-tooltip">
                     Insira a foto da capa do livro!
-                </div>        
-            </div>                            
-        </div>  
-    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="dropdown-divider"></div>
     <div class="form-row justify-content-md-center">
         <div class="form-group col-md-4">
             <ng-content></ng-content>
         </div>
-        <div class="form-group col-md-3">             
+        <div class="form-group col-md-3">
             <button class="btn btn-outline-secondary" type="reset" style="color: white;">RESETAR</button>
         </div>
-        <div class="form-group col-md-3">             
+        <div class="form-group col-md-3">
             <button class="btn btn-success" type="submit" [disabled]="!formLivro.valid">SALVAR</button>
-        </div>            
-    </div>    
+        </div>
+    </div>
 </form>

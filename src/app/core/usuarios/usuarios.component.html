@@ -18,8 +18,8 @@
             <small>{{ user.nome | titlecase }} {{ user.snome | titlecase }}</small>
         </div>
         <div class="card-body">
-            <img *ngIf="user.gen.valueOf() == 'MASCULINO'" class="card-img-top" src="assets/m.png">
-            <img *ngIf="user.gen.valueOf() == 'FEMININO'" class="card-img-top" src="assets/w.png">                 
+            <img *ngIf="user.gen.valueOf() == 'MASCULINO'" class="card-img-top" src="assets/img/m.png">
+            <img *ngIf="user.gen.valueOf() == 'FEMININO'" class="card-img-top" src="assets/img/w.png">                 
         </div>
         <p [ngClass]="{'alert-success': user.admin, 'alert-warning': !user.admin}">
             ACESSO: {{ user.admin ? 'ADMIN':'RESTRITO'}}
