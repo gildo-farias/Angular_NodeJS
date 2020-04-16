@@ -14,7 +14,7 @@ export class ClientesService {
     telefone: '085985550906',
     foto: 'https://pbs.twimg.com/profile_images/963968059642925057/MDygrLvI.jpg',
     debito: 45.50,
-    status: true,
+    status: false,
     endereco: {
       cep: "60534-150",
       logradouro: "Rua Francisco Ramos",

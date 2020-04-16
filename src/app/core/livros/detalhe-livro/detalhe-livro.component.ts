@@ -26,10 +26,7 @@ export class DetalheLivroComponent implements OnInit{
     this.inscricao = this._route.params.subscribe((parametros:any)=>{
       this.codigo = parametros['cod'];      
     });
-    this.livro = this._livrosService.getLivro(this.codigo);  
-    if(this.livro==null) {      
-      this._router.navigate(['**']);
-    }
+    this.livro = this._livrosService.getLivro(this.codigo);       
   }
 
   ngOnDestroy() {

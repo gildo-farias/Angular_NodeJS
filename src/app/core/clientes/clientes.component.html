@@ -1,40 +1,40 @@
 <br>
-<div class="row justify-content-md-center">                        
-    <div class="col-4">                                
-        <input class="form-control" type="search" 
-            placeholder="PESQUISAR: Nome ou Sobre do Cliente">                            
-    </div>        
-</div>    
+<div class="row justify-content-md-center">
+    <div class="col-4">
+        <input class="form-control" type="search" placeholder="PESQUISAR: Nome ou Sobre do Cliente">
+    </div>
+</div>
 <br>
 <div class="row justify-content-md-center">
-    <table class="table table-hover">        
+    <table class="table table-hover">
         <thead>
-        <tr>
-            <th scope="col">
-                <a class="btn btn-outline-info" type="button" routerLink="/clientes/novo" title="CADASTRAR">
-                    <span class="material-icons">person_add</span>
-                </a>                
-            </th>
-            <th scope="col">NOME</th>
-            <th scope="col">CONTATO</th>
-            <th scope="col">SITUAÇÃO</th>
-            <th scope="col">DEBITO</th>
-            <th scope="col">Opções</th>
-        </tr>
+            <tr>
+                <th scope="col">
+                    <a class="btn btn-outline-info" type="button" routerLink="/clientes/novo" title="CADASTRAR">
+                        <span class="material-icons">person_add</span>
+                    </a>
+                </th>
+                <th scope="col">NOME</th>
+                <th scope="col">CONTATO</th>
+                <th scope="col">SITUAÇÃO</th>
+                <th scope="col">DEBITO</th>
+                <th scope="col">OPÇÕES</th>
+            </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let cli of listaClientes; index as i">
-            <th scope="row">{{ i+1 }}</th>
-            <td>{{ cli.nome | titlecase }} {{ cli.snome | titlecase }}</td>            
-            <td>{{ cli.telefone | titlecase }}</td>            
-            <td>{{ cli.status ? 'ATIVO':'BLOQUEADO' | uppercase }}</td>
-            <td>{{ cli.status ? cli.debito:'------' | currency }}</td>
-            <td scope="row">                
-                <a class="col-sm-1"><span class="material-icons" title="DETALHES">visibility</span></a>
-                <a class="col-sm-1"><span class="material-icons" title="EDITAR">build</span></a>
-                <a class="col-sm-1"><span class="material-icons" title="APAGAR">delete</span></a>                
-            </td>
-        </tr>        
+            <tr *ngFor="let cli of listaClientes; index as i" scope="row">
+                <th>{{ i+1 }}</th>
+                <td>{{ cli.nome | titlecase }} {{ cli.snome | titlecase }}</td>
+                <td>{{ cli.telefone | titlecase }}</td>
+                <td [ngClass]="{'ativo': cli.status, 'bloqueado': !cli.status}">
+                    {{ cli.status ? 'ATIVO':'BLOQUEADO' | uppercase }}</td>
+                <td>{{  cli.debito | currency:'BRL' }}</td>
+                <td scope="col">
+                    <a class="col-sm-1" title="DETALHES"><span class="material-icons">visibility</span></a>
+                    <a class="col-sm-1" title="EDITAR"><span class="material-icons">build</span></a>
+                    <a class="col-sm-1" title="APAGAR"><span class="material-icons">delete</span></a>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

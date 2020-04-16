@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'livros-cadastro-livro',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadastro-livro.component.scss']
 })
 export class CadastroLivroComponent implements OnInit {
+  @ViewChild('closeModal') closeModal: ElementRef;  
 
   constructor() { }
-
+  
   ngOnInit() {
   }  
+
+  fechandoModal(){    
+    this.closeModal.nativeElement.click();
+  }
 
 }

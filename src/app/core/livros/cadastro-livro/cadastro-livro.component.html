@@ -8,12 +8,12 @@
                 <h5 class="modal-title" id="staticBackdropLabel" 
                     style="color:white; font-weight: bolder;">CADASTRAR LIVRO</h5>
                 <button type="button" class="close" routerLink="/livros"
-                    data-dismiss="modal" aria-label="Close" title="CANCELAR">                    
+                    data-dismiss="modal" aria-label="Close" title="FECHAR" #closeModal>                    
                     <span class="material-icons">cancel</span>                
                 </button>
             </div>            
                 <div class="modal-body" style="color:white;">
-                    <livros-form-livro>
+                    <livros-form-livro (fecharModal)="fechandoModal()">
                         <button type="button" class="btn btn-secondary"
                             routerLink="/livros" data-dismiss="modal">CANCELAR</button>                        
                     </livros-form-livro>                   

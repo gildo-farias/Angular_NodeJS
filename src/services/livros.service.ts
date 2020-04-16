@@ -106,15 +106,14 @@ export class LivrosService {
     return generos;
   }
 
-  getLivros(){    
-    // return [this.l1, this.l2, this.l3, this.l4];    
+  getLivros(){        
     return [this.l1, this.l2, this.l3, this.l4, this.l5, this.l6, this.l7, this.l8];  
   }
 
   getLivro(cod: number){        
-    for (const iterator of this.getLivros()) {
-      if(iterator.cod == cod){              
-        return iterator;        
+    for (const livro of this.getLivros()) {
+      if(livro.cod == cod){              
+        return livro;        
       }            
     }
     return null;

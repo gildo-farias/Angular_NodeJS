@@ -1,32 +1,26 @@
-[{
-    "id":"1",
-    "genero":"AVENTURA"
-},
-{
-    "id":"2",
-    "genero":"COMEDIA"    
-},
-{
-    "id":"3",
-    "genero":"DRAMA"    
-},
-{
-    "id":"4",
-    "genero":"FANTASIA"    
-},
-{
-    "id":"5",
-    "genero":"FICÇÃO CIENTÍFICA"    
-},
-{
-    "id":"6",
-    "genero":"MOTIVACIONAL"    
-},
-{
-    "id":"7",
-    "genero":"RELIGIOSO"
-},
-{
-    "id":"8",
-    "genero":"TERROR"
-}]
+[    
+    {
+        "genero": "AVENTURA"
+    },
+    {
+        "genero": "COMEDIA"
+    },
+    {
+        "genero": "DRAMA"
+    },
+    {
+        "genero": "FANTASIA"
+    },
+    {
+        "genero": "FICÇÃO CIENTÍFICA"
+    },
+    {
+        "genero": "MOTIVACIONAL"
+    },
+    {
+        "genero": "RELIGIOSO"
+    },
+    {
+        "genero": "TERROR"
+    }
+]
