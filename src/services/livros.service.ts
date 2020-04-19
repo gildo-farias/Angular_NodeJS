@@ -108,6 +108,10 @@ export class LivrosService {
 
   getLivros(){        
     return [this.l1, this.l2, this.l3, this.l4, this.l5, this.l6, this.l7, this.l8];  
+    // let livros:any=[];
+    // this._http.get<Livro[]>('assets/data/livros.json').subscribe(data => {      
+    // });
+    
   }
 
   getLivro(cod: number){        

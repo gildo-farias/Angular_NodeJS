@@ -1,40 +1,56 @@
 <br>
-<div class="row justify-content-md-center">
-    <div class="col-4">
-        <input class="form-control" type="search" placeholder="PESQUISAR: Nome ou Sobre do Cliente">
-    </div>
+<div class="row justify-content-md-center">    
+    <input class="form-control" type="search" placeholder="PESQUISAR: Nome ou Sobre do Cliente">    
 </div>
 <br>
 <div class="row justify-content-md-center">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">
+
+    <div class="card componentShadow">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-10">
+                    <h4>LISTA DE CLIENTES</h4>
+                </div>            
+                <div class="col-sm-2">
                     <a class="btn btn-outline-info" type="button" routerLink="/clientes/novo" title="CADASTRAR">
                         <span class="material-icons">person_add</span>
                     </a>
-                </th>
-                <th scope="col">NOME</th>
-                <th scope="col">CONTATO</th>
-                <th scope="col">SITUAÇÃO</th>
-                <th scope="col">DEBITO</th>
-                <th scope="col">OPÇÕES</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let cli of listaClientes; index as i" scope="row">
-                <th>{{ i+1 }}</th>
-                <td>{{ cli.nome | titlecase }} {{ cli.snome | titlecase }}</td>
-                <td>{{ cli.telefone | titlecase }}</td>
-                <td [ngClass]="{'ativo': cli.status, 'bloqueado': !cli.status}">
-                    {{ cli.status ? 'ATIVO':'BLOQUEADO' | uppercase }}</td>
-                <td>{{  cli.debito | currency:'BRL' }}</td>
-                <td scope="col">
-                    <a class="col-sm-1" title="DETALHES"><span class="material-icons">visibility</span></a>
-                    <a class="col-sm-1" title="EDITAR"><span class="material-icons">build</span></a>
-                    <a class="col-sm-1" title="APAGAR"><span class="material-icons">delete</span></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                </div>            
+            </div>            
+        </div>
+        <div class="card-body">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">NOME</th>
+                        <th scope="col">CONTATO</th>
+                        <th scope="col">SITUAÇÃO</th>
+                        <th scope="col">DEBITO</th>
+                        <th scope="col">OPÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cli of listaClientes; index as i" scope="row">
+                        <th>{{ i+1 }}</th>
+                        <td>{{ cli.nome | titlecase }} {{ cli.snome | titlecase }}</td>
+                        <td>{{ cli.telefone | titlecase }}</td>
+                        <td [ngClass]="{'ativo': cli.status, 'bloqueado': !cli.status}">
+                            {{ cli.status ? 'ATIVO':'BLOQUEADO' | uppercase }}</td>
+                        <td>{{  cli.debito | currency:'BRL' }}</td>
+                        <td scope="col">
+                            <a title="DETALHES"><span class="material-icons">visibility</span></a>
+                            <a title="EDITAR"><span class="material-icons">build</span></a>
+                            <a title="APAGAR"><span class="material-icons">delete</span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+          
+        </div><!-- card-body -->
+
+    </div><!-- CARD -->
+    
+    
 </div>
