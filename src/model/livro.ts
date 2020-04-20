@@ -1,5 +1,5 @@
 export class Livro {
-    cod: Number;
+    id: Number;
     ISBN: String;
     genero:String;
     titulo: String;

@@ -1,3 +1,5 @@
+import { async } from '@angular/core/testing';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { LivrosService } from 'src/services/livros.service';
 import { Livro } from 'src/model/livro';
@@ -9,9 +11,11 @@ import { Livro } from 'src/model/livro';
 })
 export class LivrosComponent implements OnInit {
 
-  livros:Livro[];  
-  generos:String[]= [];
+  livros:Livro[] = new Array;  
+  livros$: Observable<Livro[]>;
+  generos:String[] = new Array;
 
+  notFoundFiltro:boolean;
   private _filtro: String = "";
   public get filtro(): String {
     return this._filtro;
@@ -23,17 +27,17 @@ export class LivrosComponent implements OnInit {
     }else{
       this.notFoundFiltro = false;      
     }    
-  }
-  notFoundFiltro:boolean;  
+  }  
 
   constructor(private _livrosService: LivrosService) { }
 
   ngOnInit() {
-    this.livros = this._livrosService.getLivros();         
+    this.livros$ = this._livrosService.getLivros();
+    this._livrosService.getLivros().subscribe(data => this.livros = data);    
   }
 
-  onFiltrarLivro(){    
-    if(this.livros.length === 0 || this.filtro === undefined || this.filtro.trim() === ''){
+  onFiltrarLivro(){        
+    if(this.livros.length==0 || this.filtro == undefined || this.filtro.trim() == ''){      
       return this.livros;
     }else{      
       return this.livros.filter((liv) => {
@@ -50,13 +54,5 @@ export class LivrosComponent implements OnInit {
     }    
     
   }//filtarlivros()  
-
-  // confirmarSaidaPagina(){    
-  //   if(!this.notFoundFiltro && this.notFoundFiltro != undefined){
-  //     return confirm('CONFIRMA A SAIDA DA PAGINA?');
-  //   }
-  //   return true;
-  // }
-
 
 }

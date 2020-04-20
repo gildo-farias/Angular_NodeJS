@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidateForm } from '../../erros/validate-form';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'livros-form-livro',
@@ -51,11 +50,11 @@ export class FormLivroComponent implements OnInit {
       this.carregando();
       this._http.post('https://httpbin.org/post', JSON.stringify(this.formLivro.value)).subscribe(data => {
         console.log(data);
-        if (this.livro.cod == null) {                    
+        if (this.livro.id == null) {                    
           this.formLivro.reset(); 
           this.fecharModal.emit();
         } else {
-          this._route.navigate(['/livros', this.livro.cod]);
+          this._route.navigate(['/livros', this.livro.id]);
         }
       }, (erro: any) => {
         console.error(erro);
@@ -67,7 +66,7 @@ export class FormLivroComponent implements OnInit {
   }
 
   iniciarForm() {
-    if (this.livro.cod == null) {
+    if (this.livro.id == null) {
       this.livro.locado = false;
       this.formLivro = this._formBuilder.group({
         ISBN: [null, [Validators.required]],

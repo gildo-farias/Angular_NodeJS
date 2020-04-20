@@ -13,20 +13,19 @@ import { LivrosService } from 'src/services/livros.service';
 export class DetalheLivroComponent implements OnInit{  
 
   constructor(
-    private _route: ActivatedRoute,         
-    private _router: Router,
+    private _route: ActivatedRoute,             
     private _livrosService: LivrosService
   ) { }
 
   codigo:number;
-  livro:Livro;
+  livro:Livro = new Livro;
   inscricao:Subscription;
 
   ngOnInit(): void {
     this.inscricao = this._route.params.subscribe((parametros:any)=>{
       this.codigo = parametros['cod'];      
     });
-    this.livro = this._livrosService.getLivro(this.codigo);       
+    this._livrosService.getLivro(this.codigo).subscribe(data => this.livro = data);    
   }
 
   ngOnDestroy() {
