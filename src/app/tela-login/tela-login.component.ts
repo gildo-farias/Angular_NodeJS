@@ -13,16 +13,11 @@ export class TelaLoginComponent implements OnInit {
   constructor(private _usuarioService: UsuarioService, private _systemService: SystemService, private _router: Router) { }
 
   ngOnInit() {        
-    this._systemService.logger = this._usuarioService.getUsuario();    
+    // this._systemService.logger = this._usuarioService.getUsuario();    
   }
 
   onLogin(user:HTMLInputElement, pass:HTMLInputElement){    
-    if(this._systemService.login(user.value, pass.value)){
-      this._router.navigate(['/']);
-    }else{
-      alert("USUARIO/SENHA INVALIDOS!");                      
-    }
-    
+    this._systemService.login(user.value, pass.value);
   }
 
 }

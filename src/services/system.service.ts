@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../model/usuario';
+import { Router } from '@angular/router';
+import { error } from 'util';
 
 @Injectable()
 export class SystemService {
   
-  constructor(private _usuarioService: UsuarioService) { }  
+  constructor(private _usuarioService: UsuarioService, private _router: Router) { }  
 
   private _logger: Usuario;      
 
@@ -18,11 +20,29 @@ export class SystemService {
   }
 
   login(username: String, senha: String){
-    if(username === this._usuarioService.getUsuario().username && senha === this._usuarioService.getUsuario().senha){      
-      this.logger = this._usuarioService.getUsuario();
-      return true;
-    }
-    return false;
+    this._usuarioService.getUsuarios().subscribe(data => {
+      let usersN:String[] = new Array;
+      data.forEach(element => {
+        usersN.push(element.username);
+        if(element.username === username && element.senha === senha){
+          this.logger = element;   
+          this._router.navigate(['/']);
+        }else if(element.username === username && element.senha !== senha){
+          alert("SENHA INVALIDA!");
+        }
+      }         
+      );
+      if(usersN.indexOf(username)<0)
+        alert("USUARIO INVALIDO!");        
+    });  
+    
+    
+    // 
+    // if(username === this._usuarioService.getUsuario().username && senha === this._usuarioService.getUsuario().senha){      
+    //   this.logger = this._usuarioService.getUsuario();
+    //   return true;
+    // }
+    // return false;
   }
   
   // *********************** LINKS *********************** // 

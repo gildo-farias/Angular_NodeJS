@@ -20,6 +20,14 @@ export class DeletarLivroComponent implements OnInit {
   livro:Livro = new Livro;
   inscricao:Subscription;
 
+  onDelete(){
+    this._livrosService.delete(this.codigo).subscribe(
+      success => console.log('deletado!'),
+      error => console.error(error),
+      () => console.log('request completada')
+    )
+  }
+
   ngOnInit(): void {         
     this.inscricao = this._route.parent.params.subscribe((parametros:any)=>{
       this.codigo = parametros['cod'];                         

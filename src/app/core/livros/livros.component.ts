@@ -1,4 +1,3 @@
-import { async } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { LivrosService } from 'src/services/livros.service';
@@ -33,7 +32,7 @@ export class LivrosComponent implements OnInit {
 
   ngOnInit() {
     this.livros$ = this._livrosService.getLivros();
-    this._livrosService.getLivros().subscribe(data => this.livros = data);    
+    this._livrosService.getLivros().subscribe(data => this.livros = data);     
   }
 
   onFiltrarLivro(){        

@@ -5,7 +5,15 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 a{ cursor: pointer; }
-a[type=button]{
-    padding-bottom: 0%; 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.1);   
+.floatBTN{    
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:40px;
+    right:40px;
+    border-radius:50px;
+    text-align:center;  	
+}
+.floatBTN span{      
+    margin-top: 18px;  
 }

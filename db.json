@@ -1,18 +1,17 @@
 {
   "livros": [
     {
-      "id": 101,
       "ISBN": "454LH5487Q875",
       "genero": "FANTASIA",
-      "titulo": "O Senhor do Aneis",
+      "titulo": "O Senhor do Anéis",
       "subTit": "O Retorno do Rei",
       "autor": "J.R.R. TOLKIEN",
       "ano": 1998,
       "img": "https://images-na.ssl-images-amazon.com/images/I/71SuFTR7OIL.jpg",
-      "locado": false
+      "locado": false,
+      "id": 101
     },
     {
-      "id": 102,
       "ISBN": "123ASD5487Q987",
       "genero": "FANTASIA",
       "titulo": "Harry Potter",
@@ -20,10 +19,10 @@
       "autor": "J.K. Rowling",
       "ano": 2005,
       "img": "https://images-na.ssl-images-amazon.com/images/I/513CEK-RP5L._SX329_BO1,204,203,200_.jpg",
-      "locado": false
+      "locado": false,
+      "id": 102
     },
     {
-      "id": 103,
       "ISBN": "797R8YR1T32",
       "genero": "ROMANCE",
       "titulo": "50 Tons de Cinza",
@@ -31,10 +30,10 @@
       "autor": "EL James",
       "ano": 2015,
       "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/12103001/1006790814.jpg?v=637142225123270000",
-      "locado": true
+      "locado": true,
+      "id": 103
     },
     {
-      "id": 104,
       "ISBN": "647TR87U4Y8T5",
       "genero": "FANTASIA",
       "titulo": "As Cronicas do Gelo e Fogo",
@@ -42,10 +41,10 @@
       "autor": "Georgie RR Martin",
       "ano": 2015,
       "img": "https://gameofthronesmobile.files.wordpress.com/2012/03/430065_306631979400120_233632190033433_831347_1067265071_n.jpg",
-      "locado": true
+      "locado": true,
+      "id": 104
     },
     {
-      "id": 105,
       "ISBN": "454LH5487Q875",
       "genero": "MOTIVACIONAL",
       "titulo": "A Arte Da Guerra",
@@ -53,10 +52,10 @@
       "autor": "SUN TZU",
       "ano": 2015,
       "img": "https://images-na.ssl-images-amazon.com/images/I/517GPriXSPL.jpg",
-      "locado": false
+      "locado": false,
+      "id": 105
     },
     {
-      "id": 106,
       "ISBN": "9788580575392",
       "genero": "AVENTURA",
       "titulo": "Percy Jackson e Os Olimpianos",
@@ -64,10 +63,10 @@
       "autor": "Riordan, Rick",
       "ano": 2014,
       "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/12104831/1006786396.jpg?v=637142231647830000",
-      "locado": true
+      "locado": true,
+      "id": 106
     },
     {
-      "id": 107,
       "ISBN": "9788598078175",
       "genero": "DRAMA",
       "titulo": "A Menina que Roubava Livros",
@@ -75,10 +74,10 @@
       "autor": "Zusak, Markus",
       "ano": 2013,
       "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/12100879/1006788139.jpg?v=637142218101470000",
-      "locado": false
+      "locado": false,
+      "id": 107
     },
     {
-      "id": 108,
       "ISBN": "9788599296363",
       "genero": "DRAMA",
       "titulo": "A Cabana",
@@ -86,7 +85,73 @@
       "autor": "Young, William P.",
       "ano": 2015,
       "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/12101236/1006693036.jpg?v=637142219129100000",
-      "locado": true
+      "locado": true,
+      "id": 108
+    },
+    {
+      "ISBN": "797R8YR1T32",
+      "genero": "FICÇÃO CIENTÍFICA",
+      "titulo": "O guia definitivo do mochileiro das galáxias",
+      "subTit": "\"a trilogia de cinco em um único volume\"",
+      "autor": "Douglas Adams",
+      "ano": "2020",
+      "img": "https://m.media-amazon.com/images/I/51rciy1UejL.jpg",
+      "locado": true,
+      "id": 109
+    },
+    {
+      "ISBN": "9788566636833",
+      "genero": "MOTIVACIONAL",
+      "titulo": "Em Algum Lugar nas Estrelas",
+      "subTit": "",
+      "autor": "Clare Vanderpool",
+      "ano": "2016",
+      "img": "http://imagens.lelivros.love/2018/05/Baixar-Em-Algum-Lugar-das-Estrelas-Clare-Vanderpool-em-Pdf-ePub-e-Mobi-ou-ler-online.jpg",
+      "locado": false,
+      "id": 110
+    },
+    {
+      "ISBN": "9788598078304",
+      "genero": "ROMANCE",
+      "titulo": "Crepúsculo",
+      "subTit": "Livro 1",
+      "autor": "Stephenie Meyer",
+      "ano": "2008",
+      "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/12101115/1006788625.jpg?v=637142218757700000",
+      "locado": false,
+      "id": 111
+    },
+    {
+      "ISBN": "9788533613379",
+      "genero": "FANTASIA",
+      "titulo": "O Senhor dos Anéis",
+      "subTit": "A Sociedade do Anel",
+      "autor": "J. R. R. Tolkien",
+      "ano": "1990",
+      "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/1751006/1001479657.jpg?v=637005063435900000",
+      "locado": false,
+      "id": 112
     }
-  ]
+  ],
+  "usuarios": [
+    {
+      "username": "root@123",
+      "senha": "123456",
+      "admin": true,
+      "nome": "Gildo",
+      "snome": "Farias",
+      "gen": "MASCULINO",
+      "id": 1
+    },
+    {
+      "username": "user@86",
+      "senha": "123456",
+      "admin": false,
+      "nome": "maria",
+      "snome": "torres",
+      "gen": "FEMININO",
+      "id": 2
+    }
+  ],
+  "clientes": []
 }

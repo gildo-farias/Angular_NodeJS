@@ -57,17 +57,24 @@
             </div>
         </div>
         <div class="form-group col-md-3">
-            <label for="imgCapa">CAPA</label>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="imgCapa" formControlName="imgCapa"
-                    [ngClass]="validateForm.validarCampo(formLivro.get('imgCapa'))">
-                <label class="custom-file-label" for="imgCapa" data-browse="">
+            <label for="img">CAPA</label>
+            <!-- TYPE TEXT LINK DA IMG -->
+            <input type="text" class="form-control" id="img" formControlName="img" placeholder="~LINK~"
+                [ngClass]="validateForm.validarCampo(formLivro.get('img'))">
+            <div class="invalid-tooltip">
+                Insira o link da imagem de capa do livro!
+            </div>
+            <!-- TYPE FILE IMPORTANDO A IMAGEM DO PC -->
+            <!-- <div class="custom-file">
+                <input type="file" class="custom-file-input" id="img" formControlName="img"
+                    [ngClass]="validateForm.validarCampo(formLivro.get('img'))">
+                <label class="custom-file-label" for="img" data-browse="">
                     <span class="material-icons">add_photo_alternate</span>
                 </label>
                 <div class="invalid-tooltip">
                     Insira a foto da capa do livro!
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="dropdown-divider"></div>

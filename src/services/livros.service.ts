@@ -1,4 +1,4 @@
-import { tap, delay } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { environment } from './../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -22,15 +22,28 @@ export class LivrosService {
 
   private readonly API: string = `${environment.API}livros`;
   getLivros() {
-    return this._http.get<Livro[]>(this.API).pipe(delay(1000), tap());
+    return this._http.get<Livro[]>(this.API);
   }
 
-  getLivro(cod: number) {
-    if(cod!=null){
-      return this._http.get<Livro>(`${this.API}/${cod}`).pipe(tap());
+  getLivro(id: number) {
+    if(id!=null){
+      return this._http.get<Livro>(`${this.API}/${id}`);
     }else{
       return null;
     }    
+  }
+
+  create(valores){
+    return this._http.post(this.API, valores).pipe(take(1));
+  }
+  read(id){
+    return this._http.get<Livro>(`${this.API}/${id}`);
+  }
+  update(id, valores){
+    return this._http.put(`${this.API}/${id}`, valores).pipe(take(1));
+  }  
+  delete(id){
+    return this._http.delete(`${this.API}/${id}`).pipe(take(1));
   }
 
 }

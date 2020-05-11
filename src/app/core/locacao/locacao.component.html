@@ -1,16 +1,13 @@
 <br>
-<div class="row justify-content-md-center">          
-    <div class="col-1">
-        <button class="btn btn-outline-info componentShadow" type="button">LOCAR</button>
-    </div>
-    <div class="col-3">        
-        <input class="form-control" type="date"                 
+<div class="row justify-content-md-center">    
+    <div class="col-6">
+        <input class="form-control" type="date" style="text-align: center;" 
             [(ngModel)]="filtro">                            
     </div>        
 </div>    
 <br>
 <div class="row justify-content-md-center">
-    <div class="col-6">
+    <div class="col-12">
         <div class="accordion componentShadow" id="listaLocacoes">
             <div class="card" *ngFor="let loc of onFiltrarLoca(); index as i" >
                 <div class="card-header" [id]="'tit'+i">
@@ -19,38 +16,52 @@
                             [title]="'desc'+i" data-target="#?" aria-expanded="false" aria-controls="?">
                             {{ loc.cliente | uppercase }} | {{ loc.dataEntrega | date:'fullDate' | uppercase }}                    
                         </button>
+                        <a class="btn btn-warning" title="RECEBER" style="float: right;">
+                            <span class="material-icons">move_to_inbox</span>
+                        </a>
                     </h2>
                 </div>
 
                 <div [id]="'desc'+i" class="collapse desc" [title]="'tit'+i" aria-labelledby="?" 
                     data-parent="#listaLocacoes">
                     <div class="card-body">
-                        <div class="row-10">
-                            <small>DATA DA LOCAÇÃO</small>: 
-                            <label>{{ loc.dataLocacao | date:'fullDate' | uppercase }}</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <small>DATA DA LOCAÇÃO</small>: 
+                                    <label>{{ loc.dataLocacao | date:'fullDate' | uppercase }}</label>
+                                </p>
+                                <p>                    
+                                    <small>VALOR: </small><label>{{ 100 | currency: 'BRL'}}</label> 
+                                    (<small>MULTA: </small><label style="color: red;">{{ 10 | currency: 'BRL'}}</label>)
+                                    <br><small>TOTAL: </small><label>{{ 110 | currency: 'BRL'}}</label> 
+                                </p>  
+                            </div>
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-header" style="text-align: center;">
+                                        <h5>LIVROS</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        .............
+                                    </div>
+                                </div>      
+                            </div>
                         </div>
-                        <div class="row-10">                    
-                            <small>VALOR: </small><label>{{ 100 | currency: 'BRL'}}</label> 
-                            (<small>MULTA: </small><label style="color: red;">{{ 10 | currency: 'BRL'}}</label>)
-                            <br><small>TOTAL: </small><label>{{ 110 | currency: 'BRL'}}</label> 
-                        </div>                
-                        <button class="btn btn-warning">RECEBER</button>
-                    </div>
-                </div>
-            </div>    
+
+                    </div><!-- card-body -->                    
+                </div><!-- card-collapse -->
+            </div><!-- card -->
             
         </div><!-- accordion -->
     </div>
 
-    <div class="col-6">
-        <div class="card componentShadow">
-            <div class="card-header" style="text-align: center;">
-                <h2>DETALHES DA LOCAÇÃO</h2>
-            </div>
-            <div class="card-body">
-                .............
-            </div>
-        </div>
-    </div>
+    <!-- <div class="col-6">
+        
+    </div> -->
 </div> <!-- row -->
+
+<a class="floatBTN btn-info componentShadow" title="LOCAR" routerLink="novo">
+    <span class="material-icons">unarchive</span>
+</a>
   

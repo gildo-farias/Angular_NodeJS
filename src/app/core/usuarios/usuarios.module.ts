@@ -14,7 +14,7 @@ import { UsuarioService } from 'src/services/usuario.service';
   imports: [
     CommonModule,
     FormsModule,
-    UsuariosRoutingModule
+    UsuariosRoutingModule,    
   ],
   exports: [
     UsuariosComponent

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription, Observable } from 'rxjs';
 
 import { Livro } from 'src/model/livro';
 import { LivrosService } from 'src/services/livros.service';
@@ -20,11 +20,13 @@ export class DetalheLivroComponent implements OnInit{
   codigo:number;
   livro:Livro = new Livro;
   inscricao:Subscription;
+  livro$: Observable<Livro>;
 
   ngOnInit(): void {
     this.inscricao = this._route.params.subscribe((parametros:any)=>{
       this.codigo = parametros['cod'];      
     });
+    this.livro$ = this._livrosService.getLivro(this.codigo);
     this._livrosService.getLivro(this.codigo).subscribe(data => this.livro = data);    
   }
 

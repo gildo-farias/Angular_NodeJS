@@ -15,7 +15,7 @@
 .card-title{ width: 100%; font-family: 'Aladin';font-size: 19px; }
 .card-subtitle{ font-family: 'Sofia';font-size: 15px; }
 
-img:hover + .overlay{    
+.cards:hover .overlay{    
   height: 100%;      
 }
 
@@ -56,4 +56,3 @@ img:hover + .overlay{
   background-color: white;
   color: black;  
 }
-

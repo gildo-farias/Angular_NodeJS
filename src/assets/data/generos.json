@@ -21,6 +21,9 @@
         "genero": "RELIGIOSO"
     },
     {
+        "genero": "ROMANCE"
+    },
+    {
         "genero": "TERROR"
     }
 ]

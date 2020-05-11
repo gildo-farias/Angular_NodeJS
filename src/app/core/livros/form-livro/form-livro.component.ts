@@ -13,7 +13,7 @@ import { ValidateForm } from '../../erros/validate-form';
 })
 export class FormLivroComponent implements OnInit {
   @ViewChild('btnSalvar') btnSalvar: ElementRef;
-  @ViewChild('btnResetar') btnResetar: ElementRef; 
+  @ViewChild('btnResetar') btnResetar: ElementRef;
 
   @Output() fecharModal = new EventEmitter();
   @Output() avisarAlteracao = new EventEmitter();
@@ -26,8 +26,7 @@ export class FormLivroComponent implements OnInit {
   constructor(
     private _livroService: LivrosService,
     private _route: Router,
-    private _formBuilder: FormBuilder,
-    private _http: HttpClient
+    private _formBuilder: FormBuilder,    
   ) { }
 
   ngOnInit(): void {
@@ -36,29 +35,40 @@ export class FormLivroComponent implements OnInit {
     this.iniciarForm();
   }
 
-  carregando() {        
-    (<HTMLButtonElement>this.btnResetar.nativeElement).disabled = true;        
+  carregando() {
+    (<HTMLButtonElement>this.btnResetar.nativeElement).disabled = true;
     let btn = (<HTMLButtonElement>this.btnSalvar.nativeElement);
     btn.disabled = true;
     btn.style.cursor = 'progress';
-    btn.title = 'SALVANDO...';    
+    btn.title = 'SALVANDO...';
   }
 
-  onSubmit() {    
-    console.log(this.formLivro.value);    
+  onSubmit() {        
     if (this.formLivro.valid) {      
       this.carregando();
-      this._http.post('https://httpbin.org/post', JSON.stringify(this.formLivro.value)).subscribe(data => {
-        console.log(data);
-        if (this.livro.id == null) {                    
-          this.formLivro.reset(); 
-          this.fecharModal.emit();
-        } else {
-          this._route.navigate(['/livros', this.livro.id]);
-        }
-      }, (erro: any) => {
-        console.error(erro);
-      });
+      if (this.livro.id >= 0) {        
+        this._livroService.update(this.livro.id, this.formLivro.value).subscribe(
+          success => {
+            console.log('alterado!');
+            this.formLivro.reset();
+            this._route.navigate(['/livros', this.livro.id]);            
+          },
+          error => console.error(error),
+          ()  => console.log('request completada')
+        );      
+      //alterado livro  
+      }else{
+        this._livroService.create(this.formLivro.value).subscribe(          
+          success => {
+            console.log('sucesso');
+            this.formLivro.reset();                       
+            this._route.navigate(['/livros']);
+            this.fecharModal.emit();
+          },
+          error => console.error(error),
+          ()  => console.log('request completada')
+        );        
+      }// add livro novo
     } else {
       this.validateForm.validarCampos(this.formLivro);
     }
@@ -75,17 +85,19 @@ export class FormLivroComponent implements OnInit {
         subTit: [null],
         autor: [null, [Validators.required]],
         ano: [null, [Validators.required]],
-        imgCapa: [null, [Validators.required]]
+        img: [null, [Validators.required]],
+        locado: [false]
       });
     } else {
       this.formLivro = this._formBuilder.group({
         ISBN: [this.livro.ISBN, [Validators.required]],
         genero: [this.livro.genero, [Validators.required]],
         titulo: [this.livro.titulo, [Validators.required]],
-        subTit: [this.livro.subTit, [Validators.required]],
+        subTit: [this.livro.subTit],
         autor: [this.livro.autor, [Validators.required]],
         ano: [this.livro.ano, [Validators.required]],
-        imgCapa: [null, [Validators.required]]
+        img: [this.livro.img, [Validators.required]],
+        locado: [this.livro.locado]
       });
     }
   }//iniciarForm()
