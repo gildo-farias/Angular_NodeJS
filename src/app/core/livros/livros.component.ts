@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { LivrosService } from 'src/services/livros.service';
 import { Livro } from 'src/model/livro';
+import { Observable, empty, Subject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'system-livros',
@@ -30,9 +31,19 @@ export class LivrosComponent implements OnInit {
 
   constructor(private _livrosService: LivrosService) { }
 
+  erro$ = new Subject<boolean>();
   ngOnInit() {
-    this.livros$ = this._livrosService.getLivros();
-    this._livrosService.getLivros().subscribe(data => this.livros = data);     
+    this.onRefresh();    
+  }
+
+  onRefresh(){
+    this.livros$ = this._livrosService.getLivros().pipe(
+      catchError(erro => {        
+        this.erro$.next(true);
+        return empty;
+      })
+    );      
+    this._livrosService.getLivros().subscribe(data => this.livros = data);
   }
 
   onFiltrarLivro(){        

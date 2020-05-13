@@ -33,6 +33,7 @@ export class LivrosService {
     }    
   }
 
+  // *********  CRUD  *********
   create(valores){
     return this._http.post(this.API, valores).pipe(take(1));
   }

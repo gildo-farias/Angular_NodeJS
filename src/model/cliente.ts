@@ -1,6 +1,6 @@
 import { Endereco } from './endereco';
 export class Cliente {
-    cod: Number;
+    id: Number;
     nome: String;
     snome: String;
     cpf: String;

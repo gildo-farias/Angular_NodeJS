@@ -1,15 +1,12 @@
-td a:hover{        
-    color:orange;  
+.status{
+    font-weight: bolder;
+    font-size: small;   
 }
+.ativo{ color: slateblue; }
+.bloqueado{ color: tomato; }
 
-.ativo{
-    color: slateblue;    
-    font-weight: bolder;
-    font-size: small;    
+.options a{
+    margin-left: 5%;
 }
-.bloqueado{
-    color: tomato;
-    font-weight: bolder;
-    font-size: small;    
-}
+.options a:hover{ color:orange; }
   

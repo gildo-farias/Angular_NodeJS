@@ -1,15 +1,10 @@
-<div class="row" style="padding-top: 0.5%;">
-    <div class="col-3">
-        <button type="button" routerLink="/clientes" class="btn btn-info componentShadow" style="padding-top: 0%;">
-            <span style="font-size: x-large;">«</span> VOLTAR 
-        </button>        
-    </div>
-    <div class="col-9">       
-    </div>    
-</div>
 <br>
-<div class="row-10 componentShadow">
-    <clientes-form-cliente>
-        <h3 class="alert alert-light" style="font-weight: bolder;">CADASTRO DE CLIENTE</h3>
-    </clientes-form-cliente>
+<div class="card componentShadow">
+    <div class="card-header" style="text-align: center;">
+        <h3 style="color: grey;">CADASTRO DE CLIENTE</h3>
+    </div>
+    <clientes-form-cliente></clientes-form-cliente>
 </div>
+<a class="floatBTN btn-secondary componentShadow" title="VOLTAR" routerLink="/clientes">
+    <span class="material-icons">arrow_back</span>
+</a>

@@ -10,6 +10,9 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {  
+
+  constructor(private _systemService: SystemService) { }
+
   tempo;
   hor:number = 0;  min:number = 0;  seg:number = 0;
   
@@ -25,8 +28,6 @@ export class SidebarComponent implements OnInit {
       this.seg++;              
     }, 1000);  
   }
-  
-  constructor(private _systemService: SystemService) { }
 
   ngOnInit() {            
     this.cronometro();    
@@ -40,7 +41,8 @@ export class SidebarComponent implements OnInit {
   }
 
   onLogoff(){
-    this._systemService.logger = null;    
+    this._systemService.logger = null;
+    this._systemService.logger$.emit(false);
   }
 
 }

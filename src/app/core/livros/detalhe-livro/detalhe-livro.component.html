@@ -1,56 +1,54 @@
-<div class="row">
-    <!--COL  1-2 -->
-    <div class="col-6">        
-        <div class="row">
-            <button style="margin:1%; padding-top: 0%;" class="btn btn-info componentShadow" routerLink="/livros">
-                <span style="font-size: x-large;">&laquo;</span>                
-                VOLTAR
-            </button>
+<!-- carregando .... -->
+<ng-template #carregando>
+    <div class="row justify-content-md-center">
+        <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Carregando Banco de Dados...</span>
         </div>
-        <div class="row">
-            <!-- carregando .... -->
-            <ng-template #carregando>
-                <div class="row justify-content-md-center">
-                    <div class="spinner-border text-info" style="width: 8rem; height: 8rem; margin-top: 10%;" role="status">
-                        <span class="sr-only">Carregando Banco de Dados...</span>
-                    </div>
-                </div>
-            </ng-template>
-            <!-- CARD DETALHE -->
-            <div class="card mb-3 componentShadow" style="max-width: 600px; margin: 1%;" *ngIf="livro$ | async else carregando">
-                <div class="row no-gutters">
-                    <div class="col-md-6">
-                        <img [src]="livro.img" class="card-img" style="height:100%; width:100%;" alt="IMAGEM INDISPONIVEL NO MOMENTO">
-                    </div>
-                    <div class="col-md-6">
-                    <div class="card-body">
-                        <p class="card-text"><small>#{{ livro.id }}</small></p>
-                        <h5 class="card-title">{{ livro.titulo | uppercase }}</h5>
-                        
-                        <p class="card-text"  style="font-style: italic;">{{ livro?.subTit | titlecase }}</p>
-                        <p class="card-text"><small>AUTOR(A): </small>{{ livro.autor | titlecase }}</p>
-                        <p class="card-text"><small>ANO: </small>{{ livro.ano }}</p>
-                        <p class="card-text"><small>ISBN: </small>{{ livro.ISBN }}</p>
-                        <p class="card-text"><small>GÊNERO: </small>{{ livro.genero | titlecase }}</p>                    
-                        <p class="card-text">                    
-                            <small class="alert-secondary" style="padding:1%;" *ngIf="livro.locado">LOCADO</small>
-                            <small class="alert-success" style="padding:1%;" *ngIf="!livro.locado">DISPONIVEL</small>
-                        </p>
-                        <div class="dropdown-divider"></div>
-                        <p class="card-text" style="text-align: center;">                            
-                            <a class="btn btn-warning" routerLink="alterar">ALTERAR</a> |
-                            <a class="btn btn-danger" style="color: white;" 
-                                data-toggle="modal" data-target="#deletarModal" routerLink="deletar">DELETAR
-                            </a>            
-                        </p>            
-                    </div>
-                    </div>
-                </div>
-            </div> <!-- CARD DETALHE -->                    
-        </div>
-
     </div>
-    <!-- ******** -->
+</ng-template>
+<div class="row justify-content-md-center">    
+    <!--COL  1-2 -->
+    <div class="col-6">  
+        <!-- CARD DETALHE -->
+        <div class="card mb-3 componentShadow" *ngIf="livro$ | async else carregando">
+            <div class="row no-gutters">
+                <div class="col-md-7">
+                    <img [src]="livro.img" class="card-img" alt="IMAGEM INDISPONIVEL NO MOMENTO">
+                </div>
+                <div class="col-md-5">
+                <div class="card-body">
+                    <p class="card-text"><small>#{{ livro.id }}</small></p>
+                    <h5 class="card-title">{{ livro.titulo | uppercase }}</h5>
+                    
+                    <p class="card-text subTit">{{ livro?.subTit | titlecase }}</p>
+                    <p class="card-text"><small>AUTOR(A): </small>{{ livro.autor | titlecase }}</p>
+                    <p class="card-text"><small>ANO: </small>{{ livro.ano }}</p>
+                    <p class="card-text"><small>ISBN: </small>{{ livro.ISBN }}</p>
+                    <p class="card-text"><small>GÊNERO: </small>{{ livro.genero | titlecase }}</p>                    
+                    <p class="card-text">                    
+                        <small class="alert-secondary status" *ngIf="livro.locado">LOCADO</small>
+                        <small class="alert-success status" *ngIf="!livro.locado">DISPONIVEL</small>
+                    </p>
+                    <div class="dropdown-divider"></div>
+                    <div class="form-group">                          
+                        <a class="btn btn-outline-warning options" routerLink="alterar"                            
+                            title="EDITAR" [hidden]="!user.admin">
+                            <span class="material-icons">settings</span>
+                        </a>
+                        <a class="btn btn-outline-danger options" [hidden]="!user.admin" title="DELETAR"
+                            data-toggle="modal" data-target="#deletarModal" routerLink="deletar">
+                            <span class="material-icons">delete</span>
+                        </a>
+                        <div class="alert alert-warning" [hidden]="user.admin">
+                            <small>NOTA: </small><cite>Usuario sem acesso à edições.</cite>
+                        </div>     
+                    </div> 
+                </div>
+                </div>
+            </div>
+        </div> <!-- CARD DETALHE -->
+
+    </div>    
     <!--COL  2-2 -->
     <div class="col-6">
         <router-outlet></router-outlet>
@@ -62,3 +60,6 @@
     </system-nao-encontrado> -->
     
 </div><!-- ROW -->
+<a class="floatBTN btn-secondary componentShadow" title="VOLTAR" routerLink="/livros">
+    <span class="material-icons">arrow_back</span>
+</a>

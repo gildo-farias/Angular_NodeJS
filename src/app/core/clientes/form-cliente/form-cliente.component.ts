@@ -77,7 +77,7 @@ export class FormClienteComponent implements OnInit {
   }///consultarCEP()
 
   iniciarForm(){
-    if(this.cliente.cod==null){
+    if(this.cliente.id==null){
       this.formCliente = this._formBuilder.group({
         cpf:        [null, Validators.required],
         foto:       [null, Validators.required],
@@ -124,7 +124,7 @@ export class FormClienteComponent implements OnInit {
     endereco.bairro = data.bairro;
     endereco.cidade = data.cidade;
     endereco.uf = data.uf;    
-    this.cliente = this._clientesService.setCliente(1, data.cpf, data.nome, data.snome, data.email, data.telefone, data.foto, endereco);
+    this.cliente = this._clientesService.setCliente(data.cpf, data.nome, data.snome, data.email, data.telefone, data.foto, endereco);
   }  
 
 }

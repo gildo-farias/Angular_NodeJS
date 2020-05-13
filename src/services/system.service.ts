@@ -1,48 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../model/usuario';
-import { Router } from '@angular/router';
-import { error } from 'util';
 
 @Injectable()
 export class SystemService {
   
-  constructor(private _usuarioService: UsuarioService, private _router: Router) { }  
+  constructor(private _usuarioService: UsuarioService) { }  
 
-  private _logger: Usuario;      
-
-  public get logger(): Usuario {
-    return this._logger;
-  }
-  public set logger(value: Usuario) {
-    this._logger = value;
-    // console.log(this._logger);
-  }
-
-  login(username: String, senha: String){
-    this._usuarioService.getUsuarios().subscribe(data => {
-      let usersN:String[] = new Array;
-      data.forEach(element => {
-        usersN.push(element.username);
-        if(element.username === username && element.senha === senha){
-          this.logger = element;   
-          this._router.navigate(['/']);
-        }else if(element.username === username && element.senha !== senha){
-          alert("SENHA INVALIDA!");
-        }
-      }         
-      );
-      if(usersN.indexOf(username)<0)
-        alert("USUARIO INVALIDO!");        
-    });  
-    
-    
-    // 
-    // if(username === this._usuarioService.getUsuario().username && senha === this._usuarioService.getUsuario().senha){      
-    //   this.logger = this._usuarioService.getUsuario();
-    //   return true;
-    // }
-    // return false;
+  logger: Usuario;
+  logger$ = new EventEmitter<Boolean>();
+  
+  login(username: String, senha: String): Boolean{
+    this.logger = this._usuarioService.auth(username, senha);
+    if(this.logger != undefined || this.logger != null){
+      this.logger$.emit(true);
+      return true;
+    }    
   }
   
   // *********************** LINKS *********************** // 

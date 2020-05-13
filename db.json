@@ -81,9 +81,9 @@
       "ISBN": "9788599296363",
       "genero": "DRAMA",
       "titulo": "A Cabana",
-      "subTit": "",
+      "subTit": "espiritualidade",
       "autor": "Young, William P.",
-      "ano": 2015,
+      "ano": "2015",
       "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/12101236/1006693036.jpg?v=637142219129100000",
       "locado": true,
       "id": 108
@@ -133,25 +133,86 @@
       "id": 112
     }
   ],
-  "usuarios": [
+  "clientes": [
     {
-      "username": "root@123",
-      "senha": "123456",
-      "admin": true,
-      "nome": "Gildo",
-      "snome": "Farias",
-      "gen": "MASCULINO",
+      "cpf": "58797849720",
+      "foto": "https://pbs.twimg.com/profile_images/963968059642925057/MDygrLvI.jpg",
+      "nome": "GILDO",
+      "snome": "FARIAS",
+      "email": "gildofarias3@gmail.com",
+      "telefone": "85985559999",
+      "debito": 45.5,
+      "status": false,
+      "endereco": {
+        "cep": "60534150",
+        "logradouro": "Rua Francisco Ramos",
+        "numero": "100",
+        "complemento": "3 rua atras do centerbox",
+        "bairro": "Parque Genibaú",
+        "cidade": "Fortaleza",
+        "uf": "CE"
+      },
       "id": 1
     },
     {
-      "username": "user@86",
-      "senha": "123456",
-      "admin": false,
-      "nome": "maria",
-      "snome": "torres",
-      "gen": "FEMININO",
+      "cpf": "58797849720",
+      "foto": "",
+      "nome": "LUCAS",
+      "snome": "GOMES",
+      "email": "luke456@gmail.com",
+      "telefone": "11999754798",
+      "debito": 0,
+      "status": true,
+      "endereco": {
+        "cep": "01001-000",
+        "logradouro": "Praça da Sé",
+        "numero": 85,
+        "complemento": "lado ímpar",
+        "bairro": "Sé",
+        "cidade": "São Paulo",
+        "uf": "SP"
+      },
       "id": 2
+    },
+    {
+      "cpf": "58797849720",
+      "foto": "",
+      "nome": "RAFAEL",
+      "snome": "OLIVEIRA",
+      "email": "rafa_oliver@hotmail.com",
+      "telefone": "85997841199",
+      "debito": 20.50,
+      "status": false,
+      "endereco": {
+        "cep": "60534-130",
+        "logradouro": "Rua Vinte e Quatro de Outubro",
+        "numero": "497",
+        "complemento": "",
+        "bairro": "Parque Genibaú",
+        "cidade": "Fortaleza",
+        "uf": "CE"
+      },
+      "id": 3
+    },
+    {
+      "cpf": "58797849720",
+      "foto": "",
+      "nome": "BRUNO",
+      "snome": "CORDEIRO",
+      "email": "luke456@gmail.com",
+      "telefone": "88981235644",
+      "debito": 0,
+      "status": true,
+      "endereco": {
+        "cep": "63030-441",
+        "logradouro": "Avenida Antônio Sales",
+        "numero": "146",
+        "complemento": "",
+        "bairro": "Novo Juazeiro",
+        "cidade": "Juazeiro do Norte",
+        "uf": "CE"
+      },
+      "id": 4
     }
-  ],
-  "clientes": []
+  ]
 }

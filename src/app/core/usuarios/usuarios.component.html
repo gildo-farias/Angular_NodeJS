@@ -7,7 +7,7 @@
 </div>    
 <br>
 <div class="row justify-content-md-center">
-    <div class="card" style="width: 10rem; text-align: center;" *ngFor="let user of usuarios">            
+    <div class="card" *ngFor="let user of usuarios">            
         <div class="card-header">
             <small>{{ user.nome | titlecase }} {{ user.snome | titlecase }}</small>
         </div>
@@ -23,6 +23,10 @@
         </div>
     </div>    
 </div>
+<a class="floatBTNsecondary btn-secondary componentShadow" 
+    title="ATUALIZAR">
+    <span class="material-icons">refresh</span>
+</a>
 <a class="floatBTN btn-info componentShadow" 
     title="CADASTRAR" routerLink="">            
     <span class="material-icons">person_add</span>

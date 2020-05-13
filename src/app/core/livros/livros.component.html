@@ -3,12 +3,12 @@
 <br>
 <div class="row justify-content-md-center">    
     <div class="col-6">
-        <input class="form-control" type="search" [readonly]="!(livros$ | async)"
+        <input class="form-control" type="search" [hidden]="!(livros$ | async)"
             placeholder="PESQUISAR: Autor, Titulo ou Subtitulo do Livro" [(ngModel)]="filtro">
     </div>
 </div>
 <br>
-<div class="row justify-content-md-center" *ngIf="livros$ | async else carregando">
+<div class="row justify-content-md-center" *ngIf="livros$ | async else alertas">
 
     <!--card-->
     <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">                
@@ -29,13 +29,28 @@
 
 </div>
 <router-outlet></router-outlet>
-<!-- carregando .... -->
-<ng-template #carregando>
-    <div class="row justify-content-md-center">
-        <div class="spinner-border text-info" style="width: 8rem; height: 8rem; margin-top: 10%;" role="status">
-            <span class="sr-only">Carregando Banco de Dados...</span>
+
+
+<ng-template #alertas>
+    <!-- banco de dados OFF .... -->    
+    <div class="row justify-content-md-center" *ngIf="erro$ | async; else carregando">
+        <system-nao-encontrado>
+            <label class="titulo">BANCO DE DADOS</label>
+            <p class="corpo">
+                Nossa base de dados parece estar indisponivel no momento,
+                porfavor tente de novo mais tarde.
+                Caso o erro persiste contacte o suporte tecnico.
+            </p>
+        </system-nao-encontrado>
+    </div>    
+    <!-- carregando .... -->
+    <ng-template #carregando>
+        <div class="row justify-content-md-center">
+            <div class="spinner-border text-info" style="width: 8rem; height: 8rem;" role="status">
+                <span class="sr-only">Carregando Banco de Dados...</span>
+            </div>
         </div>
-    </div>
+    </ng-template>    
 </ng-template>
 <!-- livro nao encontrado -->
 <div class="row justify-content-md-center">
@@ -50,7 +65,10 @@
         </system-nao-encontrado>
     </div>
 </div>
-<a class="floatBTN btn-info componentShadow" title="CADASTRAR" data-toggle="modal"
-    data-target="#staticBackdrop" routerLink="novo">
+<a class="floatBTNsecondary btn-secondary componentShadow" title="ATUALIZAR" (click)="onRefresh()">
+    <span class="material-icons">refresh</span>
+</a>
+<a class="floatBTN btn-info componentShadow" title="CADASTRAR" [hidden]='!(livros$ | async)'
+    data-toggle="modal" data-target="#staticBackdrop" routerLink="novo">
     <span class="material-icons">add</span>
 </a>

@@ -1,2 +1,2 @@
-<app-tela-login *ngIf="_systemService.logger==null"></app-tela-login>
-<system-root *ngIf="_systemService.logger!=null"></system-root>
+<app-tela-login *ngIf="!session"></app-tela-login>
+<system-root *ngIf="session"></system-root>
