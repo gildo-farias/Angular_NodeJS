@@ -34,14 +34,15 @@ export class AlterarLivroComponent implements OnInit, ConfirmarSaida {
     this.livro = null; 
   }
 
+  alertMsn:string = 'DESEJA REALMENTE SAIR DESTA PAGINA?';
   formAlterado:boolean;
   escutandoMudanca(event){    
-    this.formAlterado = event;
-  }
+    this.formAlterado = event;    
+  }  
 
   confirmarSaidaPagina():boolean{
     if(this.formAlterado){
-      return confirm('DESEJA REALMENTE SAIR DA PAGINA?');      
+      return confirm(this.alertMsn);
     }   
     return true;
   }

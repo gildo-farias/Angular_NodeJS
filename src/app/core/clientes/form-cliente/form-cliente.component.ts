@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { Cliente } from 'src/model/cliente';
 import { ClientesService } from 'src/services/clientes.service';
@@ -22,6 +23,7 @@ export class FormClienteComponent implements OnInit {
   constructor(
     private _clientesService: ClientesService,
     private _formBuilder: FormBuilder,
+    private _router: Router,
     private http: HttpClient
   ) { }
 
@@ -32,9 +34,27 @@ export class FormClienteComponent implements OnInit {
 
   onSubmit() {    
     if(this.formCliente.valid){
-      // this.http.post('https://httpbin.org/post', JSON.stringify(this.formCliente.value)).subscribe(data => {
-      //   console.log(data);
-      // });
+      if(this.cliente.id >= 0){
+        this._clientesService.update(this.cliente.id, this.formCliente.value).subscribe(
+          success => {
+            console.log('alterado!');
+            this.formCliente.reset();
+            this._router.navigate(['/clientes']);
+          },
+          error => console.error(error),
+          ()  => console.log('request completada')
+        );
+      }else{
+        this._clientesService.create(this.formCliente.value).subscribe(
+          success => {
+            console.log('cadastrado!');
+            this.formCliente.reset();
+            this._router.navigate(['/clientes']);
+          },
+          error => console.error(error),
+          ()  => console.log('request completada')
+        );
+      }
     }else{
       this.validateForm.validarCampos(this.formCliente);
     }
@@ -75,7 +95,7 @@ export class FormClienteComponent implements OnInit {
     if (this.cliente.id == null) {      
       this.formCliente = this._formBuilder.group({
         cpf: [null, Validators.required],
-        foto: [null, Validators.required],
+        foto: [null],
         nome: [null, Validators.required],
         snome: [null, Validators.required],
         email: [null, [Validators.required, Validators.email]],
@@ -95,7 +115,7 @@ export class FormClienteComponent implements OnInit {
     } else {      
       this.formCliente = this._formBuilder.group({
         cpf: [this.cliente.cpf, Validators.required],
-        foto: [null],
+        foto: [this.cliente.foto],
         nome: [this.cliente.nome, Validators.required],
         snome: [this.cliente.snome, Validators.required],
         email: [this.cliente.email, [Validators.required, Validators.email]],
@@ -126,20 +146,6 @@ export class FormClienteComponent implements OnInit {
         uf: data.uf
       }
     });
-  }
-
-  salvarCliente() {
-    let data;
-    this.cliente = new Cliente;
-    let endereco: Endereco = new Endereco;
-    endereco.cep = data.cep;
-    endereco.logradouro = data.logradouro;
-    endereco.numero = data.numero;
-    endereco.complemento = data.complemento;
-    endereco.bairro = data.bairro;
-    endereco.cidade = data.cidade;
-    endereco.uf = data.uf;
-    this.cliente = this._clientesService.setCliente(data.cpf, data.nome, data.snome, data.email, data.telefone, data.foto, endereco);
   }
 
 }

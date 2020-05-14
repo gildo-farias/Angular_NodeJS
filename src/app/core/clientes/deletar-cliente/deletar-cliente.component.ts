@@ -28,6 +28,15 @@ export class DeletarClienteComponent implements OnInit {
     this.inscricao.push(this._clientesService.read(this.codigo).subscribe(data => this.cliente = data));
   }   
 
+  onDelete(){
+    this._clientesService.delete(this.codigo).subscribe(
+      success => console.log('deletado!'),
+      error => console.error(error),
+      () => console.log('request completada')
+    )
+    this.onClose();
+  }
+
   onClose(){
     this._routes.navigate(['/clientes']);
   }
@@ -36,8 +45,7 @@ export class DeletarClienteComponent implements OnInit {
     this.inscricao.forEach(element => {
       element.unsubscribe;      
     });;   
-    // this.cliente = null;
-    // // this.codigo=null;    
+    this.cliente = null;        
   }
 
 

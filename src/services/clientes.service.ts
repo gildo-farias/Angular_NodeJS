@@ -16,34 +16,17 @@ export class ClientesService {
   }
 
   // *********  CRUD  *********
-  create(valores){
-    return this._http.post(this.API, valores).pipe(take(1));
+  create(cliente:Cliente){
+    return this._http.post(this.API, cliente).pipe(take(1));
   }
-  read(id){
+  read(id:Number){
     return this._http.get<Cliente>(`${this.API}/${id}`);
   }
-  update(id, valores){
-    return this._http.put(`${this.API}/${id}`, valores).pipe(take(1));
+  update(id:Number, cliente:Cliente){
+    return this._http.put(`${this.API}/${id}`, cliente).pipe(take(1));
   }  
-  delete(id){
+  delete(id:Number){
     return this._http.delete(`${this.API}/${id}`).pipe(take(1));
   }
-
-
-
-  setCliente(cpf: String, nome: String, snome: String, email: String, telefone: String, foto: String,endereco: Endereco):Cliente{        
-    let cliente: Cliente;    
-    cliente.cpf = cpf;
-    cliente.nome = nome;
-    cliente.snome = snome;
-    cliente.email = email;
-    cliente.telefone = telefone;
-    cliente.foto = foto;
-    cliente.debito = 0;
-    cliente.status = true;
-    cliente.endereco = endereco;
-    return cliente;
-  }
-
 
 }

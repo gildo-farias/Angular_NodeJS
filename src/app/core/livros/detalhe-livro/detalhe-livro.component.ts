@@ -27,15 +27,19 @@ export class DetalheLivroComponent implements OnInit{
   livro$: Observable<Livro>;
 
   ngOnInit(): void {
+    this.onRefresh();
+  }
+
+  onRefresh(){
     this.user = this._systemService.logger;
     this.inscricao = this._route.params.subscribe((parametros:any)=>{
       this.codigo = parametros['cod'];      
     });
-    this.livro$ = this._livrosService.getLivro(this.codigo);
-    this._livrosService.getLivro(this.codigo).subscribe(data => this.livro = data);    
+    this._livrosService.read(this.codigo).subscribe(data => this.livro = data);
+    this.livro$ = this._livrosService.read(this.codigo);     
   }
 
-  ngOnDestroy() {
+  ngOnDestroy() {    
     this.inscricao.unsubscribe();   
     this.livro = null; 
   }  

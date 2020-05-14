@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidateForm } from '../../erros/validate-form';
 
+
 @Component({
   selector: 'livros-form-livro',
   templateUrl: './form-livro.component.html',
@@ -24,7 +25,7 @@ export class FormLivroComponent implements OnInit {
   generos: String[];
   constructor(
     private _livroService: LivrosService,
-    private _route: Router,
+    private _router: Router,    
     private _formBuilder: FormBuilder,    
   ) { }
 
@@ -50,7 +51,10 @@ export class FormLivroComponent implements OnInit {
           success => {
             console.log('alterado!');
             this.formLivro.reset();
-            this._route.navigate(['/livros', this.livro.id]);            
+            // this._route.navigate(['/livros', this.livro.id]);
+            this._router.navigateByUrl('/livros'+this.livro.id, { skipLocationChange: true }).then(() => {
+              this._router.navigate(['/livros', this.livro.id]);
+          }); 
           },
           error => console.error(error),
           ()  => console.log('request completada')
@@ -61,7 +65,7 @@ export class FormLivroComponent implements OnInit {
           success => {
             console.log('sucesso');
             this.formLivro.reset();                       
-            this._route.navigate(['/livros']);
+            this._router.navigate(['/livros']);
             this.fecharModal.emit();
           },
           error => console.error(error),
@@ -75,8 +79,7 @@ export class FormLivroComponent implements OnInit {
   }
 
   iniciarForm() {
-    if (this.livro.id == null) {
-      // this.livro.locado = false;
+    if (this.livro.id == null) {      
       this.formLivro = this._formBuilder.group({
         ISBN: [null, [Validators.required]],
         genero: [null, [Validators.required]],

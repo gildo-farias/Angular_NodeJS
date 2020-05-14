@@ -5,7 +5,8 @@
     <div class="dropdown-divider"></div>
 
     <livros-form-livro [livroAlterar]="livro" (avisarAlteracao)="escutandoMudanca($event)">
-        <button class="btn btn-secondary" type="button" [routerLink]="['/livros', livro.id]">CANCELAR</button>
+        <button class="btn btn-secondary" type="button" 
+            [routerLink]="['/livros', livro.id]">CANCELAR</button>
     </livros-form-livro>    
     
 </div>

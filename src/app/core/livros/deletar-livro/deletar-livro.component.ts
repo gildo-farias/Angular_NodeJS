@@ -16,7 +16,7 @@ export class DeletarLivroComponent implements OnInit {
     private _livrosService: LivrosService    
   ) { }
 
-  codigo:number;
+  codigo:Number;
   livro:Livro = new Livro;
   inscricao:Subscription;
 

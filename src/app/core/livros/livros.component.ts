@@ -37,13 +37,14 @@ export class LivrosComponent implements OnInit {
   }
 
   onRefresh(){
-    this.livros$ = this._livrosService.getLivros().pipe(
+    this.livros$ = this._livrosService.list().pipe(
       catchError(erro => {        
         this.erro$.next(true);
+        console.error(erro);
         return empty;
       })
     );      
-    this._livrosService.getLivros().subscribe(data => this.livros = data);
+    this._livrosService.list().subscribe(data => this.livros = data);
   }
 
   onFiltrarLivro(){        

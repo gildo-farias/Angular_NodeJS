@@ -21,29 +21,21 @@ export class LivrosService {
   }
 
   private readonly API: string = `${environment.API}livros`;
-  getLivros() {
+  list() {
     return this._http.get<Livro[]>(this.API);
-  }
-
-  getLivro(id: number) {
-    if(id!=null){
-      return this._http.get<Livro>(`${this.API}/${id}`);
-    }else{
-      return null;
-    }    
-  }
+  } 
 
   // *********  CRUD  *********
-  create(valores){
-    return this._http.post(this.API, valores).pipe(take(1));
+  create(livro:Livro){
+    return this._http.post(this.API, livro).pipe(take(1));
   }
-  read(id){
+  read(id:Number){
     return this._http.get<Livro>(`${this.API}/${id}`);
   }
-  update(id, valores){
-    return this._http.put(`${this.API}/${id}`, valores).pipe(take(1));
+  update(id:Number, livro:Livro){
+    return this._http.put(`${this.API}/${id}`, livro).pipe(take(1));
   }  
-  delete(id){
+  delete(id:Number){
     return this._http.delete(`${this.API}/${id}`).pipe(take(1));
   }
 

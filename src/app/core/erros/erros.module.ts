@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.component';
-import { NaoPermitidoComponent } from './nao-permitido/nao-permitido.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { AlertComponent } from './alert/alert.component';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    NaoEncontradoComponent,
-    NaoPermitidoComponent,
-    PaginaNaoEncontradaComponent
+    NaoEncontradoComponent,    
+    PaginaNaoEncontradaComponent,
+    AlertComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbAlertModule
   ],
   exports: [
-    NaoEncontradoComponent
+    NaoEncontradoComponent,
+    AlertComponent,
   ]
 })
 export class ErrosModule { }
