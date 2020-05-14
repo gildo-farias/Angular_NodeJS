@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="deletarModal" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="deletarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modals" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DESEJA DELETAR ESTE CLIENTE ?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">                    
+                    <div class="col-sm-5">
+                        <small> #{{ cliente.id }}</small>
+                        <div class="row justify-content-md-center">
+                            <img [src]="cliente.foto">
+                        </div>
+                    </div>
+                    <div class="col-sm-5" style="text-align: left;">
+                        <small>CPF:</small> {{ cliente.cpf }}<br>
+                        <small>NOME:</small> {{ cliente.nome | titlecase }} {{ cliente.snome | titlecase }}<br>
+                        <small>TELEFONE:</small> {{ cliente.telefone }}<br>
+                        <div class="dropdown-divider"></div>
+                        <small>DEBITO: </small>                        
+                        <strong>{{ cliente.debito | currency }}</strong><br>
+                        <small>SITUAÇÃO: </small>
+                        <strong [ngClass]="{'ativo': cliente.status, 'bloqueado': !cliente.status}">
+                            {{ cliente.status ? 'ATIVO':'BLOQUEADO' }}
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-secondary">CANCELAR</a>
+                <a class="btn btn-danger">CONFIRMAR</a>
+            </div>
+        </div>
+    </div>
+</div>

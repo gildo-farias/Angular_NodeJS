@@ -1,8 +1,8 @@
   <!-- Modal -->
 <div class="modal fade" id="deletarModal" data-backdrop="static" tabindex="-1" role="dialog" 
 aria-labelledby="deletarModalLabel" aria-hidden="true" style="text-align: center;">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog modals" role="document">
+        <div class="modal-content bg-dark">
             <div class="modal-header">
                 <h5 class="modal-title" id="deletarModalLabel">
                     DELETAR LIVRO ?
@@ -12,12 +12,24 @@ aria-labelledby="deletarModalLabel" aria-hidden="true" style="text-align: center
                 </button>
             </div>
             <div class="modal-body">
-                <p class="alert-warning" style="padding: 2%;">
-                    <strong>ATENÇÃO</strong><br>
-                    A ação a seguir não pode ser desfeita!
-                </p>                       
-                <small>{{ livro.titulo | titlecase }}</small><br>
-                <small>{{ livro.subTit | titlecase }}</small>     
+                <div class="row">                    
+                    <div class="col-sm-5">
+                        <small> #{{ livro.id }}</small>
+                        <div class="row justify-content-md-center">
+                            <img [src]="livro.img">
+                        </div>
+                    </div>
+                    <div class="col-sm-5" style="text-align: left;">                        
+                        <small>TITULO:</small><br>{{ livro.titulo | titlecase }}<br>
+                        <small>SUB TITULO:</small><br>{{ livro.subTit | titlecase }}<br>
+                        <small>AUTOR: </small> {{ livro.autor }}<br>                        
+                        <div class="dropdown-divider"></div>                                                
+                        <div class="alert-warning" style="padding: 5%; text-align: center;">
+                            <strong>ATENÇÃO!</strong><br>
+                            A ação a seguir não pode ser desfeita!
+                        </div>
+                    </div>
+                </div>                          
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" [routerLink]="['/livros', livro.id]">CANCELAR</button>

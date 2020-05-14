@@ -1,18 +1,16 @@
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" 
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" 
-        style="background-color:gray; padding:0.5%; border-radius: 10px; text-align: center;">
+    <div class="modal-dialog modals" role="document">
         <div class="modal-content bg-dark">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel" 
-                    style="color:white; font-weight: bolder;">CADASTRAR LIVRO</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">CADASTRAR LIVRO</h5>
                 <button type="button" class="close" routerLink="/livros"
                     data-dismiss="modal" aria-label="Close" title="FECHAR" #closeModal>                    
                     <span class="material-icons">cancel</span>                
                 </button>
             </div>            
-                <div class="modal-body" style="color:white;">
+                <div class="modal-body">
                     <livros-form-livro (fecharModal)="fechandoModal()">
                         <button type="button" class="btn btn-secondary"
                             routerLink="/livros" data-dismiss="modal">CANCELAR</button>                        

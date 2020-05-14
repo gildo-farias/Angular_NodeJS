@@ -34,18 +34,23 @@
                             {{ cli.status ? 'ATIVO':'BLOQUEADO' | uppercase }}</td>
                         <td>{{  cli.debito | currency:'BRL' }}</td>
                         <td class="options">                            
-                            <a title="DETALHES" [routerLink]="['/clientes', cli.id]">
+                            <a title="DETALHES"
+                                [routerLink]="['/clientes', cli.id]"
+                                data-toggle="modal" data-target="#detalheModal">
                                 <span class="material-icons">visibility</span>
                             </a>
-                            <a title="EDITAR" [routerLink]="['/clientes', cli.id, 'alterar']">
+                            <a title="EDITAR" [hidden]="!user.admin"
+                                [routerLink]="['/clientes', cli.id, 'alterar']">
                                 <span class="material-icons">build</span>
                             </a>
-                            <a title="APAGAR" [routerLink]="['/clientes', cli.id, 'deletar']">
+                            <a title="DELETAR" [hidden]="!user.admin"
+                                data-toggle="modal" data-target="#deletarModal"
+                                [routerLink]="['/clientes', cli.id, 'deletar']">
                                 <span class="material-icons">delete</span>
                             </a>
-                            <!-- <div class="alert alert-warning" [hidden]="user.admin">
-                                <small>NOTA: </small><cite>Usuario sem acesso à edições.</cite>
-                            </div>   -->
+                            <!-- <a title="QUITAR DEBITO" [hidden]="user.admin">
+                                <span class="material-icons">build</span>
+                            </a>                             -->
                         </td>
                     </tr>
                 </tbody>
@@ -79,6 +84,7 @@
     
 </div>
 <!-- ***************************************************************************** -->
+<router-outlet></router-outlet>
 <a class="floatBTNsecondary btn-secondary componentShadow" title="ATUALIZAR" (click)="onRefresh()">
     <span class="material-icons">refresh</span>
 </a>

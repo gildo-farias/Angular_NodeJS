@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { Livro } from 'src/model/livro';
 import { LivrosService } from 'src/services/livros.service';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ValidateForm } from '../../erros/validate-form';
@@ -77,7 +76,7 @@ export class FormLivroComponent implements OnInit {
 
   iniciarForm() {
     if (this.livro.id == null) {
-      this.livro.locado = false;
+      // this.livro.locado = false;
       this.formLivro = this._formBuilder.group({
         ISBN: [null, [Validators.required]],
         genero: [null, [Validators.required]],

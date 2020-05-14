@@ -1,0 +1,49 @@
+<!-- Modal -->
+<div class="modal fade" id="detalheModal" tabindex="-1" role="dialog" data-backdrop="static"
+    aria-labelledby="detalheModalLabel" aria-hidden="true">
+    <div class="modal-dialog modals" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DETALHES CLIENTE</h5>
+                <small> #{{ cliente.id }}</small>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onEsc()"
+                    (window:keyup.esc)="onEsc()" #closeModal>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-md-center">
+                    <img [src]="cliente.foto">
+                </div>
+                <br>
+                <p>
+                    <small>CPF:</small> {{ cliente.cpf }}
+                    <small>NOME:</small> {{ cliente.nome | titlecase }} {{ cliente.snome | titlecase }}
+                </p>
+                <cite>~ Contato ~</cite>
+                <p>                    
+                    <small>EMAIL: </small> {{ cliente.email}} <small>TELEFONE:</small> {{ cliente.telefone }}<br>
+                </p>
+                <cite>~ Endereço ~</cite>
+                <p>                        
+                    <small>LOGRADOURO: </small>{{ cliente.endereco.logradouro}}
+                    <small>NUMERO: </small> {{ cliente.endereco.numero }}<br>
+                    <small>COMPLEMENTO: </small>{{ cliente.endereco.complemento }}<br>
+                    <small>BAIRRO: </small> {{ cliente.endereco.bairro }}
+                    <small>CIDADE: </small> {{ cliente.endereco.cidade }}
+                    <small>UF: </small> {{ cliente.endereco.uf }}<br>
+                    <small>CEP: </small> {{ cliente.endereco.cep }}
+                </p>                    
+            </div>
+            <div class="modal-footer">
+                <small>DEBITO: </small>
+                <strong>{{ cliente.debito | currency }}</strong>
+                <small>SITUAÇÃO: </small>
+                <strong
+                    [ngClass]="{'ativo': cliente.status, 'bloqueado': !cliente.status}">
+                    {{ cliente.status ? 'ATIVO':'BLOQUEADO' }}
+                </strong>
+            </div>
+        </div>
+    </div>
+</div>

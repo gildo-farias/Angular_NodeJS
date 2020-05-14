@@ -1,0 +1,10 @@
+<br>
+<div class="card componentShadow"  *ngIf="cliente!=null" >
+    <div class="card-header" style="text-align: center;">
+        <h3 style="color: grey;">ALTERAR DADOS DO CLIENTE</h3>
+    </div>
+    <clientes-form-cliente [clienteAlterar]="cliente"></clientes-form-cliente>
+</div>
+<a class="floatBTN btn-secondary componentShadow" title="VOLTAR" routerLink="/clientes">
+    <span class="material-icons">arrow_back</span>
+</a>

@@ -13,7 +13,7 @@ export class CadastroLivroComponent implements OnInit {
   ngOnInit() {
   }  
 
-  fechandoModal(){    
+  fechandoModal(){        
     this.closeModal.nativeElement.click();
   }
 

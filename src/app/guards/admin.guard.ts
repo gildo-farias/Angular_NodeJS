@@ -13,9 +13,10 @@ export class AdminGuard implements CanActivateChild {
     
     if(this._systemService.logger.admin){      
       return true;
+    }else{
+      alert('Usuario sem acesso a este modulo!');
+      return false;    
     }    
-    alert('Usuario sem acesso a este modulo');
-    return false;    
   }
   
 }

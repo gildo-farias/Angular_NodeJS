@@ -15,8 +15,7 @@ const livrosRoutes: Routes = [
     children: [
       { path: 'novo', component: CadastroLivroComponent}
     ]
-  },
-    
+  },    
   { path: ':cod', component: DetalheLivroComponent, canActivateChild:[AdminGuard], 
     children: [     
       { path: 'alterar', component: AlterarLivroComponent, canDeactivate: [ConfirmarSaidaGuard]},

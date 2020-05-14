@@ -9,18 +9,20 @@
                     CPF invalido!
                 </div>            
         </div>
-        <div class="form-group col-md-6"></div>
+        <div class="form-group col-md-6">
+            <div class="row justify-content-md-center">
+                <a target="_blank" [href]="cliente.foto" tabindex="-1" [hidden]='!cliente.id'>
+                    <img [src]="cliente.foto">
+                </a>                
+            </div>
+        </div>
         <div class="form-group col-md-3">
             <label for="foto">Foto</label><i class="material-icons">flare</i>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="foto" formControlName="foto"
-                    [ngClass]="validateForm.validarCampo(formCliente.get('foto'))">
+                <input type="file" tabindex="-1" class="custom-file-input" id="foto" formControlName="foto">
                 <label class="custom-file-label" for="foto" data-browse="Escolha">
                     <span class="material-icons">add_a_photo</span>
-                </label>
-                <div class="invalid-tooltip">
-                    Foto Obrigatoria!
-                </div>
+                </label>                
             </div>                        
         </div>  
     </div>
@@ -63,14 +65,22 @@
         </div>    
     </div>       
     <!-- ********************************************************************************** -->   
-    <div class="form-row" hidden>        
+    <div class="form-row" [hidden]="!cliente.id">        
         <div class="form-group col-md-4">
             <label for="debito">Debito</label>
-            <input type="text" class="form-control" id="debito" readonly>
+            <input type="text" tabindex="-1" class="form-control" id="debito" formControlName="debito" readonly>
         </div>
-        <div class="form-group col-md-4">
+        <div class="col-md-2">
+            <br>
+            <a class="btn btn-outline-primary" tabindex="-1" title="QUITAR DEBITO"
+                [ngClass]="{'disabled': cliente.status}">
+                <span class="material-icons">monetization_on</span>
+            </a>
+        </div>
+        <div class="form-group col-md-6">
             <label for="status">Situação</label>
-            <input type="text" class="form-control" id="status" readonly>
+            <input type="text" tabindex="-1" class="form-control" id="status" 
+                value="{{cliente.status ? 'ATIVO':'BLOQUEADO'}}" readonly>
         </div>        
     </div>        
     <!--  -->

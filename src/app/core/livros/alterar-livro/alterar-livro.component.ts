@@ -26,7 +26,7 @@ export class AlterarLivroComponent implements OnInit, ConfirmarSaida {
     this.inscricao = this._route.parent.params.subscribe((parametros:any)=>{
       this.codigo = parametros['cod'];                         
     });        
-    this._livrosService.getLivro(this.codigo).subscribe(data => this.livro = data);     
+    this._livrosService.read(this.codigo).subscribe(data => this.livro = data);    
   }
 
   ngOnDestroy() {

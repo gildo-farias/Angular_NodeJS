@@ -28,13 +28,13 @@ export class ClientesComponent implements OnInit {
 
   erro$ = new Subject<boolean>();
   onRefresh(){
-    this.listaClientes$ = this._clientesService.getClientes().pipe(
+    this.listaClientes$ = this._clientesService.list().pipe(
       catchError(erro => {        
         this.erro$.next(true);
         return empty;
       })
     );      
-    this._clientesService.getClientes().subscribe(data => this.listaClientes = data);
+    this._clientesService.list().subscribe(data => this.listaClientes = data);
   }
 
   onFiltrar(){        

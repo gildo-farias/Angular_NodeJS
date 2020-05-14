@@ -81,7 +81,7 @@
       "ISBN": "9788599296363",
       "genero": "DRAMA",
       "titulo": "A Cabana",
-      "subTit": "espiritualidade",
+      "subTit": "",
       "autor": "Young, William P.",
       "ano": "2015",
       "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/12101236/1006693036.jpg?v=637142219129100000",
@@ -156,7 +156,7 @@
     },
     {
       "cpf": "58797849720",
-      "foto": "",
+      "foto": "https://m.media-amazon.com/images/M/MV5BNzc0ODMyMDAyNF5BMl5BanBnXkFtZTgwMDMzMjEzNDM@._V1_.jpg",
       "nome": "LUCAS",
       "snome": "GOMES",
       "email": "luke456@gmail.com",
@@ -176,12 +176,12 @@
     },
     {
       "cpf": "58797849720",
-      "foto": "",
+      "foto": "https://vignette.wikia.nocookie.net/dark-netflix/images/4/42/Hgtannhaus.png/revision/latest?cb=20180114162827",
       "nome": "RAFAEL",
       "snome": "OLIVEIRA",
       "email": "rafa_oliver@hotmail.com",
       "telefone": "85997841199",
-      "debito": 20.50,
+      "debito": 20.5,
       "status": false,
       "endereco": {
         "cep": "60534-130",
@@ -196,7 +196,7 @@
     },
     {
       "cpf": "58797849720",
-      "foto": "",
+      "foto": "https://i.pinimg.com/474x/a7/a8/24/a7a8242afc0c178ce1ad6af4768a937d.jpg",
       "nome": "BRUNO",
       "snome": "CORDEIRO",
       "email": "luke456@gmail.com",
