@@ -19,7 +19,7 @@
             ACESSO: {{ user.admin ? 'ADMIN':'RESTRITO'}}
         </p>        
         <div class="card-footer">
-            <strong>{{ user.username | uppercase }}</strong>
+            <strong>{{ user.username | lowercase }}</strong>
         </div>
     </div>    
 </div>
