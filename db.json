@@ -131,6 +131,17 @@
       "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/1751006/1001479657.jpg?v=637005063435900000",
       "locado": false,
       "id": 112
+    },
+    {
+      "ISBN": "12123555487",
+      "genero": "MOTIVACIONAL",
+      "titulo": "A Sutil Arte De Ligar O Foda-Se",
+      "subTit": "Uma estratégia inusitada para uma vida melhor",
+      "autor": "Mark Manson",
+      "ano": "2017",
+      "img": "https://lojasaraiva.vteximg.com.br/arquivos/ids/3241025/1008449071.jpg?v=637034105101630000",
+      "locado": false,
+      "id": 113
     }
   ],
   "clientes": [

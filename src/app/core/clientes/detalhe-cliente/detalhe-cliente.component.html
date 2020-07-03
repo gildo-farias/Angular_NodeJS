@@ -37,7 +37,7 @@
             </div>
             <div class="modal-footer">
                 <small>DEBITO: </small>
-                <strong>{{ cliente.debito | currency }}</strong>
+                <strong>{{ cliente.debito | currency:'BRL' }}</strong>
                 <small>SITUAÇÃO: </small>
                 <strong
                     [ngClass]="{'ativo': cliente.status, 'bloqueado': !cliente.status}">
