@@ -4,12 +4,16 @@ A system simulating a library and its management of book leases, the application
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
 Using JSON Server.
 
+## Back-end
+[Rest API SpringBoot](https://github.com/gildo-farias/API-Rest_SpringBoot)
+- **NOTA:** Este projeto ainda não está acessando ao back-end, por enquanto usando o [JSON Server](https://www.npmjs.com/package/json-server#getting-started) como uma fake RestAPI para testes.
+
 ## Prerequisites
 - NodeJs
 - Angular v9
 - Angular@cli v9.0.5
 - TypeScript v3.7.5
-- JSON Server (RestAPI)
+- JSON Server (RestAPI Teste)
 
 ## Getting Started
 1. Clone the project.
