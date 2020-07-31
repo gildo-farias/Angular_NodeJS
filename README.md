@@ -1,6 +1,7 @@
 # Biblioteca
 
-    Aplicação simulando um sistema de locações de livros de uma biblioteca, Usando: Angular v9, NodeJs, e Java-SpringBoot(Back-end Rest API)
+    Aplicação simulando um sistema de locações de livros de uma biblioteca.
+    Usando: Angular v9, NodeJs, e Java-SpringBoot(Back-end Rest API).
 
 ## Back-end
 [Rest API SpringBoot](https://github.com/gildo-farias/API-Rest_SpringBoot)
