@@ -1,26 +1,23 @@
 # Biblioteca
 
-A system simulating a library and its management of book leases, the application still under construction.
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
-Using JSON Server.
+    Aplicação simulando um sistema de locações de livros de uma biblioteca, Usando: Angular v9, NodeJs, e Java-SpringBoot(Back-end Rest API)
 
 ## Back-end
 [Rest API SpringBoot](https://github.com/gildo-farias/API-Rest_SpringBoot)
-- **NOTA:** Este projeto ainda não está acessando ao back-end, por enquanto usando o [JSON Server](https://www.npmjs.com/package/json-server#getting-started) como uma fake RestAPI para testes.
 
 ## Prerequisites
 - NodeJs
 - Angular v9
 - Angular@cli v9.0.5
 - TypeScript v3.7.5
-- JSON Server (RestAPI Teste)
+- Projeto de Back-end citado acima :point_up_2:
 
 ## Getting Started
-1. Clone the project.
-2. Run `npm update` in local diretory project, to generate 'node_modules'.
-3. Run `npm install -g json-server`.
-4. Run `json-server --watch db.json` to start the JSON server RestAPI.
-5. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Run back-end project.
+2. Clone this project.
+3. Run `npm update` in local diretory project, to generate 'node_modules'.
+4. Run `ng serve` or `npm run start` for a dev server.
+5. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
