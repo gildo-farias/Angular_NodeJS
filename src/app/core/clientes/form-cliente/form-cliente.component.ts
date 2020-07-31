@@ -35,7 +35,7 @@ export class FormClienteComponent implements OnInit {
   onSubmit() {    
     if(this.formCliente.valid){
       if(this.cliente.id >= 0){
-        this._clientesService.update(this.cliente.id, this.formCliente.value).subscribe(
+        this._clientesService.update(this.formCliente.value).subscribe(
           success => {
             console.log('alterado!');
             this.formCliente.reset();
@@ -114,6 +114,7 @@ export class FormClienteComponent implements OnInit {
       });
     } else {      
       this.formCliente = this._formBuilder.group({
+        id:[this.cliente.id],
         cpf: [this.cliente.cpf, Validators.required],
         foto: [this.cliente.foto],
         nome: [this.cliente.nome, Validators.required],

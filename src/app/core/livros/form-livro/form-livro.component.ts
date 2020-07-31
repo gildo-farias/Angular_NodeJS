@@ -47,7 +47,7 @@ export class FormLivroComponent implements OnInit {
     if (this.formLivro.valid) {      
       this.carregando();
       if (this.livro.id >= 0) {        
-        this._livroService.update(this.livro.id, this.formLivro.value).subscribe(
+        this._livroService.update(this.formLivro.value).subscribe(
           success => {
             console.log('alterado!');
             this.formLivro.reset();
@@ -81,24 +81,25 @@ export class FormLivroComponent implements OnInit {
   iniciarForm() {
     if (this.livro.id == null) {      
       this.formLivro = this._formBuilder.group({
-        ISBN: [null, [Validators.required]],
+        isbn: [null, [Validators.required]],
         genero: [null, [Validators.required]],
         titulo: [null, [Validators.required]],
         subTit: [null],
         autor: [null, [Validators.required]],
         ano: [null, [Validators.required]],
-        img: [null, [Validators.required]],
+        capa: [null, [Validators.required]],
         locado: [false]
       });
     } else {
       this.formLivro = this._formBuilder.group({
-        ISBN: [this.livro.ISBN, [Validators.required]],
+        id:[this.livro.id],
+        isbn: [this.livro.isbn, [Validators.required]],
         genero: [this.livro.genero, [Validators.required]],
         titulo: [this.livro.titulo, [Validators.required]],
         subTit: [this.livro.subTit],
         autor: [this.livro.autor, [Validators.required]],
         ano: [this.livro.ano, [Validators.required]],
-        img: [this.livro.img, [Validators.required]],
+        capa: [this.livro.capa, [Validators.required]],
         locado: [this.livro.locado]
       });
     }

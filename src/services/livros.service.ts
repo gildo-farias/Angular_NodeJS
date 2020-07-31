@@ -20,23 +20,23 @@ export class LivrosService {
     return generos;
   }
 
-  private readonly API: string = `${environment.API}livros`;
+  private readonly API: string = `${environment.API}`;
   list() {
-    return this._http.get<Livro[]>(this.API);
+    return this._http.get<Livro[]>(`${this.API}/livros`);
   } 
 
   // *********  CRUD  *********
   create(livro:Livro){
-    return this._http.post(this.API, livro).pipe(take(1));
+    return this._http.post(`${this.API}/livro`, livro).pipe(take(1));
   }
   read(id:Number){
-    return this._http.get<Livro>(`${this.API}/${id}`);
+    return this._http.get<Livro>(`${this.API}/livro/${id}`);
   }
-  update(id:Number, livro:Livro){
-    return this._http.put(`${this.API}/${id}`, livro).pipe(take(1));
+  update(livro:Livro){
+    return this._http.put(`${this.API}/livro`, livro).pipe(take(1));
   }  
   delete(id:Number){
-    return this._http.delete(`${this.API}/${id}`).pipe(take(1));
+    return this._http.delete(`${this.API}/livro/${id}`).pipe(take(1));
   }
 
 }

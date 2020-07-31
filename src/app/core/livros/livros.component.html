@@ -13,7 +13,7 @@
 
     <!--card-->
     <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">                
-        <img [src]="livro.img" class="card-img-top" alt="IMAGEM INDISPONIVEL">      
+        <img [src]="livro.capa" class="card-img-top" alt="IMAGEM INDISPONIVEL">      
         <div class="overlay">
             <div class="text" title="DETALHES" [routerLink]="['/livros', livro.id]">
                 <span class="material-icons">visibility</span>

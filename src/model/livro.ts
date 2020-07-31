@@ -1,11 +1,11 @@
 export class Livro {
     id: Number;
-    ISBN: String;
+    isbn: String;
     genero:String;
     titulo: String;
     subTit: String;
     autor: String;
     ano: Number;
-    img: String;
+    capa: String;
     locado: Boolean;     
 }

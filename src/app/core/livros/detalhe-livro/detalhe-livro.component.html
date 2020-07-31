@@ -13,7 +13,7 @@
         <div class="card mb-3 componentShadow" *ngIf="livro$ | async else carregando">
             <div class="row no-gutters">
                 <div class="col-md-7">
-                    <img [src]="livro.img" class="card-img" alt="IMAGEM INDISPONIVEL NO MOMENTO">
+                    <img [src]="livro.capa" class="card-img" alt="IMAGEM INDISPONIVEL NO MOMENTO">
                 </div>
                 <div class="col-md-5">
                 <div class="card-body">
@@ -23,7 +23,7 @@
                     <p class="card-text subTit">{{ livro?.subTit | titlecase }}</p>
                     <p class="card-text"><small>AUTOR(A): </small>{{ livro.autor | titlecase }}</p>
                     <p class="card-text"><small>ANO: </small>{{ livro.ano }}</p>
-                    <p class="card-text"><small>ISBN: </small>{{ livro.ISBN }}</p>
+                    <p class="card-text"><small>ISBN: </small>{{ livro.isbn }}</p>
                     <p class="card-text"><small>GÊNERO: </small>{{ livro.genero | titlecase }}</p>                    
                     <p class="card-text">                    
                         <small class="alert-secondary status" *ngIf="livro.locado">LOCADO</small>
