@@ -50,11 +50,10 @@ export class FormLivroComponent implements OnInit {
         this._livroService.update(this.formLivro.value).subscribe(
           success => {
             console.log('alterado!');
-            this.formLivro.reset();
-            // this._route.navigate(['/livros', this.livro.id]);
+            this.formLivro.reset();            
             this._router.navigateByUrl('/livros'+this.livro.id, { skipLocationChange: true }).then(() => {
               this._router.navigate(['/livros', this.livro.id]);
-          }); 
+            }); 
           },
           error => console.error(error),
           ()  => console.log('request completada')

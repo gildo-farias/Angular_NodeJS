@@ -14,7 +14,7 @@
                     <h2 class="mb-0">
                         <button class="btn btn-outline-info btnTit" type="button" data-toggle="collapse" 
                             [title]="'desc'+i" data-target="#?" aria-expanded="false" aria-controls="?">
-                            {{ loc.cliente | uppercase }} | {{ loc.dataEntrega | date:'fullDate' | uppercase }}                    
+                            {{ loc.cliente.nome | uppercase }} | {{ loc.dataDevo | date:'fullDate' | uppercase }}                    
                         </button>
                         <a class="btn btn-warning" title="RECEBER" style="float: right;">
                             <span class="material-icons">move_to_inbox</span>
@@ -29,7 +29,7 @@
                             <div class="col-6">
                                 <p>
                                     <small>DATA DA LOCAÇÃO</small>: 
-                                    <label>{{ loc.dataLocacao | date:'fullDate' | uppercase }}</label>
+                                    <label>{{ loc.dataLoca | date:'fullDate' | uppercase }}</label>
                                 </p>
                                 <p>                    
                                     <small>VALOR: </small><label>{{ 100 | currency: 'BRL'}}</label> 

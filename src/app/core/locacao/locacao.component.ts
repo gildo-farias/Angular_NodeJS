@@ -1,3 +1,4 @@
+import { Locacao } from 'src/model/locacao';
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
@@ -14,27 +15,8 @@ export class LocacaoComponent implements OnInit {
   public set filtro(value: Date) {
     this._filtro = value;        
   }
-
-  livros:any=[];
-  locacoes=[
-  {
-    cliente:"gildo", 
-    dataLocacao:new Date("5/3/2020"),
-    dataEntrega:new Date("9/4/2020"),
-    //livros:[''+this.livros[0].tit, ''+this.livros[1].tit]      
-  },
-  {
-    cliente:"maria", 
-    dataLocacao:new Date("12/3/2019"),
-    dataEntrega:new Date("1/22/2020"),
-    //livros:[this.livros[1].tit, this.livros[2].tit]      
-  },
-  {
-    cliente:"joão", 
-    dataLocacao:new Date("8/12/2020"),
-    dataEntrega:new Date("10/8/2020"),
-    //livros:[this.livros[1].tit, this.livros[2].tit, this.livros[0].tit]      
-  }];
+  
+  locacoes:Locacao[];
 
   primeiraLoc = 1;
   constructor(private _elementRef: ElementRef, private _datePipe: DatePipe) { }
@@ -72,7 +54,7 @@ export class LocacaoComponent implements OnInit {
     }else{      
       return this.locacoes.filter((loc) => {
         let data = this._datePipe.transform(this.filtro,'dd/MM/yyyy');
-        if(loc.dataEntrega.toLocaleDateString() == data){                
+        if(loc.dataLoca == data){
           return true;            
         }else{                                
           return false;                    

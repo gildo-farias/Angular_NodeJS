@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
   
   constructor(private _systemService:SystemService){ }
   ngOnInit(){
-    this._systemService.logger$.subscribe(data => this.session = data);
+    this._systemService.logger$.subscribe(data => this.session = data);    
   }
   
 }

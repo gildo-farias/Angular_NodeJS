@@ -1,0 +1,135 @@
+<div class="container text-center">    
+    <br>
+    <div class="card componentShadow">
+        <div class="card-header">
+            <h3 style="color: grey;">LOCAÇÃO DE LIVROS</h3>
+        </div>
+        <div class="card-body">
+
+            <div class="dropdown-divider"></div>    
+            <div class="row">
+                <div class="col-sm-12 opt" title="CLIQUE PARA ADICIONAR O CLIENTE DA LOCAÇÃO" 
+                data-toggle="modal" data-target="#modalCliente">
+                    <span class="material-icons">face</span>
+                </div>              
+            </div>
+            <div class="dropdown-divider"></div>
+
+            <div class="row" *ngIf="clienteLoca.id">
+                <div class="col-sm-6">
+                    <img class="fotoCliente" [src]="clienteLoca.foto" style="float: right;" 
+                    [alt]="clienteLoca.nome">                    
+                </div>
+                <div class="col-md-auto">
+                    <p class="infCliente">
+                        <small>CODIGO: </small><label>{{ clienteLoca.id  }}</label><br>
+                        <small>CPF: </small><label>{{ clienteLoca.cpf }}</label><br>
+                        <small>NOME: </small><label>{{ clienteLoca.nome |titlecase }} {{ clienteLoca.snome |titlecase }}</label><br>
+                        <small>CONTATO: </small><label>{{ clienteLoca.telefone }}</label><br>                        
+                    </p>
+                </div>               
+            </div>
+
+            <div class="dropdown-divider"></div>
+            <div class="row" >                
+                <div class="col-sm-12 opt" title="CLIQUE PARA ADICIONAR LIVROS À LOCAÇÃO"
+                data-toggle="modal" data-target="#modalLivro">
+                    <span class="material-icons">book</span>                    
+                </div>                
+            </div>       
+            <div class="dropdown-divider"></div>    
+            
+            <div class="row">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div *ngFor="let livroEscolha of livrosLoca; let i = index" (dblclick)="removerLiv(i)"
+                        class="card livEscolhaRemover" style="width: 10rem; margin: 1%;">
+                            <img [src]="livroEscolha.capa" alt="IMAGEM INDISPONIVEL" class="card-img">
+                        </div>
+                    </div>
+                </div>          
+            </div>
+
+            <div class="dropdown-divider"></div>
+            <div class="row" >                
+                <div class="col-sm-12" title="DADOS DA ENTREGA DA LOCAÇÃO">
+                    <span class="material-icons">event</span>                    
+                </div>                
+            </div>       
+            <div class="dropdown-divider"></div> 
+
+            <div class="row justify-content-md-center" *ngIf="livrosLoca.length>0 && clienteLoca.id.valueOf() > 0">
+                <p class="infCliente">
+                    <small>DATA DA LOCAÇÃO: </small><label>{{ locacao.dataLoca }}</label><br>
+                    <small>DATA DA DEVOLUÇÃO: </small><label>{{ locacao.dataDevo }}</label><br>
+                    <small>VALOR DA LOCAÇÃO: </small><label>{{ locacao.valor |currency:'BRL'}}</label><br>                    
+                </p>
+                <div class="alert alert-warning">
+                    ATENÇÃO <BR>
+                    Cada dia de atraso após o prazo estipulado,
+                    será gerado automaticamente uma multa de R$ 5,00 por cada dia de atraso.
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-success btn-lg" style="float: right;" (click)="locar()">LOCAR</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Cliente -->
+<div id="modalCliente" class="modal fade" 
+    tabindex="-1" aria-labelledby="modalClienteLabel" aria-hidden="true">
+    <modal-locacao>
+        <label class="titulo">ESCOLHA O CLIENTE</label>
+        <div class="container corpo">                  
+            <div class="row justify-content-md-center">
+                <input type="text" placeholder="BUSCAR: Codigo ou nome de Cliente" class="form-control">  
+                <div *ngFor="let cliente of clientes" class="card bg-secondary cardEscolha" style="width: 6rem"
+                (click)="escolherCli(cliente)">
+                    <img [src]="cliente.foto" alt="{{ cliente.nome }}" class="card-img">                    
+                </div>
+            </div>              
+        </div>   
+    </modal-locacao>
+    <button type="button" id="closeModalCli" data-dismiss="modal" hidden></button>
+</div>
+
+<!-- Modal Livros -->
+<div id="modalLivro" class="modal fade" 
+    tabindex="-1" aria-labelledby="modalLivroLabel" aria-hidden="true">
+    <modal-locacao>
+        <label class="titulo">ESCOLHA OS LIVROS  <small class="text-muted">(Maximo 3 Livros)</small></label>
+        <div class="container corpo">                  
+            <div class="row justify-content-md-center">
+                <input type="text" placeholder="BUSCAR: Codigo, Titulo ou Autor do Livro" class="form-control">  
+
+                <!-- escolhidos -->
+                <div class="container" style="margin: 1%;">
+                    <div class="row justify-content-md-center">
+                        <div *ngFor="let liv of livrosLoca; let i = index" class="card livRemove" style="width: 3rem; padding:1px"
+                        (click)="removerLiv(i)">
+                            <img [src]="liv.capa" alt="" class="card-img">
+                        </div>
+                        <button *ngIf="livrosLoca.length>0 && livrosLoca.length<3" disabled 
+                            class="btn btn-success" style="font-size: large;">
+                            + {{ (livrosLoca.length==1) ? (livrosLoca.length+1):(livrosLoca.length-1) }}
+                        </button>               
+                    </div>
+                </div>
+                <!-- ********** -->               
+                
+                <div *ngFor="let livro of livros" class="card bg-secondary cardEscolha" style="width: 8rem"
+                (click)="escolherLiv(livro)">
+                    <img [src]="livro.capa" alt="" class="card-img">
+                </div>
+            </div>              
+        </div>   
+    </modal-locacao>
+    <button type="button" id="closeModalLiv" data-dismiss="modal" hidden></button>
+</div>
+
+<a class="floatBTN btn-secondary componentShadow" title="VOLTAR" routerLink="/locacao">
+    <span class="material-icons">arrow_back</span>
+</a>
