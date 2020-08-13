@@ -11,6 +11,7 @@ import { ModalComponent } from './modal/modal.component';
 
 import { LivrosService } from 'src/services/livros.service';
 import { ClientesService } from 'src/services/clientes.service';
+import { ErrosModule } from '../erros/erros.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ClientesService } from 'src/services/clientes.service';
   imports: [
     CommonModule,
     FormsModule,
-    LocacaoRoutingModule    
+    LocacaoRoutingModule,
+    ErrosModule
   ],
   exports: [
     LocacaoComponent        

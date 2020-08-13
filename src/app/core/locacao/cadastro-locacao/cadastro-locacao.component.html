@@ -11,6 +11,7 @@
                 <div class="col-sm-12 opt" title="CLIQUE PARA ADICIONAR O CLIENTE DA LOCAÇÃO" 
                 data-toggle="modal" data-target="#modalCliente">
                     <span class="material-icons">face</span>
+                    <label class="labels">CLIENTE</label>
                 </div>              
             </div>
             <div class="dropdown-divider"></div>
@@ -34,7 +35,8 @@
             <div class="row" >                
                 <div class="col-sm-12 opt" title="CLIQUE PARA ADICIONAR LIVROS À LOCAÇÃO"
                 data-toggle="modal" data-target="#modalLivro">
-                    <span class="material-icons">book</span>                    
+                    <span class="material-icons">book</span>
+                    <label class="labels">LIVROS</label>
                 </div>                
             </div>       
             <div class="dropdown-divider"></div>    
@@ -43,6 +45,7 @@
                 <div class="container">
                     <div class="row justify-content-md-center">
                         <div *ngFor="let livroEscolha of livrosLoca; let i = index" (dblclick)="removerLiv(i)"
+                        title="DUPLO CLIQUE PARA REMOVER"
                         class="card livEscolhaRemover" style="width: 10rem; margin: 1%;">
                             <img [src]="livroEscolha.capa" alt="IMAGEM INDISPONIVEL" class="card-img">
                         </div>
@@ -52,17 +55,18 @@
 
             <div class="dropdown-divider"></div>
             <div class="row" >                
-                <div class="col-sm-12" title="DADOS DA ENTREGA DA LOCAÇÃO">
-                    <span class="material-icons">event</span>                    
+                <div class="col-sm-12">
+                    <span class="material-icons">event</span>  
+                    <label class="labels">DADOS DA ENTREGA</label>                  
                 </div>                
             </div>       
             <div class="dropdown-divider"></div> 
 
-            <div class="row justify-content-md-center" *ngIf="livrosLoca.length>0 && clienteLoca.id.valueOf() > 0">
+            <div class="row justify-content-md-center" *ngIf="livrosLoca.length>0">
                 <p class="infCliente">
-                    <small>DATA DA LOCAÇÃO: </small><label>{{ locacao.dataLoca }}</label><br>
-                    <small>DATA DA DEVOLUÇÃO: </small><label>{{ locacao.dataDevo }}</label><br>
-                    <small>VALOR DA LOCAÇÃO: </small><label>{{ locacao.valor |currency:'BRL'}}</label><br>                    
+                    <small>DATA DA LOCAÇÃO: </small><label>{{ locacaoJSON.locacao.dataLoca |date: 'fullDate' |uppercase }}</label><br>
+                    <small>DATA DA DEVOLUÇÃO: </small><label>{{ locacaoJSON.locacao.dataDevo |date: 'fullDate' |uppercase }}</label><br>
+                    <small>VALOR DA LOCAÇÃO: </small><label>{{ locacaoJSON.locacao.valor |currency:'BRL'}}</label><br>                    
                 </p>
                 <div class="alert alert-warning">
                     ATENÇÃO <BR>
@@ -73,7 +77,8 @@
 
         </div>
         <div class="card-footer">
-            <button class="btn btn-success btn-lg" style="float: right;" (click)="locar()">LOCAR</button>
+            <button class="btn btn-success btn-lg" style="float: right;" (click)="locar()"
+            [disabled]="livrosLoca.length <= 0 || !clienteLoca.id">LOCAR</button>
         </div>
     </div>
 </div>
@@ -112,8 +117,8 @@
                         (click)="removerLiv(i)">
                             <img [src]="liv.capa" alt="" class="card-img">
                         </div>
-                        <button *ngIf="livrosLoca.length>0 && livrosLoca.length<3" disabled 
-                            class="btn btn-success" style="font-size: large;">
+                        <button *ngIf="livrosLoca.length>0 && livrosLoca.length<3"                             
+                            class="btn btn-success" style="font-size: large;" disabled>
                             + {{ (livrosLoca.length==1) ? (livrosLoca.length+1):(livrosLoca.length-1) }}
                         </button>               
                     </div>
@@ -126,8 +131,11 @@
                 </div>
             </div>              
         </div>   
+        <div class="rodape">
+            <button class="btn btn-success" id="closeModalLiv" data-dismiss="modal">PRONTO !</button>
+        </div>
     </modal-locacao>
-    <button type="button" id="closeModalLiv" data-dismiss="modal" hidden></button>
+    <!-- <button type="button" id="closeModalLiv" data-dismiss="modal" hidden></button> -->
 </div>
 
 <a class="floatBTN btn-secondary componentShadow" title="VOLTAR" routerLink="/locacao">

@@ -53,6 +53,7 @@
         </div>
     </ng-template>    
 </ng-template>
+
 <!-- livro nao encontrado -->
 <div class="row justify-content-md-center">
     <div class="col-6">
@@ -66,7 +67,8 @@
         </system-nao-encontrado>
     </div>
 </div>
-<a class="floatBTNsecondary btn-secondary componentShadow" title="ATUALIZAR" (click)="onRefresh()">
+
+<a class="floatBTNsecondary btn-secondary componentShadow text-white" title="ATUALIZAR" (click)="onRefresh()">
     <span class="material-icons">refresh</span>
 </a>
 <a class="floatBTN btn-info componentShadow" title="CADASTRAR" [hidden]='!(livros$ | async)'

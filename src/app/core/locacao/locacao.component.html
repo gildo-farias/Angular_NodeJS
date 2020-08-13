@@ -1,49 +1,63 @@
 <br>
-<div class="row justify-content-md-center">    
+<div class="row justify-content-md-center" *ngIf="locacoes$ | async else alertas">
     <div class="col-6">
         <input class="form-control" type="date" style="text-align: center;" 
             [(ngModel)]="filtro">                            
-    </div>        
-</div>    
-<br>
-<div class="row justify-content-md-center">
-    <div class="col-12">
+    </div>            
+
+    <div class="col-12" style="margin-top: 2%;">
         <div class="accordion componentShadow" id="listaLocacoes">
+
             <div class="card" *ngFor="let loc of onFiltrarLoca(); index as i" >
-                <div class="card-header" [id]="'tit'+i">
-                    <h2 class="mb-0">
-                        <button class="btn btn-outline-info btnTit" type="button" data-toggle="collapse" 
-                            [title]="'desc'+i" data-target="#?" aria-expanded="false" aria-controls="?">
-                            {{ loc.cliente.nome | uppercase }} | {{ loc.dataDevo | date:'fullDate' | uppercase }}                    
-                        </button>
-                        <a class="btn btn-warning" title="RECEBER" style="float: right;">
-                            <span class="material-icons">move_to_inbox</span>
-                        </a>
-                    </h2>
+                <div class="card-header">                    
+                    <button class="btn btn-outline-info" type="button" title="EXPANDIR / FECHAR"                         
+                    data-toggle="collapse" data-target="" aria-expanded="false" style="float: left;"
+                    (click)="openCard($event.target, 'card'+i)">
+                        {{ loc.cliente.nome | uppercase }} | {{ loc.locacao.dataDevo | date:'mediumDate' }}                    
+                    </button>            
+
+                    <div *ngIf="verificarData(loc, loc.locacao.dataDevo.valueOf())"
+                    class="spinner-grow text-danger" role="status" style="float: right;">
+                        <span class="sr-only">Loading...</span>
+                    </div>
                 </div>
 
-                <div [id]="'desc'+i" class="collapse desc" [title]="'tit'+i" aria-labelledby="?" 
-                    data-parent="#listaLocacoes">
+                <div class="collapse" [ngClass]="{'show': i==0}" [id]="'card'+i" data-parent="#listaLocacoes">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">
-                                <p>
+                                <p class="p-3 mb-2 bg-secondary  text-white">
                                     <small>DATA DA LOCAÇÃO</small>: 
-                                    <label>{{ loc.dataLoca | date:'fullDate' | uppercase }}</label>
+                                    <label>{{ loc.locacao.dataLoca | date:'fullDate' }}</label>
                                 </p>
-                                <p>                    
-                                    <small>VALOR: </small><label>{{ 100 | currency: 'BRL'}}</label> 
-                                    (<small>MULTA: </small><label style="color: red;">{{ 10 | currency: 'BRL'}}</label>)
-                                    <br><small>TOTAL: </small><label>{{ 110 | currency: 'BRL'}}</label> 
+                                <p class="p-3 mb-2 bg-secondary  text-white">                    
+                                    <small>VALOR: </small><label>{{ loc.locacao.valor | currency: 'BRL'}}</label> 
+                                    (<small>MULTA: </small><label style="color: tomato; font-weight: bold;">{{ loc.locacao.multa | currency: 'BRL'}}</label>)
+                                    <br><small>TOTAL: </small><label>{{ loc.locacao.valorTotal | currency: 'BRL'}}</label> 
                                 </p>  
+                                <br>
+                                <button class="btn btn-warning btn-lg btn-block" 
+                                (click)="receber(loc)" data-toggle="modal" data-target="#modalConfirmar"
+                                title="RECEBER" style="float: right;">
+                                    <span class="material-icons">move_to_inbox</span>
+                                    RECEBER 
+                                </button>
                             </div>
                             <div class="col-6">
-                                <div class="card">
+                                <div class="card text-white bg-dark componentShadow">
                                     <div class="card-header" style="text-align: center;">
-                                        <h5>LIVROS</h5>
+                                        <h6>LIVROS</h6>
                                     </div>
                                     <div class="card-body">
-                                        .............
+                                        <div class="container" style="margin: 1%;">
+                                            <div class="row justify-content-md-center">
+                                                <div *ngFor="let liv of loc.livros; let i = index" class="card" 
+                                                [title]="liv.titulo.valueOf() +', '+ liv.subTit.valueOf()" 
+                                                style="width: 5rem; padding:1px; margin: 2%;">
+                                                    <img [src]="liv.capa" alt="" class="card-img">
+                                                </div>                                                         
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>      
                             </div>
@@ -60,8 +74,56 @@
         
     </div> -->
 </div> <!-- row -->
+<!-- Modal Cliente -->
+<div id="modalConfirmar" class="modal fade" 
+    tabindex="-1" aria-labelledby="modalConfirmarLabel" aria-hidden="true">
+    <modal-locacao>
+        <label class="titulo">CONFIRMA O RECEBIMENTO DOS LIVROS ?</label>
+        <div class="corpo">
+            <div class="container text-center" style="margin: 1%;">
+                <h6>LIVROS</h6>
+                <div class="row justify-content-md-center">
+                    <div *ngFor="let liv of locacaoEscolha.livros; let i = index" class="card" 
+                    [title]="liv.titulo.valueOf() +', '+ liv.subTit.valueOf()" 
+                    style="width: 5rem; padding:1px; margin: 2%;">
+                        <img [src]="liv.capa" alt="" class="card-img">
+                    </div>                                                         
+                </div>
+                <p>VALOR: {{ locacaoEscolha.locacao.valorTotal |currency:'BRL' }}</p>
+            </div>            
+        </div>
+        <div class="rodape">            
+            <button class="btn btn-success"  (click)="confirmaReceber();" data-dismiss="modal">CONFIRMA $</button>                       
+        </div>
+    </modal-locacao>
+</div>
 
-<a class="floatBTN btn-info componentShadow" title="LOCAR" routerLink="novo">
+<ng-template #alertas>
+    <!-- banco de dados OFF .... -->    
+    <div class="row justify-content-md-center" *ngIf="erro$ | async; else carregando">
+        <system-nao-encontrado>
+            <label class="titulo">BANCO DE DADOS</label>
+            <p class="corpo">
+                Nossa base de dados parece estar indisponivel no momento,
+                porfavor tente de novo mais tarde.
+                Caso o erro persiste contacte o suporte tecnico.
+            </p>
+        </system-nao-encontrado>
+    </div> 
+    <!-- carregando .... -->
+    <ng-template #carregando>
+        <div class="row justify-content-md-center">
+            <div class="spinner-border text-info" style="width: 8rem; height: 8rem;" role="status">
+                <span class="sr-only">Carregando Banco de Dados...</span>
+            </div>
+        </div>
+    </ng-template>    
+</ng-template>
+
+<a class="floatBTNsecondary btn-secondary componentShadow text-white" title="ATUALIZAR" (click)="onRefresh()">
+    <span class="material-icons">refresh</span>
+</a>
+<a class="floatBTN btn-info componentShadow" title="LOCAR" href="" routerLink="novo" [hidden]='!(locacoes$ | async)'>
     <span class="material-icons">unarchive</span>
 </a>
   

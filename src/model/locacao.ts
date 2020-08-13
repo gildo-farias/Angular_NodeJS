@@ -1,10 +1,6 @@
-import { Cliente } from 'src/model/cliente';
-import { Livro } from './livro';
-
 export class Locacao {
     id:Number;
-    cliente:Cliente;
-    livros:Livro[];
+    id_cliente:Number;
     dataLoca:String;
     dataDevo:String;
     valor:Number;
