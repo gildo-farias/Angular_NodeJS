@@ -15,19 +15,8 @@ export class LivrosComponent implements OnInit {
   livros$: Observable<Livro[]>;
   generos:String[] = new Array;
 
-  notFoundFiltro:boolean;
-  private _filtro: String = "";
-  public get filtro(): String {
-    return this._filtro;
-  }
-  public set filtro(value: String) {    
-    this._filtro = value;    
-    if(this.onFiltrarLivro().length==0){
-      this.notFoundFiltro = true;      
-    }else{
-      this.notFoundFiltro = false;      
-    }    
-  }  
+  
+  filtro: String = "";  
 
   constructor(private _livrosService: LivrosService) { }
 

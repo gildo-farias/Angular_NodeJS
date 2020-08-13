@@ -1,36 +1,44 @@
 <link href='https://fonts.googleapis.com/css?family=Aladin' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
 <br>
-<!-- <app-alert></app-alert> -->
-<div class="row justify-content-md-center">    
+<div class="row justify-content-md-center" *ngIf="livros$ | async else alertas">  
+
     <div class="col-6">
         <input class="form-control" type="search" [hidden]="!(livros$ | async)"
             placeholder="PESQUISAR: Autor, Titulo ou Subtitulo do Livro" [(ngModel)]="filtro">
-    </div>
-</div>
-<br>
-<div class="row justify-content-md-center" *ngIf="livros$ | async else alertas">
+    </div>    
 
-    <!--card-->
-    <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">                
-        <img [src]="livro.capa" class="card-img-top" alt="IMAGEM INDISPONIVEL">      
-        <div class="overlay">
-            <div class="text" title="DETALHES" [routerLink]="['/livros', livro.id]">
-                <span class="material-icons">visibility</span>
+    <div class="row justify-content-md-center" style="margin-top: 1%;">
+        <!-- livro nao encontrado -->        
+        <system-nao-encontrado *ngIf="onFiltrarLivro().length == 0">
+            <label class="titulo">LIVRO</label>
+            <p class="corpo">
+                Não encontramos nenhum livro com esse titulo digitado
+                tente informa o titulo do livro,
+                um subtitulo da franquia ou o nome do(a) autor(a) do livro que esta procurando.
+            </p>
+        </system-nao-encontrado>        
+        
+        <!--card-->
+        <div class="card text-center cards componentShadow" *ngFor="let livro of onFiltrarLivro()">                
+            <img [src]="livro.capa" class="card-img-top" alt="IMAGEM INDISPONIVEL">      
+            <div class="overlay">
+                <div class="text" title="DETALHES" [routerLink]="['/livros', livro.id]">
+                    <span class="material-icons">visibility</span>
+                </div>
+            </div>
+            <div class="card-body">            
+                <label class="card-title">{{ livro.titulo | uppercase }}</label>
+                <label class="card-subtitle">{{ livro.subTit | titlecase}}</label>            
+            </div>        
+            <div class="card-footer" [ngClass]="{'alert-secondary': livro.locado,'alert-success': !livro.locado}">
+                <small>{{ !livro.locado ? 'DISPONIVEL' : 'LOCADO' }}</small>
             </div>
         </div>
-        <div class="card-body">            
-            <label class="card-title">{{ livro.titulo | uppercase }}</label>
-            <label class="card-subtitle">{{ livro.subTit | titlecase}}</label>            
-        </div>        
-        <div class="card-footer" [ngClass]="{'alert-secondary': livro.locado,'alert-success': !livro.locado}">
-            <small>{{ !livro.locado ? 'DISPONIVEL' : 'LOCADO' }}</small>
-        </div>
+
     </div>
 
 </div>
-<router-outlet></router-outlet>
-
 
 <ng-template #alertas>
     <!-- banco de dados OFF .... -->    
@@ -54,20 +62,6 @@
     </ng-template>    
 </ng-template>
 
-<!-- livro nao encontrado -->
-<div class="row justify-content-md-center">
-    <div class="col-6">
-        <system-nao-encontrado [hidden]="!notFoundFiltro">
-            <label class="titulo">LIVRO</label>
-            <p class="corpo">
-                Não encontramos nenhum livro com esse titulo digitado
-                tente informa o titulo do livro,
-                um subtitulo da franquia ou o nome do(a) autor(a) do livro que esta procurando.
-            </p>
-        </system-nao-encontrado>
-    </div>
-</div>
-
 <a class="floatBTNsecondary btn-secondary componentShadow text-white" title="ATUALIZAR" (click)="onRefresh()">
     <span class="material-icons">refresh</span>
 </a>
@@ -75,3 +69,5 @@
     data-toggle="modal" data-target="#staticBackdrop" routerLink="novo">
     <span class="material-icons">add</span>
 </a>
+
+<router-outlet></router-outlet>

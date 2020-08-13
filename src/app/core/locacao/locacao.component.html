@@ -2,11 +2,20 @@
 <div class="row justify-content-md-center" *ngIf="locacoes$ | async else alertas">
     <div class="col-6">
         <input class="form-control" type="date" style="text-align: center;" 
-            [(ngModel)]="filtro">                            
-    </div>            
-
-    <div class="col-12" style="margin-top: 2%;">
-        <div class="accordion componentShadow" id="listaLocacoes">
+            [(ngModel)]="filtro" title="INFORME UMA DATA PARA FILTRAR PELAS LOCAÇÕES DO DIA DESEJADO">                            
+    </div>           
+    
+    
+    <div class="row justify-content-md-center" style="margin-top: 1%;">           
+    
+        <!-- SEM ENTREGAS PARA ESTA DATA -->        
+        <system-nao-encontrado *ngIf="onFiltrarLoca().length == 0" style="width: 70rem;">        
+            <p class="corpo">
+                Não existe nenhuma entrega de livros agendada para esta data.
+            </p>
+        </system-nao-encontrado>  
+        
+        <div class="accordion componentShadow" id="listaLocacoes" style="width: 70rem;">
 
             <div class="card" *ngFor="let loc of onFiltrarLoca(); index as i" >
                 <div class="card-header">                    
@@ -16,7 +25,7 @@
                         {{ loc.cliente.nome | uppercase }} | {{ loc.locacao.dataDevo | date:'mediumDate' }}                    
                     </button>            
 
-                    <div *ngIf="verificarData(loc, loc.locacao.dataDevo.valueOf())"
+                    <div *ngIf="verificarData(loc.locacao.dataDevo.valueOf())"
                     class="spinner-grow text-danger" role="status" style="float: right;">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -36,9 +45,8 @@
                                     <br><small>TOTAL: </small><label>{{ loc.locacao.valorTotal | currency: 'BRL'}}</label> 
                                 </p>  
                                 <br>
-                                <button class="btn btn-warning btn-lg btn-block" 
-                                (click)="receber(loc)" data-toggle="modal" data-target="#modalConfirmar"
-                                title="RECEBER" style="float: right;">
+                                <button class="btn btn-success btn-lg btn-block" title="RECEBER"
+                                (click)="receber(loc)" data-toggle="modal" data-target="#modalConfirmar">
                                     <span class="material-icons">move_to_inbox</span>
                                     RECEBER 
                                 </button>
@@ -63,18 +71,16 @@
                             </div>
                         </div>
 
-                    </div><!-- card-body -->                    
+                    </div><!-- card-body -->                                    
                 </div><!-- card-collapse -->
             </div><!-- card -->
             
-        </div><!-- accordion -->
-    </div>
+        </div><!-- accordion -->    
 
-    <!-- <div class="col-6">
-        
-    </div> -->
-</div> <!-- row -->
-<!-- Modal Cliente -->
+    </div>
+</div>
+
+<!-- Modal Confirmar Recebimento -->
 <div id="modalConfirmar" class="modal fade" 
     tabindex="-1" aria-labelledby="modalConfirmarLabel" aria-hidden="true">
     <modal-locacao>

@@ -1,3 +1,4 @@
+import { LocacaoService } from 'src/services/locacao.service';
 import { Usuario } from 'src/model/usuario';
 import { SystemService } from 'src/services/system.service';
 import { catchError } from 'rxjs/operators';
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/model/cliente';
 import { ClientesService } from 'src/services/clientes.service';
 import { Subject, empty, Observable } from 'rxjs';
+import { LocacaoJSON } from 'src/model/locacaoJSON';
 
 @Component({
   selector: 'system-clientes',
@@ -13,7 +15,10 @@ import { Subject, empty, Observable } from 'rxjs';
 })
 export class ClientesComponent implements OnInit {
 
-  constructor(private _clientesService: ClientesService, private _systemService:SystemService) { }
+  constructor(
+    private _clientesService: ClientesService,    
+    private _systemService:SystemService
+  ) { }
 
   user:Usuario;
   listaClientes:Array<Cliente> = new Array;
@@ -34,7 +39,9 @@ export class ClientesComponent implements OnInit {
         return empty;
       })
     );      
-    this._clientesService.list().subscribe(data => this.listaClientes = data);
+    this._clientesService.list().subscribe(data => {
+      this.listaClientes = data;      
+    });
   }
 
   onFiltrar(){        

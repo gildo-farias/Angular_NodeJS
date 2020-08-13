@@ -1,46 +1,59 @@
-<div class="card" id="divLogin">
-  <form class="px-4 py-3">
-    <div class="form-group">
-      <label for="loginUsuario">USUARIO</label>      
-      <input type="text" class="form-control" id="loginUsuario" #user placeholder="fulano@81" required>
-    </div>
-    <div class="form-group">
-      <label for="loginSenha">SENHA</label> 
-      <span class="material-icons" style="margin-left: 2%;"
-        ngbPopover="USUARIO: root@123 | SENHA: 123456" 
-        triggers="mouseenter:mouseleave" popoverTitle="ACESSO">visibility</span>
-      <input type="password" class="form-control" id="loginSenha" #pass placeholder="******" required>
-    </div>
-    <div class="form-group">
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="loginCheck">
-        <label class="form-check-label" for="loginCheck">
-          Manter-me conectado.
-        </label>                  
-      </div>
-    </div>
-    <button type="button" disabled class="btn btn-outline-info" style="margin-right: 2%;">CADASTRAR-SE</button>
-    <button type="button" class="btn btn-success" (click)="onLogin(user, pass)">LOGAR</button>
-  </form>
+<div class="container">
+  <div class="row justify-content-md-center">
 
-  <div class="card-footer" style="text-align:center; cursor: pointer;" data-toggle="collapse" href="#collapseSenha" 
-    role="button" aria-expanded="false" aria-controls="collapseSenha">
-    <small class="text-muted">ESQUECEU A SENHA?</small>
-  </div> 
-
-  <div class="collapse" id="collapseSenha">
-    <div class="card card-body">
-      <form>                
-        <p for="loginEmail">
-            Informe seu email usado no cadastro e enviaremos um link para redefinição de sua senha.
-        </p>
-        <input type="email" class="form-control" id="loginEmail" placeholder="exemplo@gmail.com" style="margin-bottom: 2%;" required>
-
-        <button type="submit" class="btn btn-info btn-lg btn-block">ENVIAR</button>          
+    <div class="card bg-dark text-white componentShadow" id="divLogin" style="margin-top:2%; width: 30rem;">
+      <form class="px-4 py-3">
+        <div class="form-group">
+          <label for="loginUsuario">USUARIO</label>
+          <input type="text" class="form-control" id="loginUsuario" #user placeholder="fulano@81" required>
+        </div>
+        <div class="form-group">
+          <label for="loginSenha">SENHA</label>
+          <span class="material-icons" style="margin-left: 2%;" ngbPopover="USUARIO: root@123 | SENHA: 123456"
+            triggers="mouseenter:mouseleave">visibility</span>
+          <input type="password" class="form-control" id="loginSenha" #pass placeholder="******" required>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="loginCheck">
+            <label class="form-check-label" for="loginCheck">
+              Manter-me conectado.
+            </label>
+          </div>
+        </div>
+        <button type="button" disabled class="btn btn-outline-info" style="margin-right: 2%;">CADASTRAR-SE</button>
+        <button type="button" class="btn btn-success" (click)="onLogin(user, pass)">LOGAR</button>
       </form>
-    </div>
-  </div>
 
-  
+      <!-- Collapse -->
+      <div class="collapse" id="collapseSenha">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <form class="px-4 py-3">
+              <p for="loginEmail">
+                Informe seu email usado no cadastro<br>
+                e enviaremos um link para redefinição de sua senha.
+              </p>
+              <input type="email" class="form-control" id="loginEmail" placeholder="exemplo@gmail.com"
+                style="margin-bottom: 2%;" required>
+
+              <button type="submit" class="btn btn-info btn-lg btn-block">ENVIAR</button>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+      <!-- ********** -->
+
+      <div class="card-footer" style="text-align:center; cursor: pointer;" data-toggle="collapse" href="#collapseSenha"
+        role="button" aria-expanded="false" aria-controls="collapseSenha">
+        <small class="text-muted">ESQUECEU A SENHA?</small>
+      </div>     
+      
+    </div>
+    <!-- Card -->
+
     
+
+  </div>
 </div>

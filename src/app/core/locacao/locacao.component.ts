@@ -1,3 +1,5 @@
+import { ClientesService } from 'src/services/clientes.service';
+import { Router } from '@angular/router';
 import { LocacaoService } from 'src/services/locacao.service';
 import { Observable, Subject, empty } from 'rxjs';
 import { LocacaoJSON } from 'src/model/locacaoJSON';
@@ -15,14 +17,15 @@ export class LocacaoComponent implements OnInit {
   today = new Date();    
   filtro: String;
 
-  locacoes:LocacaoJSON[];
+  locacoes:LocacaoJSON[] = new Array;
   locacoes$:Observable<LocacaoJSON[]>;
 
   locacaoEscolha:LocacaoJSON;
   
   constructor(
     private _locacaoService:LocacaoService,    
-    private _datePipe: DatePipe
+    private _clientesService:ClientesService,    
+    private _router: Router,    
   ) { }
 
   erro$ = new Subject<boolean>();
@@ -30,7 +33,7 @@ export class LocacaoComponent implements OnInit {
     this.onRefresh();
   }
 
-  verificarData(locacao:LocacaoJSON, dataLoca){    
+  verificarData(dataLoca){    
     let data = new Date(dataLoca);
     if(data.getTime() < this.today.getTime())      
     return true;           
@@ -57,6 +60,9 @@ export class LocacaoComponent implements OnInit {
           loc.locacao.multa = 5 * diasAtraso;
           loc.locacao.valorTotal = loc.locacao.valor.valueOf() + loc.locacao.multa.valueOf();
           this._locacaoService.update(loc).subscribe();
+          loc.cliente.debito = loc.locacao.valorTotal.valueOf(); 
+          loc.cliente.status = false;          
+          this._clientesService.update(loc.cliente).subscribe();
         }      
       }
 
@@ -65,7 +71,7 @@ export class LocacaoComponent implements OnInit {
   }
 
   onFiltrarLoca(){    
-    if(this.filtro === undefined || this.filtro === null || this.filtro.trim() == ''){
+    if(this.locacoes.length==0 || this.filtro === undefined || this.filtro === null || this.filtro.trim() == ''){
       return this.locacoes;
     }else{      
       return this.locacoes.filter((loc) => {                         
@@ -88,8 +94,11 @@ export class LocacaoComponent implements OnInit {
 
   confirmaReceber(){
     this.locacaoEscolha.locacao.status = false;
-    this._locacaoService.update(this.locacaoEscolha).subscribe();
-    this.onRefresh();
+    this._locacaoService.update(this.locacaoEscolha).subscribe( () => {
+      this._router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+        this._router.navigate(['/locacao']);
+      }); 
+    });    
   }
 
 }

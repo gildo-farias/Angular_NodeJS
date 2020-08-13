@@ -14,8 +14,8 @@ export class TelaLoginComponent implements OnInit {
     private _usuarioService: UsuarioService) { }
 
   ngOnInit() {
-    this._systemService.logger = this._usuarioService.auth('root@123', '123456');
-    this._systemService.logger$.emit(true);
+    // this._systemService.logger = this._usuarioService.auth('root@123', '123456');
+    // this._systemService.logger$.emit(true);
   }
 
   onLogin(user:HTMLInputElement, pass:HTMLInputElement){    
