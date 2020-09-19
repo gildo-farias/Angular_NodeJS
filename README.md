@@ -1,9 +1,9 @@
 # Biblioteca
 
     Aplicação simulando um sistema de locações de livros de uma biblioteca.
-    Usando: Angular v9, NodeJs, e Java-SpringBoot(Back-end Rest API).
+    Usando: Angular v9, NodeJs, e Java-SpringBoot(Backend Rest API).
 
-## Back-end
+## Backend
 [Rest API SpringBoot](https://github.com/gildo-farias/API-Rest_SpringBoot)
 
 ## Prerequisites
@@ -11,10 +11,10 @@
 - Angular v9
 - Angular@cli v9.0.5
 - TypeScript v3.7.5
-- Projeto de Back-end citado acima :point_up_2:
+- Projeto de Backend citado acima :point_up_2:
 
 ## Getting Started
-1. Run back-end project.
+1. Run backend project.
 2. Clone this project.
 3. Run `npm update` in local diretory project, to generate 'node_modules'.
 4. Run `ng serve` or `npm run start` for a dev server.
